@@ -6,25 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FOUND-U</title>
+    {{-- GOOGLE FONT --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+    {{-- BOOTSTRAP --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <style>
-        * {
-            font-family: 'Nunito', sans-serif;
-        }
-        .nav-link {
-            font-weight: 500 !important;
-        }
-        .nav-link.active {
-            font-weight: bold !important;
-            background-color: #ED3237;
-            color: #fff !important;
-        }
-    </style>
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {{-- FONT AWESOME --}}
+    <script src="https://kit.fontawesome.com/cce5ebab8a.js" crossorigin="anonymous"></script>
+    <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+    @yield('head')
 </head>
 
 <body>
