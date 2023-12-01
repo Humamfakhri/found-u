@@ -9,12 +9,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto gap-3 align-items-center">
-                <a class="nav-link rounded-pill py-1 px-3 active" aria-current="page"
-                    href="{{ url('/') }}">Beranda</a>
-                <a class="nav-link rounded-pill py-1 px-3" href="#">Kehilangan</a>
-                <a class="nav-link rounded-pill py-1 px-3" href="#">Ditemukan</a>
-                <a class="nav-link rounded-pill py-1 px-3" href="#">Tentang</a>
-                <a class="nav-link rounded-pill py-1 px-3" href="#"><button
+                <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('') ? 'active' : '' }}" href="/">Beranda</a>
+                <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('kehilangan') ? 'active' : '' }}" href="/kehilangan">Kehilangan</a>
+                <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('ditemukan') ? 'active' : '' }}" href="/ditemukan">Ditemukan</a>
+                <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('tentang') ? 'active' : '' }}" href="/tentang">Tentang</a>
+                <a class="nav-link rounded-pill py-1 px-3" href="/login"><button
                         class="btn btn-outline-primary py-1 rounded-pill px-3">Login</button></a>
             </div>
         </div>
