@@ -1,0 +1,64 @@
+:root {
+  --primary: #ED3237;
+  --text: #303030;
+}
+
+.hero-tentang {
+  margin-top: 12rem;
+  margin-bottom: 15rem  ;  
+}
+
+.alasan .card {
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.alasan .card img {
+  height: 60px;
+}
+
+.wave-masukan {
+  margin-top: 10rem;
+}
+
+.section-title {
+  padding-top: 5rem;
+}
+
+.masukan {
+  margin-top: 5rem;
+  background-color: #f5f5f5;
+  padding-bottom: 10rem;
+}
+
+.hubungi-kami {
+  margin-top: 10rem;
+}
+
+.tentang-sosmed a {
+  text-decoration: none;
+  border: 1px solid var(--primary);
+}
+
+.tentang-sosmed a:hover {
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+}
+
+.tentang-sosmed a i,
+.tentang-sosmed a p {
+  color: var(--primary);
+  transition: .1s;
+}
+
+.tentang-sosmed a:hover i,
+.tentang-sosmed a:hover p {
+  color: #fff;
+}
+
+.tentang-sosmed a p {
+  font-weight: 600;
+}
+
+.tentang-sosmed a i {
+  width: 2.2rem;
+}
