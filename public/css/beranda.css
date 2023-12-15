@@ -7,7 +7,7 @@
   background-color: #bf1e2e;
   width: 100%;
   height: auto;
-  aspect-ratio: 16/5;
+  aspect-ratio: 16/2;
   position: relative;
 }
 
@@ -40,11 +40,6 @@
 .filter input {
   border: 1px solid #303030;
 }
-.cards-container .line {
-  width: 100px;
-  height: 2px;
-  background-color: var(--primary);
-}
 
 .cards-container .lihat-semua {
   bottom: 0;
@@ -53,7 +48,7 @@
 }
 
 .cards-container .carousel-inner {
-  padding: 0 .2rem 5rem .2rem;
+  padding: 0 .2rem 3rem .2rem;
 }
 
 .cards-container .carousel-indicators button {
@@ -62,7 +57,7 @@
   border-radius: 100%;
   background-color: var(--primary);
 }
-
+/* 
 .cards-container .card {
   border: 0;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
@@ -107,6 +102,11 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  /* number of lines to show */
   -webkit-box-orient: vertical;
+} */
+
+@media only screen and (min-width: 768px){
+  .cards-container .carousel-inner {
+    padding: 0 .2rem 5rem .2rem;
+  }
 }

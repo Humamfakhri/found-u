@@ -7,7 +7,7 @@
     <div class="container mt-5">
         <div class="filter filter-semua d-flex gap-4">
             <div class="dropdown">
-                <button class="btn btn-outline-secondary rounded-pill px-3 dropdown-toggle" type="button"
+                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 dropdown-toggle" type="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Urutkan
                     <i class="ms-2 fa-solid fa-chevron-down"></i>
@@ -28,7 +28,7 @@
                 <div class="line"></div>
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h1 class="mt-4">KEHILANGAN</h1>
+                        <h2 class="mt-4">KEHILANGAN</h2>
                         <p class="lead">Barang yang belum ditemukan.</p>
                     </div>
                 </div>

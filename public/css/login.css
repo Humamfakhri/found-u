@@ -26,8 +26,16 @@ body {
   z-index: -1;
 }
 
-h4 {
+.content .login-container h4 {
   font-weight: 800;
+}
+
+.image-container img {
+  width: 70%;
+}
+
+.login-container img {
+  width: 50%;
 }
 
 .image-container i {
@@ -36,8 +44,25 @@ h4 {
   left: 3rem;
 }
 
-.login-container i {
+.login-container .icon-left {
   top: 50%;
   transform: translateY(-50%);
   left: 1.3rem;
+}
+
+.login-container .icon-right {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1.3rem;
+  cursor: pointer;
+}
+
+/* MEDIUM (MD) */
+@media only screen and (min-width: 768px){
+  .image-container img {
+    width: 50%;
+  }
+  .login-container img {
+    width: 50%;
+  }
 }

@@ -21,6 +21,11 @@
 </head>
 
 <body>
+    <div class="floating-icon">
+        <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#buatPost">
+            <i class="fs-1 text-primary fa-solid fa-circle-plus"></i>
+        </button>
+    </div>
     <header>
         @include('includes.header')
     </header>

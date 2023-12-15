@@ -4,8 +4,8 @@
 }
 
 .hero-tentang {
-  margin-top: 12rem;
-  margin-bottom: 15rem  ;  
+  margin-top: 8rem;
+  margin-bottom: 5rem  ;  
 }
 
 .alasan .card {
@@ -16,13 +16,13 @@
   height: 60px;
 }
 
-.wave-masukan {
+/* .wave-masukan {
   margin-top: 10rem;
-}
+} */
 
-.section-title {
+/* .section-title {
   padding-top: 5rem;
-}
+} */
 
 .masukan {
   margin-top: 5rem;
@@ -31,7 +31,7 @@
 }
 
 .hubungi-kami {
-  margin-top: 10rem;
+  margin-top: 3rem;
 }
 
 .tentang-sosmed a {

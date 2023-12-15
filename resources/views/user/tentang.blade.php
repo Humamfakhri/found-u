@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row gx-5">
         <div class="col-lg">
-          <h1 class="fw-black">Hilang & Temukan, Mudah dengan FOUND-U!</h1>
+          <h2 class="fw-black">Hilang & Temukan, Mudah dengan FOUND-U!</h2>
           <p>Tidak jarang, mahasiswa ataupun civitas Telkom University meninggalkan barang mereka di suatu tempat. FOUND-U dibuat untuk memudahkan akses dan pencarian bagi civitas Telkom University yang sedang kehilangan barang ataupun menemukan barang temuan di suatu tempat.</p>
         </div>
         <div class="col-lg">
@@ -19,7 +19,7 @@
 
   <section class="alasan">
     <div class="container text-center">
-      <h1 class="fw-black">Kenapa Harus Menggunakan <span class="text-primary">FOUND-U</span>?</h1>
+      <h2 class="fw-black">Kenapa Harus Menggunakan <span class="text-primary">FOUND-U</span>?</h2>
       <div class="row justify-content-center mt-5 gap-4">
         <div class="col-lg-3">
           <div class="card border-0 py-4 px-3 rounded-4">
@@ -51,7 +51,7 @@
     </div>
     <div class="container">
       <div class="section-title">
-        <h1 class="fw-black">Punya <span class="text-primary">Kritik</span>, <span class="text-primary">Saran</span>, atau <span class="text-primary">Pertanyaan</span>?</h1>
+        <h2 class="fw-black">Punya <span class="text-primary">Kritik</span>, <span class="text-primary">Saran</span>, atau <span class="text-primary">Pertanyaan</span>?</h2>
         <p class="lead fw-normal">Kami selalu menerima masukan Anda agar FOUND-U menjadi lebih baik lagi.</p>
       </div>
       <div class="form-floating mt-5">
@@ -66,7 +66,7 @@
           <img src="/img/mailbox.svg" alt="" class="img-fluid w-50">
         </div>
         <div class="col-lg">
-          <h1 class="fw-black">atau <span class="text-primary">Hubungi Kami</span></h1>
+          <h2 class="fw-black">atau <span class="text-primary">Hubungi Kami</span></h2>
           <ul class="m-0 p-0 tentang-sosmed list-unstyled mt-4">
             <li>
               <a href="#" class="d-inline-flex align-items-center px-3 py-1 rounded-pill">
