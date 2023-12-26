@@ -56,7 +56,7 @@
                 <div class="modal-footer border-0 justify-content-center gap-2">
                     <button type="button" class="btn btn-outline-primary rounded-pill py-1"
                         data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary rounded-pill py-1">Logout</button>
+                    <button type="button" class="btn btn-primary rounded-pill py-1"><a href="{{ route('logout') }}">Logout</a></button>
                 </div>
             </div>
         </div>

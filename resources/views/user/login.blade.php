@@ -41,15 +41,21 @@
                         <p class="lead">Selamat Datang di FOUND-U</p>
                     </div>
                     <h4>Login</h4>
-                    <form method="post" class="mt-4">
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
+                    <form method="POST" class="mt-4" action="{{ route('login') }}">
+                        @csrf
                         <div class="mb-3 position-relative">
-                            <input type="email" class="form-control pe-4 py-2 ps-5 rounded-pill"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                            <input type="text" class="form-control pe-4 py-2 ps-5 rounded-pill"
+                                id="username" name="username" placeholder="Username">
                             <i class="fa-solid fa-user position-absolute icon-left"></i>
                         </div>
                         <div class="mb-5 position-relative">
-                            <input type="password" class="form-control px-5 py-2 rounded-pill" id="passwordInput"
-                                aria-describedby="passwordHelp" placeholder="Kata Sandi">
+                            <input type="password" class="form-control px-5 py-2 rounded-pill" id="password"
+                                name="password" aria-describedby="passwordHelp" placeholder="Kata Sandi">
                             <i class="fa-solid fa-lock position-absolute icon-left"></i>
                             <i class="fa-regular fa-eye position-absolute icon-right" id="passwordToggle"
                                 onclick="togglePasswordVisibility()"></i>

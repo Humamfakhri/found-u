@@ -1,6 +1,14 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\MasukanController;
+use App\Http\Controllers\PostinganController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +21,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('user.login');
-})->name('login');
+// Auth Routes
+Route::get('/login', [AkunController::class, 'show'])->name('showLogin');
+Route::post('/loginProcess', [AkunController::class, 'login'])->name('login');
+Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
+
+// Route::middleware('roleCheck:1')->group( function () {
+//     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+// }); 
 
 Route::get('/', function () {
     return view('user.beranda');
-})->name('');
+})->name('beranda');
 
 Route::get('/ditemukan', function () {
     return view('user.ditemukan');
