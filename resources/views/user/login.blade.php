@@ -41,16 +41,16 @@
                         <p class="lead">Selamat Datang di FOUND-U</p>
                     </div>
                     <h4>Login</h4>
-                    @if (Session::has('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ Session::get('error') }}
-                        </div>
-                    @endif
                     <form method="POST" class="mt-4" action="{{ route('login') }}">
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('error') }}
+                            </div>
+                        @endif
                         @csrf
                         <div class="mb-3 position-relative">
-                            <input type="text" class="form-control pe-4 py-2 ps-5 rounded-pill"
-                                id="username" name="username" placeholder="Username">
+                            <input type="text" class="form-control pe-4 py-2 ps-5 rounded-pill" id="username"
+                                name="username" placeholder="Username">
                             <i class="fa-solid fa-user position-absolute icon-left"></i>
                         </div>
                         <div class="mb-5 position-relative">
@@ -86,6 +86,18 @@
             }
         }
     </script>
+    {{-- Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::get('error'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Login Gagal",
+                text: "Username / Password Salah!",
+                footer: false
+            });
+        </script>
+    @endif
 </body>
 
 </html>

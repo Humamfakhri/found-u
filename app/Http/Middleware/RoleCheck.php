@@ -16,8 +16,9 @@ class RoleCheck
      */
     public function handle(Request $request, Closure $next, $roles): Response
     {
+        // Padahal nggeus login tapi tetep teu ka auth, jadi asup ka if ieu
         if (!Auth::check()) {
-            return redirect('/');
+            // return redirect('/');
         }
 
         $akun = Auth::user();

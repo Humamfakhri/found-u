@@ -26,10 +26,15 @@ Route::get('/login', [AkunController::class, 'show'])->name('showLogin');
 Route::post('/loginProcess', [AkunController::class, 'login'])->name('login');
 Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
 
-// Route::middleware('roleCheck:1')->group( function () {
-//     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-// }); 
+// Middleware
+// Route::group(['prefix' => 'admin', 'middleware' => ['roleCheck:1'], 'as' => 'admin'], function() {
+//     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+//     Route::get('/postingan', [AdminController::class, 'postingan']);
+//     Route::get('/masukan', [AdminController::class, 'masukan']);
+//     Route::get('/faq', [AdminController::class, 'faq']);
+// });
 
+// Route user
 Route::get('/', function () {
     return view('user.beranda');
 })->name('beranda');
@@ -46,6 +51,8 @@ Route::get('/tentang', function () {
     return view('user.tentang');
 })->name('tentang');
 
+
+// Route Admin tanpa middleware
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');

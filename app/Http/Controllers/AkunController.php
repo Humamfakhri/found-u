@@ -12,24 +12,10 @@ class AkunController extends Controller
     }
 
     public function login(Request $request) {
-        // request()->validate(
-        //     [
-        //         'username' => 'required',
-        //         'password' => 'required',
-        //     ]
-        // );
-
-        // $credential = $request->only('username', 'password');
-        // if(Auth::attempt($credential)) {
-        //     $akun = Auth::user();
-        //     if ($akun->role == 1) {
-        //         return redirect('/dashboard');
-        //     } elseif ($akun->role == 0) {
-        //         return redirect('/');
-        //     }
-        // } else {
-        //     return redirect('/tentang');
-        // }
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
 
         $credentials = [
             'username' => $request->username,
@@ -40,17 +26,19 @@ class AkunController extends Controller
             $akun = Auth::user();
             if ($akun->role == 1) {
                 return redirect('/dashboard')->with('success', 'Sukses login sebagai admin');
+                // Jang middleware, ku urang ditambahan prefix mun middleware na hurung
+                // return redirect('/admin/dashboard')->with('success', 'Sukses login sebagai admin');
             } elseif ($akun->role == 0) {
-                return redirect('/');
+                return redirect('/')->with('success', 'Sukses login sebagai admin');
             }
-            return back()->with('error', 'Username/Password salah');
+        } else {
+            return redirect('/login')->with('error', 'Username / Password anda salah');
         }
-        
     }
 
     public function logout(Request $request) {
         $request->session()->flush();
         Auth::logout();
-        return redirect('/');
+        return redirect('/')->with('logoutsuccess', 'Anda telah Logout');
     }
 }
