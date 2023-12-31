@@ -373,10 +373,10 @@ body {
 
 .logout-modal .modal-footer button {
   width: 5rem;
-}
+} 
 
 /* SEARCH BAR */
-form {
+form.search-bar {
   position: sticky;
   top: 0;
   padding: 1rem 0 1rem;
@@ -411,6 +411,13 @@ form {
 }
 
 /* CONTENT */
+.counter-postingan {
+  display: grid;
+  place-items: center;
+  /* aspect-ratio: 1/1; */
+  padding: .2rem .5rem ;
+}
+
 .content {
   padding-bottom: 7rem;
 }
@@ -421,6 +428,14 @@ form {
 
 .read {
   background-color: #E7E7E7;
+}
+
+ul li .hapus {
+  display: none;
+}
+
+ul li:hover .hapus {
+  display: block;
 }
 
 

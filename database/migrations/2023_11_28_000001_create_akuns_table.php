@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('akun', function (Blueprint $table) {
+        Schema::create('akuns', function (Blueprint $table) {
             $table->integer('id_akun', true);
             $table->string('username', 50);
             $table->string('nama_akun', 50);
@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('no_telp', 15);
             $table->boolean('role');
             $table->text('foto_profil')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('akun');
+        Schema::dropIfExists('akuns');
     }
 };

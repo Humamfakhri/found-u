@@ -5,47 +5,65 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
         <div>
-            <h2 class="fw-black">Masukan</h2>
-            <p class="lead fw-normal">Kritik, Saran, atau Pertanyaan dari Pengguna</p>
+            <div class="d-flex align-items-center gap-2">
+                <h3 class="fw-black mb-0">Masukan</h3>
+                @if ($masukans->count())
+                    <small
+                        class="counter-postingan bg-primary rounded-pill text-white">{{ $masukans->count() }}</small>
+                @endif
+            </div>
+            <p class="fs-18">Kritik, Saran, atau Pertanyaan dari Pengguna</p>
         </div>
+        @if ($masukans->count())
         <div class="filter d-flex gap-4">
             <div class="dropdown">
                 <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 dropdown-toggle" type="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    Urutkan
+                    {{ $filter }}
                     <i class="ms-2 fa-solid fa-chevron-down"></i>
                 </button>
-                <ul class="dropdown-menu rounded-4">
-                    <li><a class="dropdown-item pe-0" href="#">Terbaru</a></li>
-                    <li><a class="dropdown-item pe-0" href="#">Terlama</a></li>
+                <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
+                    <li class="rounded-pill">
+                        <a class="rounded-pill dropdown-item small" href="{{ $filter == 'Terbaru' ? 'masukan?filter=terlama' : 'masukan' }}">{{ $filter_list }}</a>
+                    </li>
                 </ul>
             </div>
         </div>
+        @endif
     </div>
     <ul class="list-unstyled d-flex flex-column gap-3">
-        <li class="unread rounded-3 p-3 shadow-sm">
-            <div class="d-flex align-items-center justify-content-between">
-                <p class="fw-bold m-0">Andi Rimba Manggala Putra</p>
-                <small class="muted">18:59 - 23 Januari 2023</small>
+        @if (!$masukans->count())
+            <div class="text-center mt-5 pt-4">
+                <i class='fa-solid fa-comment-dots display-1'></i>
+                <p class="text-muted mt-3">Tidak ada masukan dari pengguna</p>
             </div>
-            <hr class="my-2">
-            <div class="d-flex justify-content-between align-items-start">
-                <p class="m-0">Apa yang harus dilakukan jika pengguna ingin membuat postingan baru?</p>
-                <button class="btn btn-sm fw-bold btn-outline-secondary rounded-pill px-3 py-1"><small class="d-flex align-items-center gap-1">Balas</small></button>
-            </div>
-        </li>
-        <li class="read rounded-3 p-3 shadow-sm">
-            <div class="d-flex align-items-center justify-content-between">
-                <p class="fw-bold m-0">Andi Rimba Manggala Putra</p>
-                <small class="muted">19:59 - 23 Januari 2023</small>
-            </div>
-            <hr class="my-2">
-            <div class="d-flex justify-content-between align-items-start">
-                <p>Apa yang harus dilakukan jika pengguna ingin membuat postingan baru?</p>
-                <button class="btn btn-sm fw-bold btn-outline-secondary rounded-pill px-3 py-1"><small class="d-flex align-items-center gap-1"><i class="fa-solid fa-plus"></i> FAQ</small></button>
-            </div>
-            <p class="fw-bold m-0">Jawaban</p>
-            <p class="m-0">Pengguna harus login terlebih dahulu lalu tekan “Ajukan Postingan” di halaman beranda.</p>
-        </li>
+        @endif
+        @foreach ($masukans as $masukan)
+            <li class="{{ $masukan->baca == 0 ? 'unread' : 'read' }} rounded-3 p-3 shadow-sm">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="fw-bold m-0">{{ $masukan->akun->nama_akun }}</p>
+                    <small class="muted text-end">
+                        {{ Carbon\Carbon::parse($masukan->created_at)->format('H:i') }} |
+                        {{ Carbon\Carbon::parse($masukan->created_at)->format('Y-m-d') ==Carbon\Carbon::now()::parse($masukan->created_at)->format('Y-m-d')? 'Hari ini': Carbon\Carbon::parse($masukan->created_at)->format('Y-m-d') }}
+                    </small>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex justify-content-between align-items-start">
+                    <p class="m-0">{{ $masukan->pesan }}</p>
+                    <div class="d-flex gap-3">
+                        <form action="{{ route('masukan.destroy', $masukan->id_masukan) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="hapus h-100 btn btn-sm fw-bold btn-outline-primary rounded-pill px-3 py-1"><small
+                                    class="d-flex align-items-center gap-1"><i class="fa-regular fa-trash-can"
+                                        style="font-size: 16px"></i></small></button>
+                        </form>
+                        <button class="btn btn-sm fw-bold btn-outline-secondary rounded-pill px-3 py-1"><small
+                                class="d-flex align-items-center gap-1">Balas</small></button>
+                    </div>
+                </div>
+            </li>
+        @endforeach
     </ul>
 @endsection

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostinganController;
+use App\Http\Controllers\MasukanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,8 @@ Route::get('/login', function () {
     return view('user.login');
 })->name('login');
 
+
+// PENGGUNA
 Route::get('/', function () {
     return view('user.beranda');
 })->name('');
@@ -33,18 +37,15 @@ Route::get('/tentang', function () {
     return view('user.tentang');
 })->name('tentang');
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
 
-Route::get('/postingan', function () {
-    return view('admin.postingan');
-})->name('postingan');
+// POSTINGAN \\
+Route::post('postingan', [PostinganController::class, "store"])->name("postingan.store");
+Route::put('postingan/{id_postingan}', [PostinganController::class, "update"])->name("postingan.update");
+// Route::post('postingan/{id}/edit', [PostinganController::class, "store"])->name("postingan.edit");
 
-Route::get('/masukan', function () {
-    return view('admin.masukan');
-})->name('masukan');
+// ADMIN
+Route::get('/{admin_url}', [PostinganController::class, "admin_url"])->where('admin_url', '(dashboard|postingan|masukan|faq)')->name('admin_pages');
 
-Route::get('/faq', function () {
-    return view('admin.faq');
-})->name('faq');
+// MASUKAN \\
+Route::post('masukan', [MasukanController::class, "store"])->name("masukan.store");
+Route::delete('masukan/{id_masukan}', [MasukanController::class, "delete"])->name("masukan.destroy");

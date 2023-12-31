@@ -7,78 +7,6 @@
         <img src="/img/postingan.png" alt="">
     </section>
 
-    <!-- Button trigger modal -->
-    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buatPost">
-        Launch demo modal
-    </button> --}}
-
-    <!-- Modal -->
-    <div class="modal fade" id="buatPost" tabindex="-1" aria-labelledby="buatPostLabel" aria-hidden="true">
-        <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content rounded-4">
-                <div class="modal-header justify-content-center position-relative">
-                    <h1 class="modal-title fs-4 text-center fw-bold" id="buatPostLabel">Buat Postingan Baru</h1>
-                    <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-4 pb-0">
-                    <form>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div>
-                                    <label for="nama" class="form-label">Nama Barang <span
-                                            class="text-primary">*</span></label>
-                                    <input type="text" class="form-control rounded-pill" id="nama">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div>
-                                    <label for="telp" class="form-label">No. Telepon Pemilik <span
-                                            class="text-primary">*</span></label>
-                                    <input type="text" class="form-control rounded-pill" id="telp">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div>
-                                    <label for="lokasi" class="form-label">Lokasi Terakhir</label>
-                                    <input type="text" class="form-control rounded-pill" id="lokasi">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div>
-                                    <label for="tanggal" class="form-label">Tanggal Kehilangan <span
-                                            class="text-primary">*</span></label>
-                                    <input type="date" class="form-control rounded-pill" id="tanggal">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div>
-                                    {{-- <label for="deskripsi" class="form-label">Deskripsi</label> --}}
-                                    {{-- <input type="text" class="form-control rounded-pill" id="deskripsi"> --}}
-                                    <label for="deskripsi" class="form-label">Deskripsi Barang</label>
-                                    <textarea class="form-control rounded-4" id="deskripsi" style="height: 100px; resize: none"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div>
-                                    <label for="foto" class="form-label">Foto Barang</label>
-                                    <input type="file" class="input-file form-control rounded-pill" id="foto">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-center mt-5">
-                            <button type="submit" class="btn btn-primary rounded-pill px-4">Ajukan Postingan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     {{-- FILTER --}}
     <div class="container mt-4 mt-md-5">
         <div class="filter d-flex gap-4 justify-content-end justify-content-md-start">
@@ -163,7 +91,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +123,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -227,7 +155,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -259,7 +187,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -291,7 +219,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -325,7 +253,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -359,7 +287,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -393,7 +321,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -427,7 +355,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -467,7 +395,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -499,7 +427,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -531,7 +459,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -563,7 +491,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -595,7 +523,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -629,7 +557,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -663,7 +591,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -697,7 +625,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -731,7 +659,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -771,7 +699,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -803,7 +731,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -835,7 +763,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -867,7 +795,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -899,7 +827,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -933,7 +861,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -967,7 +895,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1001,7 +929,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1035,7 +963,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1113,7 +1041,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1145,7 +1073,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1177,7 +1105,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1209,7 +1137,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1241,7 +1169,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1275,7 +1203,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1309,7 +1237,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1343,7 +1271,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1377,7 +1305,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1417,7 +1345,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1449,7 +1377,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1481,7 +1409,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1513,7 +1441,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1545,7 +1473,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1579,7 +1507,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1613,7 +1541,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1647,7 +1575,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1681,7 +1609,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1721,7 +1649,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1753,7 +1681,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1785,7 +1713,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1817,7 +1745,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1849,7 +1777,7 @@
                                                     </div>
                                                 </div>
                                                 <hr class="mb-2">
-                                                <small class="muted text-secondary">31 Februari 1945</small>
+                                                <small class="muted">31 Februari 1945</small>
                                             </div>
                                         </div>
                                     </div>
@@ -1883,7 +1811,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1917,7 +1845,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1951,7 +1879,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>
@@ -1985,7 +1913,7 @@
                                                 </div>
                                             </div>
                                             <hr class="mb-2">
-                                            <small class="muted text-secondary">31 Februari 1945</small>
+                                            <small class="muted">31 Februari 1945</small>
                                         </div>
                                     </div>
                                 </div>

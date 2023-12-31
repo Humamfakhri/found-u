@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('masukan', function (Blueprint $table) {
+        Schema::create('masukans', function (Blueprint $table) {
             $table->integer('id_masukan', true);
-            $table->integer('id_akun');
-            $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+            $table->integer('id_akun')->default(1);
+            $table->foreign('id_akun')->references('id_akun')->on('akuns')->onDelete('cascade');
             $table->text('pesan');
-            $table->text('jawaban');
-            $table->dateTime('waktu');
-            $table->boolean('baca');
-            $table->boolean('faq');
+            $table->text('jawaban')->nullable();
+            $table->boolean('baca')->default(0);
+            $table->boolean('faq')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('masukan');
+        Schema::dropIfExists('masukans');
     }
 };

@@ -15,7 +15,7 @@
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body pt-0 text-light fw-light">Pengguna harus login terlebih dahulu
-                                lalu tekan “Ajukan Postingan” diu halaman beranda.</div>
+                                lalu tekan “Ajukan Postingan” di halaman beranda.</div>
                         </div>
                     </div>
                     <div class="accordion-item border-0 mt-2 rounded-3">

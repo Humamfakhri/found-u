@@ -10,7 +10,7 @@
         <ul class="list-unstyled">
             <li>
                 <a href='/dashboard'
-                    class="{{ Route::is('dashboard') ? 'active' : '' }} d-flex align-items-center rounded-pill">
+                    class="{{ Illuminate\Support\Str::contains(url()->current(), ['dashboard']) ? 'active' : '' }} d-flex align-items-center rounded-pill">
                     <i class='fa-solid fa-house'></i>
                     <p class="m-0 fw-semibold">Dashboard</p>
                 </a>
@@ -23,20 +23,20 @@
           </li> --}}
             <li>
                 <a href='/postingan'
-                    class="{{ Route::is('postingan') ? 'active' : '' }} d-flex align-items-center rounded-pill">
+                    class="{{ Illuminate\Support\Str::contains(url()->current(), ['postingan']) ? 'active' : '' }} d-flex align-items-center rounded-pill">
                     <i class='fa-solid fa-layer-group'></i>
                     <p class="m-0 fw-semibold">Postingan</p>
                 </a>
             </li>
             <li>
                 <a href='/masukan'
-                    class="{{ Route::is('masukan') ? 'active' : '' }} d-flex align-items-center rounded-pill">
+                    class="{{ Illuminate\Support\Str::contains(url()->current(), ['masukan']) ? 'active' : '' }} d-flex align-items-center rounded-pill">
                     <i class='fa-solid fa-comment-dots'></i>
                     <p class="m-0 fw-semibold">Masukan</p>
                 </a>
             </li>
             <li>
-                <a href='/faq' class="{{ Route::is('faq') ? 'active' : '' }} d-flex align-items-center rounded-pill">
+                <a href='/faq' class="{{ Illuminate\Support\Str::contains(url()->current(), ['faq']) ? 'active' : '' }} d-flex align-items-center rounded-pill">
                     <i class='fa-solid fa-circle-question'></i>
                     <p class="m-0 fw-semibold">FAQ</p>
                 </a>

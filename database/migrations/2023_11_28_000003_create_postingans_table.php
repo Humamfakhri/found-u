@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('postingan', function (Blueprint $table) {
+        Schema::create('postingans', function (Blueprint $table) {
             $table->integer('id_postingan', true);
-            $table->integer('id_akun');
-            $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
-            $table->tinyInteger('status');
+            $table->integer('id_akun')->default(0);
+            $table->foreign('id_akun')->references('id_akun')->on('akuns')->onDelete('cascade');
+            $table->tinyInteger('status')->default(1);
             $table->string('judul_postingan', 50);
             $table->text('deskripsi_postingan')->nullable();
             $table->text('foto_barang')->nullable();
             $table->string('lokasi_kehilangan', 50)->nullable();
-            $table->string('lokasi_ditemukan', 50);
-            $table->dateTime('tgl_pengajuan');
-            $table->dateTime('tgl_publikasi');
+            $table->string('lokasi_ditemukan', 50)->nullable();
+            $table->dateTime('tgl_kehilangan')->nullable();
+            $table->dateTime('tgl_publikasi')->nullable();
             $table->string('no_telp', 15);
+            $table->timestamps();
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('postingan');
+        Schema::dropIfExists('postingans');
     }
 };

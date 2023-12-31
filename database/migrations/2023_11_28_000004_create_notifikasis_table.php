@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notifikasi', function (Blueprint $table) {
+        Schema::create('notifikasis', function (Blueprint $table) {
             $table->integer('id_akun');
             $table->integer('id_postingan');
-            $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
-            $table->foreign('id_postingan')->references('id_postingan')->on('postingan')->onDelete('cascade');
+            $table->foreign('id_akun')->references('id_akun')->on('akuns')->onDelete('cascade');
+            $table->foreign('id_postingan')->references('id_postingan')->on('postingans')->onDelete('cascade');
             $table->primary(['id_akun', 'id_postingan']);
             $table->tinyInteger('status');
             $table->boolean('baca');
             $table->string('deskripsi_notifikasi', 50);
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifikasi');
+        Schema::dropIfExists('notifikasis');
     }
 };
