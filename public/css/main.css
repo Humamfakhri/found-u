@@ -65,9 +65,10 @@ i {
 }
 
 .btn-primary:focus,
-.btn-primary:active .btn-outline-primary:focus,
-.btn-outline-primary:active {
-  background-color: var(--primary);
+.btn-primary:active
+.btn-outline-primary:focus,
+.btn-outline-primary:active{
+  background-color: var(--primary) !important;
 }
 
 .btn-primary * {

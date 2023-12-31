@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Akun extends Model
+class Akun extends Model implements Authenticatable
 {
+    use AuthenticatableTrait;
     use HasFactory;
     protected $primaryKey = 'id_akun';
+
     protected $fillable = [
         'username',
         'nama_akun',
@@ -28,4 +32,13 @@ class Akun extends Model
     {
         return $this->hasMany(Masukan::class, 'id_akun');
     }
+
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
 }

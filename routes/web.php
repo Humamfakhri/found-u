@@ -2,7 +2,13 @@
 
 use App\Http\Controllers\PostinganController;
 use App\Http\Controllers\MasukanController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotifikasiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +21,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('user.login');
-})->name('login');
+// Auth Routes
+Route::get('/login', [AkunController::class, 'show'])->name('showLogin');
+Route::post('/loginProcess', [AkunController::class, 'login'])->name('login');
+Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
 
+// Middleware
+// Route::group(['prefix' => 'admin', 'middleware' => ['roleCheck:1'], 'as' => 'admin'], function() {
+//     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+//     Route::get('/postingan', [AdminController::class, 'postingan']);
+//     Route::get('/masukan', [AdminController::class, 'masukan']);
+//     Route::get('/faq', [AdminController::class, 'faq']);
+// });
 
-// PENGGUNA
+// Route user
 Route::get('/', function () {
     return view('user.beranda');
-})->name('');
+})->name('beranda');
 
 Route::get('/ditemukan', function () {
     return view('user.ditemukan');

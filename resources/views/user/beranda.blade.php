@@ -1924,4 +1924,59 @@
             </div>
         </div>
     </section>
+
+    {{-- Alert Success Login --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::get('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: "Login Berhasil"
+            });
+        </script>
+    @endif
+
+    {{-- Alert Logout --}}
+    @if (Session::get('logoutsuccess'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Anda telah Logout"
+        });
+    </script>
+    @endif
+    
+    {{-- Middleware Error --}}
+    @if (Session::get('error'))
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Anda Tidak Memiliki Akses",
+            footer: false
+        });
+    </script>
+    @endif
 @endsection

@@ -3,12 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Akun;
-use Faker\Core\Number;
-use Illuminate\Support\Str;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AkunSeeder extends Seeder
 {
@@ -17,6 +14,21 @@ class AkunSeeder extends Seeder
      */
     public function run(): void
     {
-        Akun::factory(2)->create();
+        DB::table('akun')->insert([
+            [
+                'username' => 'humam',
+                'nama_akun' => 'Humam Ibadillah Fakhri',
+                'password' => bcrypt('12345678'),
+                'no_telp' => '0812345678',
+                'role' => 1,
+            ],
+            [
+                'username' => 'rigel',
+                'nama_akun' => 'Rigel Rafiq Setiawan',
+                'password' => bcrypt('12345678'),
+                'no_telp' => '08198765432',
+                'role' => 0,
+            ]
+        ]);
     }
 }
