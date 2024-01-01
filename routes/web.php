@@ -21,18 +21,14 @@ use App\Http\Controllers\NotifikasiController;
 |
 */
 
-// Auth Routes
-Route::get('/login', [AkunController::class, 'show'])->name('showLogin');
-Route::post('/loginProcess', [AkunController::class, 'login'])->name('login');
-Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
+// Login 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AkunController::class, 'show'])->name('showLogin');
+    Route::post('/loginProcess', [AkunController::class, 'login'])->name('login');
+});
 
-// Middleware
-// Route::group(['prefix' => 'admin', 'middleware' => ['roleCheck:1'], 'as' => 'admin'], function() {
-//     Route::get('/dashboard', [AdminController::class, 'dashboard']);
-//     Route::get('/postingan', [AdminController::class, 'postingan']);
-//     Route::get('/masukan', [AdminController::class, 'masukan']);
-//     Route::get('/faq', [AdminController::class, 'faq']);
-// });
+// Logout
+Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
 
 // Route user
 Route::get('/', function () {
@@ -51,7 +47,6 @@ Route::get('/tentang', function () {
     return view('user.tentang');
 })->name('tentang');
 
-
 // POSTINGAN \\
 Route::post('postingan', [PostinganController::class, "store"])->name("postingan.store");
 Route::put('postingan/{id_postingan}', [PostinganController::class, "update"])->name("postingan.update");
@@ -65,3 +60,12 @@ Route::middleware('admin')->group(function () {
 // MASUKAN \\
 Route::post('masukan', [MasukanController::class, "store"])->name("masukan.store");
 Route::delete('masukan/{id_masukan}', [MasukanController::class, "delete"])->name("masukan.destroy");
+
+
+// Middleware
+// Route::group(['prefix' => 'admin', 'middleware' => ['roleCheck:1'], 'as' => 'admin'], function() {
+//     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+//     Route::get('/postingan', [AdminController::class, 'postingan']);
+//     Route::get('/masukan', [AdminController::class, 'masukan']);
+//     Route::get('/faq', [AdminController::class, 'faq']);
+// });
