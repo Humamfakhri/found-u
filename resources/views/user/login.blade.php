@@ -87,8 +87,8 @@
         }
     </script>
     {{-- Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (Session::get('error'))
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    {{-- @if (Session::get('error'))
         <script>
             Swal.fire({
                 icon: "error",
@@ -97,7 +97,7 @@
                 footer: false
             });
         </script>
-    @endif
+    @endif --}}
 </body>
 
 </html>

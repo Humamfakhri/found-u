@@ -7,9 +7,9 @@
         <div>
             <div class="d-flex align-items-center gap-2">
                 <h3 class="fw-black mb-0">Frequently Asked Question</h3>
-                @if ($postingans_dipublikasi->count())
+                @if ($faqs->count())
                     <small
-                        class="counter-postingan bg-primary rounded-pill text-white">{{ $postingans_dipublikasi->count() }}</small>
+                        class="counter-postingan bg-primary rounded-pill text-white">{{ $faqs->count() }}</small>
                 @endif
             </div>
             <p class="fs-18">Pertanyaan yang sering diajukan</p>

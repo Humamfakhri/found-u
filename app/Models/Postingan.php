@@ -10,6 +10,13 @@ class Postingan extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_postingan';
+    protected $dates = [
+        'tgl_kehilangan',
+        'tgl_ditemukan',
+        'tgl_publikasi',
+        'created_at',
+        'updated_at'
+    ];
     protected $fillable = [
         'status',
         'judul_postingan',

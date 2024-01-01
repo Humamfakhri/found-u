@@ -46,11 +46,14 @@
                                 <img src="/img/rigel.jpg" alt="" class="img-fluid rounded-circle" width="35">
                                 <div class="d-flex flex-column gap-0 g-0">
                                     <p class="mb-0 p-0 fw-semibold small">{{ $postingan_dipublikasi->akun->nama_akun }}</p>
-                                    <small class="m-0 p-0 fs-12">2 jam lalu</small>
+                                    <div class="d-flex gap-1">
+                                        <small class="m-0 p-0 fs-12">Diposting:</small>
+                                        <small class="m-0 p-0 fs-12">{{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->diffForHumans(null, true).' lalu'}}</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dropdown">
-                                <button class="btn btn-sm p-0 dropdown-toggle border-0 px-1"
+                                <button class="btn btn-sm p-0 dropdown-toggle border-0 rounded-pill pt-1 px-1"
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-ellipsis-vertical fs-18"></i>
                                 </button>
@@ -65,13 +68,13 @@
                             </div>
                         </div>
                         {{-- <p class="mb-0 small px-3 py-2">2 hari yang lalu</p> --}}
-                        <div class="card-img">
+                        <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPost">
                             <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-0">
                             <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="fw-bold mb-1">{{ $postingan_dipublikasi->judul_postingan }}</h5>
+                            <p class="fs-18 fw-bold mb-0">{{ $postingan_dipublikasi->judul_postingan }}</p>
                             <p class="mb-2">Mouse Logitech M331 merah silent click.</p>
                             {{-- <div class="row align-items-center">
                                 <div class="col-1">

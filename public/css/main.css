@@ -122,20 +122,78 @@ i {
   color: #fff;
 }
 
+.btn-outline-secondary {
+  border: 1px solid var(--text);
+  color: var(--text);
+}
+
+.btn-outline-secondary:hover {
+  border: 1px solid var(--text);
+  color: #fff;
+  background-color: var(--text);
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:hover * {
+  color: #fff;
+}
+
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active {
+  color: #fff;
+  background-color: var(--text) !important;
+}
+
+.btn-outline-secondary:focus *,
+.btn-outline-secondary:active * {
+  color: #fff;
+}
+
 .dropdown-toggle::after {
   display: none;
 }
 
 /* NAVBAR */
-.nav-link {
+.navbar-nav .nav-link {
   font-weight: 500 !important;
 }
 
-.nav-link.active {
+.navbar-nav .nav-link:hover {
+  color: var(--text);
+}
+
+.navbar-nav .nav-link.active {
   font-weight: bold !important;
   background-color: #ED3237;
   color: #fff !important;
 }
+
+.navbar-nav .dropdown button i {
+  color: #0000008c;
+}
+
+.navbar-nav .dropdown button:hover i {
+  color: var(--text);
+}
+
+.navbar-nav .dropdown .dropdown-menu {
+  width: max-content;
+}
+
+.navbar-nav .dropdown .dropdown-menu a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.navbar-nav .dropdown .dropdown-menu a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* .navbar-nav .dropdown button:focus {
+  background-color: #606062;
+} */
 
 /* SECTION */
 .section-title h2 {
@@ -195,14 +253,19 @@ i {
   /* overflow: hidden; */
 }
 
-.modal#lihatPost .col-md-6 .lihat-post-content {
+/* .modal#lihatPost .col-md-6 .lihat-post-content {
   overflow-y: scroll;
-}
+} */
 
 .modal#lihatPost .col-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.modal#lihatPost .lihat-post-content {
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .modal#lihatPost button {
@@ -271,10 +334,6 @@ i {
   border-radius: 1rem;
 }
 
-.card .card-content:hover .card-img img {
-  filter: brightness(.3);
-}
-
 .card .card-content .card-img .card-img-floating {
   display: none;
   position: absolute;
@@ -283,7 +342,11 @@ i {
   transform: translate(-50%, -50%);
 }
 
-.card .card-content:hover .card-img .card-img-floating {
+.card .card-content .card-img:hover img {
+  filter: brightness(.3);
+}
+
+.card .card-content .card-img:hover .card-img-floating {
   display: block;
 }
 

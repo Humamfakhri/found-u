@@ -30,7 +30,7 @@
                 <div class="position-relative">
                     <small class="position-absolute ms-4 d-flex align-items-center h-100"><i
                             class="fa-solid fa-magnifying-glass"></i></small>
-                    <input type="text" class=" ps-5 form-control rounded-pill border-0" id="searchBar"
+                    <input type="text" class="py-2 ps-5 form-control rounded-pill border-0" id="searchBar"
                         placeholder="Cari Barang / Pemilik Barang">
                 </div>
                 <button type="submit" class="btn btn-primary" hidden>Submit</button>
@@ -127,7 +127,8 @@
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center mt-5">
-                            <button type="submit" name="submit" class="btn btn-primary rounded-pill px-4">Buat Postingan</button>
+                            <button type="submit" name="submit" class="btn btn-primary rounded-pill px-4">Buat
+                                Postingan</button>
                         </div>
                     </form>
                 </div>
@@ -136,7 +137,7 @@
     </div>
 
     {{-- TOAST --}}
-    @if (session()->has('success'))
+    {{-- @if (session()->has('success'))
         <div class="toast-container position-fixed bottom-0 end-0 m-4">
             <div id="liveToast" class="toast rounded-pill border-primary px-3 shadow" role="alert"
                 aria-live="assertive" aria-atomic="true">
@@ -145,84 +146,63 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     <!-- MODAL LIHAT POST -->
     <div class="modal" id="lihatPost" tabindex="-1" aria-labelledby="lihatPostLabel" aria-hidden="true">
         <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
-            {{-- <i class="close-modal fa-solid fa-circle-xmark text-primary fs-3 position-absolute bg-white rounded-circle p-0 m-0"></i> --}}
             <div class="modal-content rounded-4 h-100">
-                {{-- <div class="modal-header justify-content-center position-relative">
-                    <h1 class="modal-title fs-4 text-center fw-bold" id="lihatPostLabel">Buat Postingan Baru</h1>
-                    <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div> --}}
-                <div class="modal-body p-4 h-100 ">
+                <div class="modal-body p-3 h-100">
                     <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
                         @csrf
                         <div class="row mb-3 h-100">
                             <div class="col-md-6 col-img">
                                 <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3">
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex flex-column h-100">
-                                    <div class="flex-grow-1 border-bottom">
-                                        <div class="pb-3 d-flex justify-content-between border-bottom mb-3">
-                                            <div>
-                                                <small>Pengaju</small>
-                                                <p class="mb-0">Humam Revansyah Setiawan</p>
-                                            </div>
-                                            <div class="text-end">
-                                                <small class="d-block text-muted">09:30</small>
-                                                <small class="d-block text-muted">Hari ini</small>
-                                            </div>
-                                        </div>
-                                        {{-- <p class="fs-18 bg-primary text-white fw-bold d-inline-block px-3 py-1 rounded-pill">Belum Ditemukan</p> --}}
-                                        <div class="lihat-post-content">
-                                            <div>
-                                                <p class="fw-bold m-0">Nama Barang</p>
-                                                <p>Mouse</p>
-                                            </div>
-                                            <div>
-                                                <p class="fw-bold m-0">Deskripsi</p>
-                                                <p>Mouse Logitech M331 silent click berwarna merah</p>
-                                            </div>
-                                            <div>
-                                                <p class="fw-bold m-0">Nama Pemilik</p>
-                                                <p>Humam Revansyah Setiawan</p>
-                                            </div>
-                                            <div>
-                                                <p class="fw-bold m-0">Lokasi Terakhir <small
-                                                        class="fw-light"></small>
-                                                </p>
-                                                <p>Lab D2 FIT</p>
-                                            </div>
-                                            <div>
-                                                <p class="fw-bold m-0">Tanggal Kehilangan</p>
-                                                <p>13 Desember 2023</p>
-                                            </div>
-                                            <div>
-                                                <p class="fw-bold m-0">Nomor Telepon Pemilik</p>
-                                                <p>0821123123</p>
-                                            </div>
-                                        </div>
+                            <div class="col-md-6 d-flex flex-column">
+                                <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
+                                    <div>
+                                        <small>Pengaju</small>
+                                        <p class="mb-0 lnama_akun">nama_akun</p>
                                     </div>
-                                    <div class="d-flex rounded-pill gap-4 justify-content-center pt-3">
-                                        <button
-                                            class="btn btn-sm rounded-pill btn-outline-primary d-flex align-items-center justify-content-center gap-1">Tolak
-                                            <i class="fa-solid fa-xmark"></i></button>
-                                        <button
-                                            class="btn btn-sm rounded-pill btn-primary d-flex align-items-center justify-content-center gap-1">Publikasi
-                                            <i class="fa-solid fa-check"></i></button>
+                                    <div class="text-end">
+                                        <small class="d-block text-muted ltgl_ajukan_time">tgl_publikasi(jam)</small>
+                                        <small class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
                                     </div>
+                                </div>
+                                <div class="lihat-post-content h-100 pt-3">
+                                    <div>
+                                        <p class="fw-bold m-0">Nama Barang</p>
+                                        <p class="ljudul_postingan">judul_postingan</p>
+                                    </div>
+                                    <div>
+                                        <p class="fw-bold m-0">Deskripsi</p>
+                                        <p class="ldeskripsi_postingan">deskripsi_postingan</p>
+                                    </div>
+                                    <div>
+                                        <p class="fw-bold m-0">Lokasi Terakhir</p>
+                                        <p class="llokasi_kehilangan">lokasi_kehilangan</p>
+                                    </div>
+                                    <div>
+                                        <p class="fw-bold m-0">Tanggal Kehilangan</p>
+                                        <p class="ltgl_kehilangan">tgl_kehilangan</p>
+                                    </div>
+                                    <div>
+                                        <p class="fw-bold m-0">Nomor Telepon Pemilik</p>
+                                        <p class="lno_telp">no_telp</p>
+                                    </div>
+                                </div>
+                                <div class="lihat-post-footer d-flex gap-4 justify-content-center align-items-center pt-3 border-top">
+                                    <button
+                                        class="btn btn-sm rounded-pill btn-outline-primary d-flex align-items-center justify-content-center gap-1">Tolak
+                                        <i class="fa-solid fa-xmark"></i></button>
+                                    <button
+                                        class="btn btn-sm rounded-pill btn-primary d-flex align-items-center justify-content-center gap-1">Publikasi
+                                        <i class="fa-solid fa-check"></i></button>
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="modal-footer justify-content-center mt-5">
-                            <button type="submit" name="submit" class="btn btn-primary rounded-pill px-4">Ajukan
-                                Postingan</button>
-                        </div> --}}
-                    </form>
+                    </form> 
                 </div>
             </div>
         </div>
@@ -243,9 +223,9 @@
                 <div class="modal-footer border-0 justify-content-center gap-2">
                     <button type="button" class="btn btn-outline-primary rounded-pill py-1"
                         data-bs-dismiss="modal">Batal</button>
-                        <form action="{{ route('logout') }}" method="GET" class="bg-white">
-                            <button type="submit" class="btn btn-primary rounded-pill py-1">Logout</button>
-                        </form>
+                    <form action="{{ route('logout') }}" method="GET" class="bg-white">
+                        <button type="submit" class="btn btn-primary rounded-pill py-1">Ya</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -268,6 +248,46 @@
         //     })
         // }
     </script>
+
+    {{-- Alert Postingan Dipublikasi/Ditolak --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::get('dipublikasi'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: "Postingan dipublikasi"
+            });
+        </script>
+    @elseif (Session::get('ditolak'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Postingan ditolak"
+            });
+        </script>
+    @endif
 </body>
 
 </html>

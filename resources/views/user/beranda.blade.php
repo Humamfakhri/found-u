@@ -1927,7 +1927,7 @@
 
     {{-- Alert Success Login --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (Session::get('success'))
+    {{-- @if (Session::get('success'))
         <script>
             const Toast = Swal.mixin({
                 toast: true,
@@ -1945,14 +1945,14 @@
                 title: "Login Berhasil"
             });
         </script>
-    @endif
+    @endif --}}
 
     {{-- Alert Logout --}}
     @if (Session::get('logoutsuccess'))
     <script>
         const Toast = Swal.mixin({
             toast: true,
-            position: "top-end",
+            position: "bottom-start",
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
@@ -1962,7 +1962,7 @@
             }
         });
         Toast.fire({
-            icon: "success",
+            // icon: "success",
             title: "Anda telah Logout"
         });
     </script>

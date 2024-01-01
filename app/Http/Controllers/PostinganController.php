@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Masukan;
 use App\Models\Postingan;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -35,12 +36,12 @@ class PostinganController extends Controller
     {
         if (request('status') == 'publikasi') {
             $postingan = Postingan::find($id_postingan);
-            $postingan->update(['status' => 2]);
-            return redirect()->back()->with("success", "Postingan telah dipublikasi");
+            $postingan->update(['status' => 2, 'tgl_publikasi' => Carbon::now()]);
+            return redirect()->back()->with("dipublikasi", "Postingan telah dipublikasi");
         } elseif (request('status') == 'tolak') {
             $postingan = Postingan::find($id_postingan);
             $postingan->update(['status' => 3]);
-            return redirect()->back()->with("success", "Postingan ditolak");
+            return redirect()->back()->with("ditolak", "Postingan ditolak");
         }
     }
 
@@ -97,21 +98,4 @@ class PostinganController extends Controller
             return redirect()->back()->with("success", "Gagal membuat postingan");
         }
     }
-
-    // public function store(Request $request)
-    // {
-    //     $incomingField = $request->validate([
-    //         'id_akun'=> 'required',
-    //         'status'=> 'required',
-    //         'judul_postingan' => 'required',
-    //         'lokasi_kehilangan'=> 'required',
-    //         'no_telp'=> 'required',
-    //         'tgl_kehilangan' => 'required',
-    //         'deskripsi' => 'nullable',
-    //         'foto' => 'nullable',
-    //     ]);
-
-    //     Postingan::create($incomingField);
-    //     return redirect('/');
-    // }
 }

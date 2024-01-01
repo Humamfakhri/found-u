@@ -58,7 +58,9 @@ Route::put('postingan/{id_postingan}', [PostinganController::class, "update"])->
 // Route::post('postingan/{id}/edit', [PostinganController::class, "store"])->name("postingan.edit");
 
 // ADMIN
-Route::get('/{admin_url}', [PostinganController::class, "admin_url"])->where('admin_url', '(dashboard|postingan|masukan|faq)')->name('admin_pages');
+Route::middleware('admin')->group(function () {
+    Route::get('/{admin_url}', [PostinganController::class, "admin_url"])->where('admin_url', '(dashboard|postingan|masukan|faq)')->name('admin_pages');
+});
 
 // MASUKAN \\
 Route::post('masukan', [MasukanController::class, "store"])->name("masukan.store");

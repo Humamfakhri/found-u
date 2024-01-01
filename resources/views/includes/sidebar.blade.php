@@ -61,20 +61,20 @@
         sidebar.classList.toggle("close");
     });
     const bars = document.querySelector(".bars");
-    const tutup = document.querySelector(".close-mobile-nav");
-    bars.addEventListener("click", function() {
-        bars.classList.add("bars-active");
-    });
-    tutup.addEventListener("click", function() {
-        bars.classList.remove("bars-active");
-    });
-    window.addEventListener("scroll", function() {
-        let header = document.getElementById("search-bar");
-        let windowPosition = window.scrollY > 0;
-        if (window.scrollY > 0) {
-            header.classList.add("scrolled", windowPosition);
-        } else {
-            header.classList.remove("scrolled", windowPosition);
-        }
-    });
+    // const tutup = document.querySelector(".close-mobile-nav");
+    // bars.addEventListener("click", function() {
+    //     bars.classList.add("bars-active");
+    // });
+    // tutup.addEventListener("click", function() {
+    //     bars.classList.remove("bars-active");
+    // });
+    // window.addEventListener("scroll", function() {
+    //     let header = document.getElementById("search-bar");
+    //     let windowPosition = window.scrollY > 0;
+    //     if (window.scrollY > 0) {
+    //         header.classList.add("scrolled", windowPosition);
+    //     } else {
+    //         header.classList.remove("scrolled", windowPosition);
+    //     }
+    // });
 </script>

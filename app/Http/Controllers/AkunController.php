@@ -29,16 +29,16 @@ class AkunController extends Controller
                 // Jang middleware, ku urang ditambahan prefix mun middleware na hurung
                 // return redirect('/admin/dashboard')->with('success', 'Sukses login sebagai admin');
             } elseif ($akun->role == 0) {
-                return redirect('/')->with('success', 'Sukses login sebagai admin');
+                return redirect('/')->with('successLogin', 'Login berhasil!');
             }
         } else {
-            return redirect('/login')->with('error', 'Username / Password anda salah');
+            return redirect('/login')->with('error', 'Username / Password Anda salah');
         }
     }
 
     public function logout(Request $request) {
         $request->session()->flush();
         Auth::logout();
-        return redirect('/')->with('logoutsuccess', 'Anda telah Logout');
+        return redirect('/')->with('logoutsuccess', 'Anda telah logout');
     }
 }
