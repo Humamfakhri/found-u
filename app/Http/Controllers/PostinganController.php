@@ -83,7 +83,6 @@ class PostinganController extends Controller
         Postingan::create([
             'status' => request('status'),
             'judul_postingan' => request('judul_postingan'),
-            'judul_postingan' => request('judul_postingan'),
             'no_telp' => request('no_telp'),
             'lokasi_kehilangan' => request('lokasi_kehilangan'),
             'tanggal' => request('tanggal'),
