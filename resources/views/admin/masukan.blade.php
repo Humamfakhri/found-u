@@ -180,4 +180,26 @@
             // inputJawaban.blur();
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Alert Sudah Login --}}
+    @if (Session::get('alreadyLogin'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "bottom-start",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "warning",
+            title: "Anda sudah Login!"
+        });
+    </script>
+    @endif
 @endsection

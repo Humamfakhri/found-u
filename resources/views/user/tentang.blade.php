@@ -59,16 +59,29 @@
             </div>
             <form method="POST" action="{{ route('masukan.store') }}">
                 @csrf
-                <div class="form-floating mt-5">
-                    <textarea class="form-control" placeholder="Pesan" name="pesan" id="pesan" style="height: 100px"></textarea>
-                    <label for="pesan">Pesan</label>
-                </div>
-                <div class="text-end">
-                    <button type="submit" name="submit"
-                        class="btn bg-primary text-white fw-bold mt-3 rounded-pill px-4 py-1">Kirim
-                        <i class="text-white ms-1 fa-regular fa-paper-plane"></i>
-                    </button>
-                </div>
+                @if (Auth::check())
+                    <div class="form-floating mt-5">
+                        <textarea class="form-control" placeholder="Pesan" name="pesan" id="pesan" style="height: 100px"></textarea>
+                        <label for="pesan">Pesan</label>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" name="submit"
+                            class="btn bg-primary text-white fw-bold mt-3 rounded-pill px-4 py-1">Kirim
+                            <i class="text-white ms-1 fa-regular fa-paper-plane"></i>
+                        </button>
+                    </div>
+                @elseif (!Auth::check())
+                    <div class="form-floating mt-5">
+                        <textarea class="form-control" placeholder="Pesan" name="pesan" id="pesan" style="height: 100px" disabled></textarea>
+                        <label for="pesan">( Silakan login terlebih dahulu untuk mengirimkan masukan )</label>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" name="submit"
+                            class="btn bg-primary text-white fw-bold mt-3 rounded-pill px-4 py-1" disabled>Kirim
+                            <i class="text-white ms-1 fa-regular fa-paper-plane"></i>
+                        </button>
+                    </div>
+                @endif
             </form>
             <div class="row align-items-center gap-5 hubungi-kami">
                 <div class="col-lg text-end">
@@ -100,4 +113,38 @@
             </div>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Alert Sudah Login --}}
+    @if (Session::get('alreadyLogin'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-start",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "warning",
+                title: "Anda sudah Login!"
+            });
+        </script>
+    @endif
+
+    {{-- Middleware Error --}}
+    @if (Session::get('noAccess'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Anda Tidak Memiliki Akses",
+                footer: false
+            });
+        </script>
+    @endif
 @endsection

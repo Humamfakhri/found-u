@@ -21,18 +21,14 @@ use App\Http\Controllers\NotifikasiController;
 |
 */
 
-// Auth Routes
-Route::get('/login', [AkunController::class, 'show'])->name('showLogin');
-Route::post('/loginProcess', [AkunController::class, 'login'])->name('login');
-Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
+// Login 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AkunController::class, 'show'])->name('showLogin');
+    Route::post('/loginProcess', [AkunController::class, 'login'])->name('login');
+});
 
-// Middleware
-// Route::group(['prefix' => 'admin', 'middleware' => ['roleCheck:1'], 'as' => 'admin'], function() {
-//     Route::get('/dashboard', [AdminController::class, 'dashboard']);
-//     Route::get('/postingan', [AdminController::class, 'postingan']);
-//     Route::get('/masukan', [AdminController::class, 'masukan']);
-//     Route::get('/faq', [AdminController::class, 'faq']);
-// });
+// Logout
+Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
 
 // Route user
 Route::get('/', [PostinganController::class, "beranda"])->name("beranda");
@@ -55,3 +51,12 @@ Route::middleware('admin')->group(function () {
 Route::post('masukan', [MasukanController::class, "store"])->name("masukan.store");
 Route::put('masukan/{id_masukan}', [MasukanController::class, "update"])->name("masukan.update");
 Route::delete('masukan/{id_masukan}', [MasukanController::class, "delete"])->name("masukan.destroy");
+
+
+// Middleware
+// Route::group(['prefix' => 'admin', 'middleware' => ['roleCheck:1'], 'as' => 'admin'], function() {
+//     Route::get('/dashboard', [AdminController::class, 'dashboard']);
+//     Route::get('/postingan', [AdminController::class, 'postingan']);
+//     Route::get('/masukan', [AdminController::class, 'masukan']);
+//     Route::get('/faq', [AdminController::class, 'faq']);
+// });
