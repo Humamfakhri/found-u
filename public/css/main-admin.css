@@ -438,15 +438,15 @@ form.search-bar {
   background-color: #E7E7E7;
 }
 
-ul li .hapus {
+ul li .appear-icon {
   display: none;
 }
 
-ul li:hover .hapus {
+ul li:hover .appear-icon {
   display: block;
 }
 
-ul li .balas-container input {
+ul li .balas-container #jawaban {
   border: none;
   border-bottom: 1px solid #c9c9c9;
   transform-origin: 0% 0%;
@@ -455,11 +455,53 @@ ul li .balas-container input {
   padding-bottom: .2rem;
 }
 
-ul li .balas-container input:focus,
-ul li .balas-container input:active {
+ul li .balas-container textarea,
+.lihatPost textarea {
+  padding-top: 10px;
+  padding-bottom: 25px;
+  /* increased! */
+  /* height:16px; */
+  /* line-height:16px; */
+  width: 100%;
+  /* changed from 96 to 100% */
+  display: block;
+  /* margin:0px auto; not needed since i have width 100% now */
+}
+
+ul li .balas-container #jawaban:focus,
+ul li .balas-container #jawaban:active {
   outline: none;
   box-shadow: none;
   border-color: var(--primary);
+}
+
+ul li .btnToggle {
+  border: 1px solid var(--text);
+  outline: none;
+  box-shadow: none;
+}
+
+ul li .btnToggle:hover {
+  border: 1px solid var(--text);
+  outline: none;
+  box-shadow: none;
+  background-color: var(--text);
+}
+
+ul li .btnToggle:hover small {
+  color: #fff;
+}
+
+ul li .buttonActive,
+ul li .buttonActive:hover {
+  border: 1px solid var(--text);
+  outline: none;
+  box-shadow: none;
+  background-color: var(--text);
+}
+
+ul li .buttonActive small {
+  color: #fff;
 }
 
 

@@ -29,13 +29,14 @@
     <header>
         @include('includes.header')
     </header>
-    <main>
+    <main style="min-height: 80vh">
         @yield('content')
         {{-- TOAST --}}
         {{-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> --}}
         @if (session()->has('success'))
             <div class="toast-container position-fixed bottom-0 start-0 m-4">
-                <div id="liveToast" class="toast rounded-pill border-primary px-3 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="liveToast" class="toast rounded-pill border-primary px-3 shadow" role="alert"
+                    aria-live="assertive" aria-atomic="true">
                     <div class="toast-body text-primary fw-bold">
                         {{ session()->get('success') }}
                     </div>
@@ -57,7 +58,7 @@
         Launch demo modal
     </button> --}}
 
-        <!-- Modal -->
+        <!-- MODAL BUAT POSTINGAN -->
         <div class="modal fade-scale" id="buatPost" tabindex="-1" aria-labelledby="buatPostLabel" aria-hidden="true">
             <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content rounded-4">
@@ -122,8 +123,131 @@
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-center mt-5">
-                                <button type="submit" name="submit" class="btn btn-primary rounded-pill px-4">Ajukan
+                                <button type="submit" name="submit"
+                                    class="btn btn-primary rounded-pill px-4">Ajukan
                                     Postingan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- MODAL LIHAT POST DITEMUKAN --}}
+        <div class="modal lihatPost" id="lihatPostDitemukan" tabindex="-1"
+            aria-labelledby="lihatPostDitemukanLabel" aria-hidden="true">
+            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
+                <div class="modal-content rounded-4 h-100">
+                    <div class="modal-body p-3 h-100">
+                        <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
+                            @csrf
+                            <div class="row mb-3 h-100">
+                                <div class="col-md-6 col-img">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3">
+                                </div>
+                                <div class="col-md-6 d-flex flex-column">
+                                    <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
+                                        <div>
+                                            <small>Pembuat Post</small>
+                                            <p class="mb-0 lnama_akun">nama_akun</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <small
+                                                class="d-block text-muted ltgl_ajukan_time">tgl_publikasi(jam)</small>
+                                            <small
+                                                class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
+                                        </div>
+                                    </div>
+                                    <div class="lihat-post-content h-100 pt-3 pe-2">
+                                        <div>
+                                            <p class="fw-bold m-0">Nama Barang</p>
+                                            <p class="ljudul_postingan">judul_postingan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Deskripsi</p>
+                                            <p class="ldeskripsi_postingan">deskripsi_postingan</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="fw-bold m-0">Lokasi Terakhir</p>
+                                                <p class="llokasi_kehilangan">lokasi_kehilangan</p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="fw-bold m-0">Lokasi Ditemukan</p>
+                                                <p class="llokasi_ditemukan">lokasi_ditemukan</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="fw-bold m-0">Tanggal Kehilangan</p>
+                                                <p class="ltgl_kehilangan">tgl_kehilangan</p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="fw-bold m-0">Tanggal Ditemukan</p>
+                                                <p class="ltgl_ditemukan">tgl_ditemukan</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Lokasi saat ini:</p>
+                                            <p class="llokasi_disimpan">lokasi_disimpan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- MODAL LIHAT POST KEHILANGAN --}}
+        <div class="modal lihatPost" id="lihatPostKehilangan" tabindex="-1"
+            aria-labelledby="lihatPostKehilanganLabel" aria-hidden="true">
+            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
+                <div class="modal-content rounded-4 h-100">
+                    <div class="modal-body p-3 h-100">
+                        <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
+                            @csrf
+                            <div class="row mb-3 h-100">
+                                <div class="col-md-6 col-img">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3">
+                                </div>
+                                <div class="col-md-6 d-flex flex-column">
+                                    <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
+                                        <div>
+                                            <small>Pembuat Post</small>
+                                            <p class="mb-0 lnama_akun">nama_akun</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <small
+                                                class="d-block text-muted ltgl_ajukan_time">tgl_publikasi(jam)</small>
+                                            <small
+                                                class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
+                                        </div>
+                                    </div>
+                                    <div class="lihat-post-content h-100 pt-3 pe-2">
+                                        <div>
+                                            <p class="fw-bold m-0">Nama Barang</p>
+                                            <p class="ljudul_postingan">judul_postingan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Deskripsi</p>
+                                            <p class="ldeskripsi_postingan">deskripsi_postingan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Lokasi Terakhir</p>
+                                            <p class="llokasi_kehilangan">lokasi_kehilangan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Tanggal Kehilangan</p>
+                                            <p class="ltgl_kehilangan">tgl_kehilangan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">No Telepon Pemilik</p>
+                                            <p class="lno_telp">no_telp</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -144,12 +268,8 @@
 
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
         toastBootstrap.show()
-
-        // if (toastTrigger) {
-        //     toastTrigger.addEventListener('click', () => {
-        //     })
-        // }
     </script>
+    <script src="/js/lihatPost.js"></script>
 </body>
 
 </html>

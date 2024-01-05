@@ -18,10 +18,11 @@ class Postingan extends Model
         'updated_at'
     ];
     protected $fillable = [
+        'id_akun',
         'status',
         'judul_postingan',
         'deskripsi_postingan',
-        'foto_barang',
+        'image',
         'lokasi_kehilangan',
         'lokasi_ditemukan',
         'tgl_pengajuan',
@@ -32,5 +33,12 @@ class Postingan extends Model
     public function akun() : BelongsTo
     {
         return $this->belongsTo(Akun::class, 'id_akun');
+    }
+
+    public function getImageURL() {
+        if ($this->image) {
+            return url('storage/foto-barang/'. $this->image);
+        }
+        return "/img/mouse.jpg";
     }
 }

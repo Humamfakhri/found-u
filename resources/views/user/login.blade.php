@@ -57,7 +57,7 @@
                             <input type="password" class="form-control px-5 py-2 rounded-pill" id="password"
                                 name="password" aria-describedby="passwordHelp" placeholder="Kata Sandi">
                             <i class="fa-solid fa-lock position-absolute icon-left"></i>
-                            <i class="fa-regular fa-eye position-absolute icon-right" id="passwordToggle"
+                            <i class="fa-regular fa-eye-slash position-absolute icon-right" id="passwordToggle"
                                 onclick="togglePasswordVisibility()"></i>
                         </div>
                         <button type="submit" class="btn btn-primary d-block rounded-pill w-100 fw-bold">Login</button>
@@ -73,7 +73,7 @@
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
         function togglePasswordVisibility() {
-            const passwordInput = document.getElementById("passwordInput");
+            const passwordInput = document.getElementById("password");
             const passwordToggle = document.getElementById("passwordToggle");
             if (passwordInput.type === "password") {
                 passwordToggle.classList.toggle('fa-eye')

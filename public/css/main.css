@@ -53,6 +53,10 @@ i {
   background-color: var(--primary) !important;
 }
 
+.bg-success {
+  background-color: #10bb00 !important;
+}
+
 .btn-primary {
   background-color: var(--primary);
   border-color: var(--primary);
@@ -122,31 +126,10 @@ i {
   color: #fff;
 }
 
-.btn-outline-secondary {
-  border: 1px solid var(--text);
-  color: var(--text);
-}
-
-.btn-outline-secondary:hover {
-  border: 1px solid var(--text);
-  color: #fff;
+.btn-outline-secondary-active,
+.btn-outline-secondary-active:hover {
   background-color: var(--text);
-}
-
-.btn-outline-secondary:hover,
-.btn-outline-secondary:hover * {
-  color: #fff;
-}
-
-.btn-outline-secondary:focus,
-.btn-outline-secondary:active {
-  color: #fff;
-  background-color: var(--text) !important;
-}
-
-.btn-outline-secondary:focus *,
-.btn-outline-secondary:active * {
-  color: #fff;
+  color: #fff !important;
 }
 
 .dropdown-toggle::after {
@@ -154,6 +137,25 @@ i {
 }
 
 /* NAVBAR */
+.navbar-nav form input{
+  padding-left: 2.5rem;
+}
+
+.navbar-nav form input:focus,
+.navbar-nav form input:active {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--text);
+}
+
+.navbar-nav form i {
+  /* color: #818181; */
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
 .navbar-nav .nav-link {
   font-weight: 500 !important;
 }
@@ -187,6 +189,12 @@ i {
 
 .navbar-nav .dropdown .dropdown-menu a:hover {
   text-decoration: underline;
+}
+
+.navbar-nav .dropdown button img {
+  width: 30px;
+  aspect-ratio: 1/1;
+  height: 30px;
 }
 
 
@@ -237,38 +245,39 @@ i {
   transform-origin: 100% 100%;
 }
 
-.modal#lihatPost .close-modal {
+.modal.lihatPost .close-modal {
   top: 0;
   right: 0;
   transform: translate(50%, -50%);
   z-index: 100;
 }
 
-.modal#lihatPost .col-img {
+.modal.lihatPost .col-img {
   max-height: 100%;
 }
 
-.modal#lihatPost .col-md-6 {
+.modal.lihatPost .col-md-6 {
   max-height: 100%;
   /* overflow: hidden; */
 }
 
-/* .modal#lihatPost .col-md-6 .lihat-post-content {
+/* .modal.lihatPost .col-md-6 .lihat-post-content {
   overflow-y: scroll;
 } */
 
-.modal#lihatPost .col-img img {
+.modal.lihatPost .col-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.modal#lihatPost .lihat-post-content {
+.modal.lihatPost .lihat-post-content {
   max-height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.modal#lihatPost button {
+.modal.lihatPost button {
   width: 100%;
   max-width: 10rem;
 }

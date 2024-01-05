@@ -35,26 +35,15 @@ Route::get('/logout', [AkunController::class, 'logout'])->name('logout');
 // });
 
 // Route user
-Route::get('/', function () {
-    return view('user.beranda');
-})->name('beranda');
-
-Route::get('/ditemukan', function () {
-    return view('user.ditemukan');
-})->name('ditemukan');
-
-Route::get('/kehilangan', function () {
-    return view('user.kehilangan');
-})->name('kehilangan');
-
-Route::get('/tentang', function () {
-    return view('user.tentang');
-})->name('tentang');
-
+Route::get('/', [PostinganController::class, "beranda"])->name("beranda");
+Route::get('/kehilangan', [PostinganController::class, "kehilangan"])->name("kehilangan");
+Route::get('/ditemukan', [PostinganController::class, "ditemukan"])->name("ditemukan");
+Route::get('/tentang', [PostinganController::class, "tentang"])->name("tentang");
 
 // POSTINGAN \\
 Route::post('postingan', [PostinganController::class, "store"])->name("postingan.store");
 Route::put('postingan/{id_postingan}', [PostinganController::class, "update"])->name("postingan.update");
+Route::delete('postingan/{id_postingan}', [PostinganController::class, "delete"])->name("postingan.delete");
 // Route::post('postingan/{id}/edit', [PostinganController::class, "store"])->name("postingan.edit");
 
 // ADMIN
@@ -64,4 +53,5 @@ Route::middleware('admin')->group(function () {
 
 // MASUKAN \\
 Route::post('masukan', [MasukanController::class, "store"])->name("masukan.store");
+Route::put('masukan/{id_masukan}', [MasukanController::class, "update"])->name("masukan.update");
 Route::delete('masukan/{id_masukan}', [MasukanController::class, "delete"])->name("masukan.destroy");

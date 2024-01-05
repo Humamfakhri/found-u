@@ -6,7 +6,9 @@ cards.forEach(card => {
     document.querySelector('.ldeskripsi_postingan').innerHTML = card.parentElement.querySelector('.deskripsi_postingan').innerHTML;
     document.querySelector('.llokasi_kehilangan').innerHTML = card.parentElement.querySelector('.lokasi_kehilangan').innerHTML;
     document.querySelector('.ltgl_kehilangan').innerHTML = card.parentElement.querySelector('.tgl_kehilangan').innerHTML;
-    document.querySelector('.lno_telp').innerHTML = card.parentElement.querySelector('.no_telp').innerHTML;
+    document.querySelector('.llokasi_ditemukan').innerHTML = card.parentElement.querySelector('.lokasi_ditemukan').innerHTML;
+    document.querySelector('.ltgl_ditemukan').innerHTML = card.parentElement.querySelector('.tgl_ditemukan').innerHTML;
+    // document.querySelector('.lno_telp').innerHTML = card.parentElement.querySelector('.no_telp').innerHTML;
     document.querySelector('.ltgl_ajukan_time').innerHTML = card.parentElement.querySelector('.tgl_ajukan_time').innerHTML;
     document.querySelector('.ltgl_ajukan_date').innerHTML = card.parentElement.querySelector('.tgl_ajukan_date').innerHTML;
   })

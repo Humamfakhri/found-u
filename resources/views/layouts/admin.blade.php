@@ -26,12 +26,13 @@
     <div class="d-flex">
         @include('includes.sidebar')
         <main class="w-100 min-vh-100 position-relative">
-            <form class="px-3 px-md-5 rounded-0 search-bar">
+            <form class="px-3 px-md-5 rounded-0 search-bar" method="GET"
+                action="{{ route('admin_pages', 'postingan') }}">
                 <div class="position-relative">
                     <small class="position-absolute ms-4 d-flex align-items-center h-100"><i
                             class="fa-solid fa-magnifying-glass"></i></small>
                     <input type="text" class="py-2 ps-5 form-control rounded-pill border-0" id="searchBar"
-                        placeholder="Cari Barang / Pemilik Barang">
+                        name="search" placeholder="Cari Barang / Pemilik Barang">
                 </div>
                 <button type="submit" class="btn btn-primary" hidden>Submit</button>
             </form>
@@ -57,9 +58,9 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-4 pb-0">
-                    <form method="POST" action="{{ route('postingan.store') }}">
+                    <form enctype="multipart/form-data" method="POST" action="{{ route('postingan.store') }}">
                         @csrf
-                        <input type="hidden" name="status" value=2>
+                        <input type="hidden" name="status" value=2> 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div>
@@ -115,14 +116,18 @@
                                 <div>
                                     <label for="deskripsi_postingan" class="form-label">Deskripsi Barang</label>
                                     <textarea class="form-control rounded-4" id="deskripsi_postingan" name="deskripsi_postingan"
-                                        style="height: 100px; resize: none"></textarea>
+                                        style="height: 125px; resize: none"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div>
-                                    <label for="foto_barang" class="form-label">Foto Barang</label>
+                                    <label for="lokasi_disimpan" class="form-label">Lokasi Disimpan</label>
+                                    <input type="text" class="form-control rounded-pill" id="lokasi_disimpan" name="lokasi_disimpan">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="image" class="form-label">Foto Barang</label>
                                     <input type="file" class="input-file form-control rounded-pill"
-                                        id="foto_barang" name="foto_barang">
+                                        id="image" name="image">
                                 </div>
                             </div>
                         </div>
@@ -149,7 +154,7 @@
     @endif --}}
 
     <!-- MODAL LIHAT POST -->
-    <div class="modal" id="lihatPost" tabindex="-1" aria-labelledby="lihatPostLabel" aria-hidden="true">
+    <div class="modal lihatPost" id="lihatPost" tabindex="-1" aria-labelledby="lihatPostLabel" aria-hidden="true">
         <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
             <div class="modal-content rounded-4 h-100">
                 <div class="modal-body p-3 h-100">
@@ -183,16 +188,40 @@
                                         <p class="fw-bold m-0">Lokasi Terakhir</p>
                                         <p class="llokasi_kehilangan">lokasi_kehilangan</p>
                                     </div>
+                                    <div class="group-llokasi_ditemukan">
+                                        <p class="fw-bold m-0">Lokasi Ditemukan</p>
+                                        <p class="llokasi_ditemukan">lokasi_ditemukan</p>
+                                    </div>
                                     <div>
                                         <p class="fw-bold m-0">Tanggal Kehilangan</p>
                                         <p class="ltgl_kehilangan">tgl_kehilangan</p>
                                     </div>
+                                    <div class="group-ltgl_ditemukan">
+                                        <p class="fw-bold m-0">Tanggal Ditemukan</p>
+                                        <p class="ltgl_ditemukan">tgl_ditemukan</p>
+                                    </div>
                                     <div>
-                                        <p class="fw-bold m-0">Nomor Telepon Pemilik</p>
+                                        <p class="fw-bold m-0">Nomor Telepon Pengaju</p>
                                         <p class="lno_telp">no_telp</p>
                                     </div>
+                                    <div class="row lstatus-barang">
+                                        <div class="col">
+                                            <p class="fw-bold m-0">Status Barang:</p>
+                                            <p
+                                                class="status-ditemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">
+                                                Ditemukan</p>
+                                            <p
+                                                class="status-kehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">
+                                                Hilang</p>
+                                        </div>
+                                        <div class="col group-llokasi-disimpan">
+                                            <p class="fw-bold m-0">Lokasi saat ini:</p>
+                                            <p class="mt-1 llokasi-disimpan">lokasi_disimpan</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="lihat-post-footer d-flex gap-4 justify-content-center align-items-center pt-3 border-top">
+                                <div
+                                    class="lihat-post-footer d-flex gap-4 justify-content-center align-items-center pt-3 border-top">
                                     <button
                                         class="btn btn-sm rounded-pill btn-outline-primary d-flex align-items-center justify-content-center gap-1">Tolak
                                         <i class="fa-solid fa-xmark"></i></button>
@@ -202,12 +231,11 @@
                                 </div>
                             </div>
                         </div>
-                    </form> 
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 
     <!-- Logout Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
@@ -269,6 +297,42 @@
                 title: "Postingan dipublikasi"
             });
         </script>
+    @elseif (Session::get('dihapus'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: "Postingan telah dihapus"
+            });
+        </script>
+    @elseif (Session::get('editPostingan'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: "Berhasil mengedit postingan"
+            });
+        </script>
     @elseif (Session::get('ditolak'))
         <script>
             const Toast = Swal.mixin({
@@ -288,6 +352,9 @@
             });
         </script>
     @endif
+    <script src="/js/lihatPost.js"></script>
+    
+    <script src="/js/editPost.js"></script>
 </body>
 
 </html>

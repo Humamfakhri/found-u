@@ -18,10 +18,12 @@ return new class extends Migration
             $table->tinyInteger('status')->default(1);
             $table->string('judul_postingan', 50);
             $table->text('deskripsi_postingan')->nullable();
-            $table->text('foto_barang')->nullable();
+            $table->text('image')->nullable();
             $table->string('lokasi_kehilangan', 50)->nullable();
             $table->string('lokasi_ditemukan', 50)->nullable();
+            $table->string('lokasi_disimpan', 50)->nullable();
             $table->dateTime('tgl_kehilangan')->nullable();
+            $table->dateTime('tgl_ditemukan')->nullable();
             $table->dateTime('tgl_publikasi')->nullable();
             $table->string('no_telp', 15);
             $table->timestamps();
