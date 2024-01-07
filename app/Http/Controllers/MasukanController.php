@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Masukan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasukanController extends Controller
 {
     public function store(): RedirectResponse
     {
         Masukan::create([
+            'id_akun' => Auth::id(),
             'pesan' => request('pesan')
         ]);
         return redirect()->back()->with("success", "Berhasil mengirimkan pesan");

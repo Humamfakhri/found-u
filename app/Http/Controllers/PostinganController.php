@@ -31,7 +31,7 @@ class PostinganController extends Controller
                     $query->whereNotNull('tgl_ditemukan')
                         ->WhereNotNull('lokasi_ditemukan');
                 })
-                ->orderBy('created_at', $order)
+                ->orderBy('tgl_publikasi', $order)
                 ->get(),
             'postingans_kehilangan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
@@ -44,7 +44,7 @@ class PostinganController extends Controller
                     $query->whereNull('tgl_ditemukan');
                     // ->whereNull('lokasi_ditemukan');
                 })
-                ->orderBy('created_at', $order)
+                ->orderBy('tgl_publikasi', $order)
                 ->get(),
             'filter' => $filter,
             'filter_list' => $filter_list,
@@ -64,7 +64,7 @@ class PostinganController extends Controller
                     $query->whereNull('tgl_ditemukan')
                         ->orWhereNull('lokasi_ditemukan');
                 })
-                ->orderBy('created_at', $order)
+                ->orderBy('tgl_publikasi', $order)
                 ->get(),
             'filter' => $filter,
             'filter_list' => $filter_list,
@@ -83,7 +83,7 @@ class PostinganController extends Controller
                     $query->whereNotNull('tgl_ditemukan')
                         ->orWhereNotNull('lokasi_ditemukan');
                 })
-                ->orderBy('tgl_ditemukan', $order)
+                ->orderBy('tgl_publikasi', $order)
                 ->get(),
             'filter' => $filter,
             'filter_list' => $filter_list,
@@ -100,6 +100,7 @@ class PostinganController extends Controller
 
     public function admin_url($admin_url, Request $request): View
     {
+        // dd(last(request()->segments()));
         $view = 'admin.' . $admin_url;
         $order = $request->query('filter') == 'terlama' ? 'ASC' : 'DESC';
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
@@ -113,7 +114,7 @@ class PostinganController extends Controller
                         ->orWhere('lokasi_kehilangan', 'like', '%' . request('search') . '%')
                         ->orWhere('lokasi_ditemukan', 'like', '%' . request('search') . '%');
                 })
-                ->orderBy('created_at', $order)
+                ->orderBy(last(request()->segments()) == 'dashboard' ? 'created_at' : 'tgl_publikasi', $order)
                 ->get(),
             'postingans_dipublikasi' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
@@ -122,7 +123,7 @@ class PostinganController extends Controller
                         ->orWhere('lokasi_kehilangan', 'like', '%' . request('search') . '%')
                         ->orWhere('lokasi_ditemukan', 'like', '%' . request('search') . '%');
                 })
-                ->orderBy('tgl_publikasi', $order)
+                ->orderBy(last(request()->segments()) == 'dashboard' ? 'created_at' : 'tgl_publikasi', $order)
                 ->get(),
             'masukans' => Masukan::orderBy('created_at', $order)->get(),
             'faqs' => Masukan::where(['faq' => 1])->orderBy('updated_at', $order)->get(),
@@ -134,12 +135,14 @@ class PostinganController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // dd($request->all());
+        // $request->file('image')
         $image = $request->file('image');
-        $filename = time() . $image->getClientOriginalName();
+        // dd($image);
+        $filename = Auth::user()->username. time() . $image->getClientOriginalExtension();
         $path = 'foto-barang/' . $filename;
         Storage::disk('public')->put($path, file_get_contents($image));
-
-        Postingan::create([
+        $postingan = Postingan::create([
             'id_akun' => Auth::id(),
             'status' => request('status'),
             'judul_postingan' => request('judul_postingan'),
@@ -154,12 +157,14 @@ class PostinganController extends Controller
             'image' => $filename
         ]);
 
-        if (request('status') == 1) {
+
+
+        if (request('status') == 1 && $postingan) {
             // if (request()->has('image')) {
             //     request()->file('image')->store('barang', 'public');
             // }
             return redirect()->back()->with("success", "Berhasil mengajukan postingan");
-        } elseif (request('status') == 2) {
+        } elseif (request('status') == 2 && $postingan) {
             // if (request()->has('image')) {
             //     request()->file('image')->store('barang', 'public');
             // }
@@ -185,8 +190,9 @@ class PostinganController extends Controller
                 ->update([
                     'judul_postingan' => request('ejudul_postingan'),
                     'deskripsi_postingan' => request('edeskripsi_postingan'),
-                    'lokasi_kehilangan' => trim(request('elokasi_kehilangan')) == 'Tidak diketahui' ? null : request('elokasi_kehilangan'),
-                    'lokasi_ditemukan' => trim(request('elokasi_ditemukan')) == 'Tidak diketahui' ? null : request('elokasi_ditemukan'),
+                    'lokasi_kehilangan' => trim(request('elokasi_kehilangan')) == '-' ? null : request('elokasi_kehilangan'),
+                    'lokasi_ditemukan' => trim(request('elokasi_ditemukan')) == '-' ? null : request('elokasi_ditemukan'),
+                    'lokasi_disimpan' => trim(request('elokasi_disimpan')) == '-' ? null : request('elokasi_disimpan'),
                     'tgl_kehilangan' => request('etgl_kehilangan'),
                     'tgl_ditemukan' => request('etgl_ditemukan'),
                     'no_telp' => request('eno_telp'),

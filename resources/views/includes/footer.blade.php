@@ -6,13 +6,13 @@
             <div class="col-lg-7">
                 <div class="accordion accordion-flush mt-1" id="accordionFlushExample">
                     @foreach ($faqs as $faq)
-                    <div class="accordion-item border-0 rounded-3">
+                    <div class="accordion-item border-0 rounded-3 mb-3">
                         <h2 class="accordion-header" id="flush-headingOne">
                             <button class="accordion-button collapsed bg-transparent text-light" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne">{{$faq->pesan}}</button>
+                                data-bs-toggle="collapse" data-bs-target="#flush-{{ $faq->id_masukan }}" aria-expanded="false"
+                                aria-controls="flush-{{ $faq->id_masukan }}">{{$faq->pesan}}</button>
                         </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                        <div id="flush-{{ $faq->id_masukan }}" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body pt-0 text-light fw-light">{{ $faq->jawaban }}</div>
                         </div>

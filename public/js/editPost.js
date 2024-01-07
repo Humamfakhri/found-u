@@ -12,11 +12,9 @@ btnEditPost.forEach(card => {
       }
     }
     const form = document.getElementById('formEdit') || null;
-    // console.log(document.querySelector('.id_postingan').innerHTML);
     const id = card_content.querySelector('.id_postingan').innerHTML;
     if (form) {
       form.action = "postingan/"+id;
-      // form.action = "{{ route('postingan.update', "+id+") }}"
     }
     document.querySelector('.etgl_ajukan_time').innerHTML = card_content.querySelector('.tgl_ajukan_time').innerHTML;
     document.querySelector('.etgl_ajukan_date').innerHTML = card_content.querySelector('.tgl_ajukan_date').innerHTML;
@@ -64,7 +62,9 @@ btnEditPost.forEach(card => {
 })
 
 if (window.location.pathname == '/dashboard') {
-  document.querySelector('.estatus-barang').classList.add('d-none')
+  if (document.querySelector('.estatus-barang') != null) {
+    document.querySelector('.estatus-barang').classList.add('d-none')
+  }
 }
 
 if (window.location.pathname != '/dashboard') {

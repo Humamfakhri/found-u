@@ -75,7 +75,7 @@
                         </div>
                         {{-- <p class="mb-0 small px-3 py-2">2 hari yang lalu</p> --}}
                         <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPost">
-                            <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-0">
+                            <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt="" class="img-fluid rounded-0">
                             <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                         <div class="card-top d-flex align-items-center justify-content-between px-3 py-2">
                             <div class="d-flex align-items-center gap-2">
                                 {{-- <i class="fa-solid fa-user small"></i> --}}
-                                <img src="/img/rigel.jpg" alt="" class="img-fluid rounded-circle" width="35">
+                                <img src="{{ $postingan_diajukan->getImageURL() }}" alt="" class="img-fluid rounded-circle" width="35">
                                 <div class="d-flex flex-column gap-0 g-0">
                                     <p class="mb-0 p-0 fw-semibold small">{{ $postingan_diajukan->akun->nama_akun }}</p>
                                     <div class="d-flex gap-1">

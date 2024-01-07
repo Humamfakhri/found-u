@@ -11,6 +11,7 @@ class Masukan extends Model
     use HasFactory;
     protected $primaryKey = 'id_masukan';
     protected $fillable = [
+        'id_akun',
         'pesan',
         'jawaban',
         'baca',

@@ -162,7 +162,7 @@
                         @csrf
                         <div class="row mb-3 h-100">
                             <div class="col-md-6 col-img">
-                                <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3">
+                                <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 lfoto_barang">
                             </div>
                             <div class="col-md-6 d-flex flex-column">
                                 <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
@@ -188,7 +188,7 @@
                                         <p class="fw-bold m-0">Lokasi Terakhir</p>
                                         <p class="llokasi_kehilangan">lokasi_kehilangan</p>
                                     </div>
-                                    <div class="group-llokasi_ditemukan">
+                                    <div class="atribut_ditemukan">
                                         <p class="fw-bold m-0">Lokasi Ditemukan</p>
                                         <p class="llokasi_ditemukan">lokasi_ditemukan</p>
                                     </div>
@@ -196,7 +196,7 @@
                                         <p class="fw-bold m-0">Tanggal Kehilangan</p>
                                         <p class="ltgl_kehilangan">tgl_kehilangan</p>
                                     </div>
-                                    <div class="group-ltgl_ditemukan">
+                                    <div class="atribut_ditemukan">
                                         <p class="fw-bold m-0">Tanggal Ditemukan</p>
                                         <p class="ltgl_ditemukan">tgl_ditemukan</p>
                                     </div>
@@ -207,16 +207,12 @@
                                     <div class="row lstatus-barang">
                                         <div class="col">
                                             <p class="fw-bold m-0">Status Barang:</p>
-                                            <p
-                                                class="status-ditemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">
-                                                Ditemukan</p>
-                                            <p
-                                                class="status-kehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">
-                                                Hilang</p>
+                                            <p class="status-ditemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">Ditemukan</p>
+                                            <p class="status-kehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">Hilang</p>
                                         </div>
-                                        <div class="col group-llokasi-disimpan">
+                                        <div class="col atribut_ditemukan">
                                             <p class="fw-bold m-0">Lokasi saat ini:</p>
-                                            <p class="mt-1 llokasi-disimpan">lokasi_disimpan</p>
+                                            <p class="mt-1 llokasi_disimpan">lokasi_disimpan</p>
                                         </div>
                                     </div>
                                 </div>

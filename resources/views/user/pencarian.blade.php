@@ -45,25 +45,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="row pt-2 gx-1 gx-md-4">
+                <div class="row pt-2 g-1 g-md-4">
                     @foreach ($postingans_ditemukan as $postingan_ditemukan)
                         <div class="col-lg-3">
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="card-content">
-                                    <div class="card-img">
-                                        <img src="/img/mouse.jpg" alt="" class="img-fluid">
-                                        <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
+                                    <p hidden class="kategori">ditemukan</p>
+                                    <p hidden class="lokasi_kehilangan">{{ $postingan_ditemukan->lokasi_kehilangan ? $postingan_ditemukan->lokasi_kehilangan : '-' }}</p>
+                                    <p hidden class="lokasi_ditemukan">{{ $postingan_ditemukan->lokasi_ditemukan ? $postingan_ditemukan->lokasi_ditemukan : '-' }}</p>
+                                    <p hidden class="lokasi_disimpan">{{ $postingan_ditemukan->lokasi_disimpan ? $postingan_ditemukan->lokasi_disimpan : '-' }}</p>
+                                    <p hidden class="tgl_kehilangan">{{ $postingan_ditemukan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_ditemukan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}</p>
+                                    <p hidden class="tgl_ditemukan">{{ $postingan_ditemukan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_ditemukan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}</p>
+                                    <p hidden class="tgl_ditemukan">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_ditemukan)->translatedFormat('d F Y') }}</p>
+                                    <p hidden class="no_telp">{{ $postingan_ditemukan->no_telp }}</p>
+                                    <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_publikasi)->format('H:i') }}</p>
+                                    <p hidden class="tgl_ajukan_date">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
+                                    <div class="card-img" data-bs-toggle="modal"
+                                        data-bs-target="#lihatPostDitemukan">
+                                        <img src="{{ $postingan_ditemukan->getImageURL() }}" alt="" class="img-fluid foto_barang">
+                                        <div class="card-img-floating"><button
+                                                class="btn btn-outline-light">Lihat</button>
                                         </div>
                                     </div>
                                     <div class="card-body d-none d-md-block">
-                                        <p class="fs-18 fw-bold mb-0">{{ $postingan_ditemukan->judul_postingan }}</p>
-                                        <p class="mb-2">{{ $postingan_ditemukan->deskripsi_postingan }}</p>
-                                        <div class="row">
+                                        <p class="fs-18 fw-bold mb-0 judul_postingan">
+                                            {{ $postingan_ditemukan->judul_postingan }}</p>
+                                        <p class="mb-2 deskripsi_postingan">
+                                            {{ $postingan_ditemukan->deskripsi_postingan }}</p>
+                                        <div class="row" hidden>
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-user"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0">Tidak Diketahui</p>
+                                                <p class="small m-0 nama_akun">
+                                                    {{ $postingan_ditemukan->akun->nama_akun }}</p>
                                             </div>
                                         </div>
                                         <div class="row mt-1">
@@ -71,11 +86,14 @@
                                                 <i class="small fa-solid fa-location-dot"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0">Lab D2 - FIT</p>
+                                                <p class="small m-0 lokasi_disimpan">
+                                                    {{ $postingan_ditemukan->lokasi_disimpan ? $postingan_ditemukan->lokasi_disimpan : '-' }}
+                                                </p>
                                             </div>
                                         </div>
                                         <hr class="mb-2">
-                                        <small class="muted small">31 Februari 1945</small>
+                                        <small
+                                            class="muted small">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -99,25 +117,40 @@
                         </div>
                     </div>
                 </div>
-                <div class="row pt-4 gy-4 ">
+                <div class="row pt-2 g-1 g-md-4">
                     @foreach ($postingans_kehilangan as $postingan_kehilangan)
                         <div class="col-lg-3">
-                            <div class="card">
-                                <div class="card-content">
-                                    <div class="card-img">
-                                        <img src="/img/mouse.jpg" alt="" class="img-fluid">
-                                        <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
+                            <div class="card h-100">
+                                <div class="card-content h-100 d-flex flex-column">
+                                    <p hidden class="kategori">kehilangan</p>
+                                    <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
+                                    <p hidden class="lokasi_kehilangan">{{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}</p>
+                                    <p hidden class="lokasi_ditemukan">{{ $postingan_kehilangan->lokasi_ditemukan ? $postingan_kehilangan->lokasi_ditemukan : '-' }}</p>
+                                    <p hidden class="lokasi_disimpan">{{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}</p>
+                                    <p hidden class="tgl_kehilangan">{{ $postingan_kehilangan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}</p>
+                                    <p hidden class="tgl_ditemukan">{{ $postingan_kehilangan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}</p>
+                                    <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
+                                    <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->format('H:i') }}</p>
+                                    <p hidden class="tgl_ajukan_date">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
+                                    <div class="card-img" data-bs-toggle="modal"
+                                        data-bs-target="#lihatPostKehilangan">
+                                        <img src="{{ $postingan_kehilangan->getImageURL() }}" alt="" class="img-fluid foto_barang">
+                                        <div class="card-img-floating"><button
+                                                class="btn btn-outline-light">Lihat</button>
                                         </div>
                                     </div>
-                                    <div class="card-body d-none d-md-block">
-                                        <p class="fs-18 fw-bold mb-0">{{ $postingan_kehilangan->judul_postingan }}</p>
-                                        <p class="mb-2">Mouse Logitech M331 merah silent click.</p>
+                                    <div class="card-body pb-0 d-none d-md-block flex-fill">
+                                        <p class="fs-18 fw-bold mb-0 judul_postingan">
+                                            {{ $postingan_kehilangan->judul_postingan }}</p>
+                                        <p class="mb-2 deskripsi_postingan">
+                                            {{ $postingan_kehilangan->deskripsi_postingan }}</p>
                                         <div class="row">
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-user"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0">Tidak Diketahui</p>
+                                                <p class="small m-0 nama_akun">
+                                                    {{ $postingan_kehilangan->akun->nama_akun }}</p>
                                             </div>
                                         </div>
                                         <div class="row mt-1">
@@ -125,11 +158,16 @@
                                                 <i class="small fa-solid fa-location-dot"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0">Lab D2 - FIT</p>
+                                                <p class="small m-0 lokasi_kehilangan">
+                                                    {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
+                                                </p>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="px-3 pb-3">
                                         <hr class="mb-2">
-                                        <small class="muted small">31 Februari 1945</small>
+                                        <small
+                                            class="muted small">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
                                     </div>
                                 </div>
                             </div>

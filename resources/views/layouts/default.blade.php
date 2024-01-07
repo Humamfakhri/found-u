@@ -70,7 +70,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-4 pb-0">
-                        <form method="POST" action="{{ route('postingan.store') }}">
+                        <form enctype="multipart/form-data" method="POST" action="{{ route('postingan.store') }}">
                             @csrf
                             <input type="hidden" name="status" value=1>
                             <div class="row mb-3">
@@ -118,9 +118,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div>
-                                        <label for="foto_barang" class="form-label">Foto Barang</label>
+                                        <label for="image" class="form-label">Foto Barang</label>
                                         <input type="file" class="input-file form-control rounded-pill"
-                                            id="foto_barang" name="foto_barang">
+                                            id="image" name="image">
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
                             @csrf
                             <div class="row mb-3 h-100">
                                 <div class="col-md-6 col-img">
-                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 lfoto_barang">
                                 </div>
                                 <div class="col-md-6 d-flex flex-column">
                                     <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
@@ -174,7 +174,7 @@
                                                 <p class="fw-bold m-0">Lokasi Terakhir</p>
                                                 <p class="llokasi_kehilangan">lokasi_kehilangan</p>
                                             </div>
-                                            <div class="col">
+                                            <div class="col atribut_ditemukan">
                                                 <p class="fw-bold m-0">Lokasi Ditemukan</p>
                                                 <p class="llokasi_ditemukan">lokasi_ditemukan</p>
                                             </div>
@@ -184,12 +184,12 @@
                                                 <p class="fw-bold m-0">Tanggal Kehilangan</p>
                                                 <p class="ltgl_kehilangan">tgl_kehilangan</p>
                                             </div>
-                                            <div class="col">
+                                            <div class="col atribut_ditemukan">
                                                 <p class="fw-bold m-0">Tanggal Ditemukan</p>
                                                 <p class="ltgl_ditemukan">tgl_ditemukan</p>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="atribut_ditemukan">
                                             <p class="fw-bold m-0">Lokasi saat ini:</p>
                                             <p class="llokasi_disimpan">lokasi_disimpan</p>
                                         </div>
@@ -212,7 +212,7 @@
                             @csrf
                             <div class="row mb-3 h-100">
                                 <div class="col-md-6 col-img">
-                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 lfoto_barang">
                                 </div>
                                 <div class="col-md-6 d-flex flex-column">
                                     <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">

@@ -78,7 +78,7 @@
     </div>
     @if (!$postingans_diajukan->count())
         <div class="text-center mt-5 pt-4">
-            <i class='fa-solid fa-inbox display-1'></i>
+            <i class='fa-solid fa-inbox     play-1'></i>
             <p class="text-muted mt-3">Tidak ada postingan dalam pengajuan</p>
         </div>
     @endif
@@ -92,24 +92,12 @@
                         @else
                             <p hidden class="status-barang">ditemukan</p>
                         @endif
-                        <p hidden class="tgl_ajukan_time">
-                            {{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->format('H:i') }}</p>
-                        <p hidden class="tgl_ajukan_date">
-                            {{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
+                        <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->format('H:i') }}</p>
+                        <p hidden class="tgl_ajukan_date">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
                         <p hidden class="deskripsi_postingan">{{ $postingan_diajukan->deskripsi_postingan }}</p>
-                        {{-- <p hidden class="lokasi_kehilangan">{{ $postingan_diajukan->lokasi_kehilangan }}</p> --}}
-                        @if (!is_null($postingan_diajukan->lokasi_ditemukan))
-                            <p hidden class="lokasi_ditemukan">{{ $postingan_diajukan->lokasi_ditemukan }}</p>
-                        @else
-                            <p hidden class="lokasi_ditemukan">0</p>
-                        @endif
-                        @if (!is_null($postingan_diajukan->tgl_ditemukan))
-                            <p hidden class="tgl_ditemukan">
-                                {{ Carbon\Carbon::parse($postingan_diajukan->tgl_ditemukan)->translatedFormat('d F Y') }}
-                            </p>
-                        @else
-                            <p hidden class="tgl_ditemukan">0</p>
-                        @endif
+                        <p hidden class="lokasi_ditemukan">{{ $postingan_diajukan->lokasi_ditemukan ? $postingan_diajukan->lokasi_ditemukan : '-' }}</p>
+                        <p hidden class="lokasi_disimpan">{{ $postingan_diajukan->lokasi_disimpan ? $postingan_diajukan->lokasi_disimpan : '-' }}</p>
+                        <p hidden class="tgl_ditemukan">{{ $postingan_diajukan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_diajukan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}</p>
                         <p hidden class="no_telp">{{ $postingan_diajukan->no_telp }}</p>
                         <div class="card-top d-flex align-items-center justify-content-between px-3 py-2">
                             <div class="d-flex align-items-center gap-2">
@@ -121,34 +109,25 @@
                                     <div class="d-flex gap-1">
                                         <small class="m-0 p-0 fs-12">Diposting:</small>
                                         <small
-                                            class="m-0 p-0 fs-12">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->diffForHumans(null, true) . ' lalu' }}</small>
+                                            class="m-0 p-0 fs-12">{{ Carbon\Carbon::parse($postingan_diajukan->created_at)->diffForHumans(null, true) . ' lalu' }}</small>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {{-- <p class="mb-0 small px-3 py-2">2 hari yang lalu</p> --}}
                         <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPost">
-                            <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-0">
+                            <img src="{{ $postingan_diajukan->getImageURL() }}" alt="" class="img-fluid rounded-0 foto_barang">
                             <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                             </div>
                         </div>
                         <div class="card-body">
                             <p class="judul_postingan fs-18 fw-bold mb-0">{{ $postingan_diajukan->judul_postingan }}</p>
                             <p class="mb-2">{{ $postingan_diajukan->deskripsi_postingan }}</p>
-                            {{-- <div class="row align-items-center">
-                                <div class="col-1">
-                                    <i class="fa-solid fa-user small"></i>
-                                </div>
-                                <div class="col">
-                                    <p class="m-0 small">{{ $postingan_diajukan->akun->nama_akun }}</p>
-                                </div>
-                            </div> --}}
                             <div class="row align-items-center mt-1">
                                 <div class="col-1">
                                     <i class="fa-solid fa-location-dot small"></i>
                                 </div>
                                 <div class="col">
-                                    <p class="m-0 small lokasi_kehilangan">{{ $postingan_diajukan->lokasi_kehilangan ? $postingan_diajukan->lokasi_kehilangan : 'Tidak diketahui' }}</p>
+                                    <p class="m-0 small lokasi_kehilangan">{{ $postingan_diajukan->lokasi_kehilangan ? $postingan_diajukan->lokasi_kehilangan : '-' }}</p>
                                 </div>
                             </div>
                             <div class="row align-items-center mt-1">
@@ -157,7 +136,7 @@
                                 </div>
                                 <div class="col">
                                     <p class="m-0 small tgl_kehilangan">
-                                        {{ $postingan_diajukan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_diajukan->tgl_kehilangan)->translatedFormat('d F Y') : 'Tidak diketahui' }}
+                                        {{ $postingan_diajukan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_diajukan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
                                     </p>
                                 </div>
                             </div>
