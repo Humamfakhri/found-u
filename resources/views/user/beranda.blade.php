@@ -3,8 +3,8 @@
     <link href="{{ asset('/css/beranda.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    <section class="hero d-flex align-items-center justify-content-center mt-5" id="hero">
-        <img src="/img/postingan.png" alt="">
+    <section class="hero d-flex align-items-center justify-content-center" id="hero">
+        <img src="/img/hero-1.svg" alt="">
     </section>
 
     {{-- FILTER --}}

@@ -1,8 +1,9 @@
 <footer class="pb-4 {{ Route::is('tentang') ? 'footer-tentang' : 'footer-all' }}">
     <div class="footer-img"><img src="/img/footer-wave2.svg" alt="" class="img-fluid"></div>
     <div class="container">
-        <h3 class="mt-3 text-white fw-bold">Pertanyaan Sering Diajukan</h3>
-        <div class="row align-items-center">
+        <h3 class="mt-3 text-white fw-bold {{ $faqs->count() ? '' : 'd-none' }}">Pertanyaan Sering Diajukan</h3>
+        <div class="row align-items-center {{ $faqs->count() ? '' : 'justify-content-center' }}">
+            @if ($faqs->count())
             <div class="col-lg-7">
                 <div class="accordion accordion-flush mt-1" id="accordionFlushExample">
                     @foreach ($faqs as $faq)
@@ -20,7 +21,8 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col d-flex flex-column mt-4 mt-md-0">
+            @endif
+            <div class="col-5 d-flex flex-column mt-4 mt-md-0">
                 <div class="px-5 order-2 order-md-1 mx-auto mt-4 mt-md-0">
                     <img src="/img/logo.png" alt="" class="img-fluid">
                 </div>

@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="/logo.png" alt="" class="img-fluid" width="100">
+            <img src="/logo-white.svg" alt="" class="img-fluid" width="110">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
             <div class="navbar-nav gap-3 align-items-center justify-content-between w-100">
                 <div class="flex-fill px-4">
                     <form class="w-100 position-relative" method="GET" action="{{ route('beranda') }}">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" class="form-control rounded-pill py-1 pe-3" name="search"
                             placeholder="Cari">
                         <button hidden type="submit" class="btn btn-primary">Submit</button>
@@ -51,7 +51,7 @@
                         </div>
                     @else
                         <a class="nav-link rounded-pill py-1 px-3" href="/login"><button
-                                class="btn btn-outline-primary py-1 rounded-pill px-3">Login</button></a>
+                                class="login-btn btn btn-outline-white py-1 rounded-pill px-3">Login</button></a>
                     @endauth
                 </div>
             </div>

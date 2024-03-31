@@ -22,11 +22,11 @@
 
 <body>
     @auth()
-    <div class="floating-icon">
-        <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#buatPost">
-            <i class="fs-1 text-primary fa-solid fa-circle-plus"></i>
-        </button>
-    </div>
+        <div class="floating-icon">
+            <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#buatPost">
+                <i class="fs-1 text-primary fa-solid fa-circle-plus"></i>
+            </button>
+        </div>
     @endauth
     <header>
         @include('includes.header')
@@ -145,7 +145,8 @@
                             @csrf
                             <div class="row mb-3 h-100">
                                 <div class="col-md-6 col-img">
-                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 lfoto_barang">
+                                    <img src="/img/mouse.jpg" alt=""
+                                        class="img-fluid rounded-3 lfoto_barang">
                                 </div>
                                 <div class="col-md-6 d-flex flex-column">
                                     <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
@@ -212,7 +213,8 @@
                             @csrf
                             <div class="row mb-3 h-100">
                                 <div class="col-md-6 col-img">
-                                    <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 lfoto_barang">
+                                    <img src="/img/mouse.jpg" alt=""
+                                        class="img-fluid rounded-3 lfoto_barang">
                                 </div>
                                 <div class="col-md-6 d-flex flex-column">
                                     <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
@@ -262,6 +264,39 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
+        window.addEventListener("scroll", function() {
+            let header = document.querySelector(".navbar");
+            let windowPosition = window.scrollY > 0;
+            if (window.scrollY > 0) {
+                header.classList.add("scrolled", windowPosition);
+                header.classList.add("bg-white");
+                header.classList.remove("bg-transparent");
+                header.classList.remove("navbar-dark");
+                header.classList.add("shadow-sm");
+                if (header.querySelector('.login-btn')) {
+                    header.querySelector('.login-btn').classList.remove("btn-outline-white")
+                    header.querySelector('.login-btn').classList.add("btn-outline-primary")
+                }
+                document.querySelectorAll('.navbar-brand img').forEach(function(e) {
+                    e.src = '/logo.png';
+                    e.style.width = '100px';
+                })
+            } else {
+                header.classList.remove("scrolled", windowPosition);
+                header.classList.remove("bg-white");
+                header.classList.add("bg-transparent");
+                header.classList.add("navbar-dark");
+                header.classList.remove("shadow-sm");
+                if (header.querySelector('.login-btn')) {
+                    header.querySelector('.login-btn').classList.add("btn-outline-white")
+                    header.querySelector('.login-btn').classList.remove("btn-outline-primary")
+                }
+                document.querySelectorAll('.navbar-brand img').forEach(function(e) {
+                    e.src = '/logo-white.svg';
+                    e.style.width = '110px';
+                })
+            }
+        });
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 

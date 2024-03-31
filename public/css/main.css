@@ -1,6 +1,6 @@
 :root {
   --primary: #ED3237;
-  --primary-darker: #ce2c31;
+  --primary-darker: #B22D30;
   --text: #303030;
 }
 
@@ -52,6 +52,9 @@ i {
 .bg-primary {
   background-color: var(--primary) !important;
 }
+.bg-primary-darker {
+  background-color: var(--primary-darker) !important;
+}
 
 .bg-success {
   background-color: #10bb00 !important;
@@ -73,6 +76,11 @@ i {
 .btn-outline-primary:focus,
 .btn-outline-primary:active{
   background-color: var(--primary) !important;
+}
+
+.btn-outline-white:focus,
+.btn-outline-white:active{
+  background-color: #fff;
 }
 
 .btn-primary * {
@@ -97,6 +105,26 @@ i {
 .btn-outline-primary:hover,
 .btn-outline-primary:hover * {
   color: #fff;
+}
+
+.btn-outline-white {
+  border: 1px solid #fff;
+}
+
+.btn-outline-white:hover {
+  border: 1px solid #fff;
+  color: var(--primary);
+  background-color: #fff;
+}
+
+.btn-outline-white,
+.btn-outline-white * {
+  color: #fff;
+}
+
+.btn-outline-white:hover,
+.btn-outline-white:hover * {
+  color: var(--primary);
 }
 
 .btn-outline-secondary {
@@ -137,15 +165,45 @@ i {
 }
 
 /* NAVBAR */
+.navbar,
+.navbar * {
+  transition: .3s;
+}
+.navbar-nav form i{
+  color: #fff;
+}
+.scrolled .navbar-nav form i{
+  color: var(--text);
+}
+
 .navbar-nav form input{
   padding-left: 2.5rem;
+  background-color: var(--primary-darker);
+  color: #fff !important;
+}
+.scrolled .navbar-nav form input{
+  background-color: #fff;
+  color: var(--text);
+}
+
+.navbar-nav form input::placeholder{
+  color: rgba(255, 255, 255, 0.8);
+}
+.scrolled .navbar-nav form input::placeholder{
+  color: var(--text);
 }
 
 .navbar-nav form input:focus,
 .navbar-nav form input:active {
   outline: none;
   box-shadow: none;
+  border-color: #fff;
+  background-color: var(--primary-darker);
+}
+.scrolled .navbar-nav form input:focus,
+.scrolled .navbar-nav form input:active {
   border-color: var(--text);
+  background-color: #fff;
 }
 
 .navbar-nav form i {
@@ -161,12 +219,22 @@ i {
 }
 
 .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+.scrolled .navbar-nav .nav-link:hover {
   color: var(--text);
 }
 
 .navbar-nav .nav-link.active {
   font-weight: bold !important;
-  background-color: #ED3237;
+  background-color: #fff;
+  color: var(--primary) !important;
+}
+
+.scrolled .navbar-nav .nav-link.active {
+  font-weight: bold !important;
+  background-color: var(--primary);
   color: #fff !important;
 }
 
