@@ -27,7 +27,8 @@
                     <img src="/img/logo.png" alt="" class="img-fluid">
                 </div>
                 <div class="footer-sosmed d-flex justify-content-center gap-5 order-1 order-md-2">
-                    <a href="#" data-bs-toggle="tooltip" data-bs-title="Facebook">
+
+                    {{-- <a href="#" data-bs-toggle="tooltip" data-bs-title="Facebook">
                         <i class="fs-4 fa-brands fa-facebook"></i>
                     </a>
                     <a href="#" data-bs-toggle="tooltip" data-bs-title="Instagram">
@@ -38,9 +39,9 @@
                     </a>
                     <a href="#" data-bs-toggle="tooltip" data-bs-title="YouTube">
                         <i class="fs-4 fa-brands fa-youtube"></i>
-                    </a>
+                    </a> --}}
                 </div>
-                <small class="text-center text-white-50 order-3 d-none">&copy; FOUND-U 2023</small>
+                <small class="text-center text-white-50 fw-bold order-3">&copy; FOUND-U 2023</small>
             </div>
         </div>
     </div>

@@ -183,7 +183,7 @@ i {
 }
 .scrolled .navbar-nav form input{
   background-color: #fff;
-  color: var(--text);
+  color: var(--text) !important;
 }
 
 .navbar-nav form input::placeholder{

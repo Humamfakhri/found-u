@@ -264,39 +264,52 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
-        window.addEventListener("scroll", function() {
+        @if (Request::segment(1) == null && !isset($_GET["search"]))
+            window.addEventListener("scroll", function() {
+                let header = document.querySelector(".navbar");
+                let windowPosition = window.scrollY > 0;
+                if (window.scrollY > 0) {
+                    header.classList.add("scrolled", windowPosition);
+                    header.classList.add("bg-white");
+                    header.classList.remove("bg-transparent");
+                    header.classList.remove("navbar-dark");
+                    header.classList.add("shadow-sm");
+                    if (header.querySelector('.login-btn')) {
+                        header.querySelector('.login-btn').classList.remove("btn-outline-white")
+                        header.querySelector('.login-btn').classList.add("btn-outline-primary")
+                    }
+                    document.querySelectorAll('.navbar-brand img').forEach(function(e) {
+                        e.src = '/logo.png';
+                        e.style.width = '100px';
+                    })
+                } else {
+                    header.classList.remove("scrolled", windowPosition);
+                    header.classList.remove("bg-white");
+                    header.classList.add("bg-transparent");
+                    header.classList.add("navbar-dark");
+                    header.classList.remove("shadow-sm");
+                    if (header.querySelector('.login-btn')) {
+                        header.querySelector('.login-btn').classList.add("btn-outline-white")
+                        header.querySelector('.login-btn').classList.remove("btn-outline-primary")
+                    }
+                    document.querySelectorAll('.navbar-brand img').forEach(function(e) {
+                        e.src = '/logo-white.svg';
+                        e.style.width = '110px';
+                    })
+                }
+            });
+        @else
             let header = document.querySelector(".navbar");
-            let windowPosition = window.scrollY > 0;
-            if (window.scrollY > 0) {
-                header.classList.add("scrolled", windowPosition);
-                header.classList.add("bg-white");
-                header.classList.remove("bg-transparent");
-                header.classList.remove("navbar-dark");
-                header.classList.add("shadow-sm");
-                if (header.querySelector('.login-btn')) {
-                    header.querySelector('.login-btn').classList.remove("btn-outline-white")
-                    header.querySelector('.login-btn').classList.add("btn-outline-primary")
-                }
-                document.querySelectorAll('.navbar-brand img').forEach(function(e) {
-                    e.src = '/logo.png';
-                    e.style.width = '100px';
-                })
-            } else {
-                header.classList.remove("scrolled", windowPosition);
-                header.classList.remove("bg-white");
-                header.classList.add("bg-transparent");
-                header.classList.add("navbar-dark");
-                header.classList.remove("shadow-sm");
-                if (header.querySelector('.login-btn')) {
-                    header.querySelector('.login-btn').classList.add("btn-outline-white")
-                    header.querySelector('.login-btn').classList.remove("btn-outline-primary")
-                }
-                document.querySelectorAll('.navbar-brand img').forEach(function(e) {
-                    e.src = '/logo-white.svg';
-                    e.style.width = '110px';
-                })
-            }
-        });
+            header.classList.add('scrolled')
+            header.classList.add("bg-white");
+            header.classList.add("shadow-sm");
+            header.classList.remove("bg-transparent");
+            header.classList.remove("navbar-dark");
+            document.querySelectorAll('.navbar-brand img').forEach(function(e) {
+                e.src = '/logo.png';
+                e.style.width = '100px';
+            })
+        @endif
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 

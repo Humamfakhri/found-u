@@ -30,7 +30,8 @@
                             class="fs-5 text-light fa-solid fa-arrow-left-long"></i></a>
                     <div class="mt-5">
                         <img src="/img/logo-white.svg" alt="" class="img-fluid">
-                        <p class="text-light lead">Selamat Datang di FOUND-U</p>
+                        <p class="text-light fw-semibold lead">Selamat Datang di FOUND-U</p>
+                        <p class="text-white-50 fw-light w-50">Media informasi untuk barang hilang ataupun ditemukan di Telkom University.</p>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
             <div class="navbar-nav gap-3 align-items-center justify-content-between w-100">
                 <div class="flex-fill px-4">
                     <form class="w-100 position-relative" method="GET" action="{{ route('beranda') }}">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" class="form-control rounded-pill py-1 pe-3" name="search"
                             placeholder="Cari">
                         <button hidden type="submit" class="btn btn-primary">Submit</button>
@@ -27,6 +27,8 @@
                     <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('tentang') ? 'active' : '' }}"
                         href="/tentang">Tentang</a>
                     @auth
+                        {{-- <a class="nav-link rounded-pill ps-3 {{ Route::is('tentang') ? 'active' : '' }}"
+                            href="/tentang"><i class="fa-solid fa-bell"></i></a> --}}
                         <div class="dropdown">
                             <button class="btn btn-sm rounded-pill px-1 dropdown-toggle border-0" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
