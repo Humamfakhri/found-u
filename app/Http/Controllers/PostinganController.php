@@ -20,6 +20,12 @@ class PostinganController extends Controller
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view(request('search') ? 'user.pencarian' : 'user.beranda', [
+            'jml_postingans_ditemukan' => Postingan::where('status', 2)
+                ->where(function (Builder $query) {
+                    $query->whereNotNull('tgl_ditemukan')
+                        ->WhereNotNull('lokasi_ditemukan');
+                })
+                ->count(),
             'postingans_ditemukan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->where('judul_postingan', 'like', '%' . request('search') . '%')
@@ -31,8 +37,19 @@ class PostinganController extends Controller
                     $query->whereNotNull('tgl_ditemukan')
                         ->WhereNotNull('lokasi_ditemukan');
                 })
+                ->when($request->query('filter') == 'postingan_saya', function ($query) {
+                    return $query->where('id_akun', Auth::id());
+                })
+                ->when($request->query('filter') != 'postingan_saya', function ($query) {
+                    return $query->limit(4);
+                })
                 ->orderBy('tgl_publikasi', $order)
                 ->get(),
+            'jml_postingans_kehilangan' => Postingan::where('status', 2)
+                ->where(function (Builder $query) {
+                    $query->whereNull('tgl_ditemukan');
+                })
+                ->count(),
             'postingans_kehilangan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->where('judul_postingan', 'like', '%' . request('search') . '%')
@@ -43,6 +60,12 @@ class PostinganController extends Controller
                 ->where(function (Builder $query) {
                     $query->whereNull('tgl_ditemukan');
                     // ->whereNull('lokasi_ditemukan');
+                })
+                ->when($request->query('filter') == 'postingan_saya', function ($query) {
+                    return $query->where('id_akun', Auth::id());
+                })
+                ->when($request->query('filter') != 'postingan_saya', function ($query) {
+                    return $query->limit(4);
                 })
                 ->orderBy('tgl_publikasi', $order)
                 ->get(),
@@ -100,7 +123,6 @@ class PostinganController extends Controller
 
     public function admin_url($admin_url, Request $request): View
     {
-        // dd(last(request()->segments()));
         $view = 'admin.' . $admin_url;
         $order = $request->query('filter') == 'terlama' ? 'ASC' : 'DESC';
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
@@ -139,7 +161,7 @@ class PostinganController extends Controller
         // $request->file('image')
         $image = $request->file('image');
         // dd($image);
-        $filename = Auth::user()->username. time() . $image->getClientOriginalExtension();
+        $filename = Auth::user()->username . time() . $image->getClientOriginalExtension();
         $path = 'foto-barang/' . $filename;
         Storage::disk('public')->put($path, file_get_contents($image));
         $postingan = Postingan::create([
@@ -185,7 +207,6 @@ class PostinganController extends Controller
             $postingan->update(['status' => 3]);
             return redirect()->back()->with("ditolak", "Postingan ditolak");
         } elseif (null !== request('simpanEditPost')) {
-            // dd(request('ejudul_postingan'));
             $postingan = Postingan::where('id_postingan', $id_postingan)
                 ->update([
                     'judul_postingan' => request('ejudul_postingan'),
@@ -209,15 +230,4 @@ class PostinganController extends Controller
             return redirect()->back()->with("dihapus", "Postingan telah dihapus");
         }
     }
-
-    // public function filter(): View
-    // {
-    //     return view('admin.postingan', [
-    //         'postingans' => Postingan::get(),
-    //         'postingans_diajukan' => Postingan::where(['status' => 1])->get(),
-    //         'postingans_dipublikasi' => Postingan::where(['status' => 2])->get(),
-    //         'masukans' => Masukan::get(),
-    //         'faqs' => Masukan::where(['faq' => 1])->get()
-    //     ]);
-    // }
 }

@@ -11,19 +11,45 @@
     {{-- FILTER --}}
     <div class="container mt-4 mt-md-5">
         <div class="filter d-flex gap-4">
-            <div class="dropdown">
-                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 dropdown-toggle" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ $filter }}
-                    <i class="ms-2 fa-solid fa-chevron-down"></i>
-                </button>
-                <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
-                    <li class="rounded-pill">
-                        <a class="rounded-pill dropdown-item small"
-                            href="{{ $filter == 'Terbaru' ? '/?filter=terlama' : '/' }}">{{ $filter_list }}</a>
-                    </li>
-                </ul>
-            </div>
+            @if (isset($_GET['filter']))
+                @if ($_GET['filter'] == 'postingan_saya')
+                    <a href="/" class="btn btn-sm d-flex align-items-center btn-primary rounded-pill px-3">
+                        Postingan Saya
+                        {{-- <i class="ms-2 fa-solid fa-chevron-down"></i> --}}
+                        <i class="ms-2 fa-solid fa-xmark"></i>
+                    </a>
+                @else
+                    <div class="dropdown">
+                        <button
+                            class="btn btn-sm d-flex align-items-center btn-outline-secondary rounded-pill px-3 dropdown-toggle"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ $filter }}
+                            <i class="ms-2 fa-solid fa-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
+                            <li class="rounded-pill">
+                                <a class="rounded-pill dropdown-item small"
+                                    href="{{ $filter == 'Terbaru' ? '/?filter=terlama' : '/' }}">{{ $filter_list }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
+            @else
+                <div class="dropdown">
+                    <button
+                        class="btn btn-sm d-flex align-items-center btn-outline-secondary rounded-pill px-3 dropdown-toggle"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ $filter }}
+                        <i class="ms-2 fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
+                        <li class="rounded-pill">
+                            <a class="rounded-pill dropdown-item small"
+                                href="{{ $filter == 'Terbaru' ? '/?filter=terlama' : '/' }}">{{ $filter_list }}</a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -33,23 +59,29 @@
             <div class="section-title mb-3">
                 <div class="line d-none d-md-block"></div>
                 <div class="d-md-flex justify-content-between align-items-center">
-                    <div class="{{ $postingans_ditemukan->count() > 4 ? '' : 'mb-3' }}">
+                    <di>
                         <h3 class="mt-3 fw-black mb-0">DITEMUKAN</h3>
                         <p class="fs-18 fw-light mb-0">Barang yang sudah ditemukan dan disimpan di fakultas tertentu.</p>
-                    </div>
+                    </di>
                     <div class="flex-shrink-0 d-flex align-items-center justify-content-between d-md-block mt-4">
-                        @if ($postingans_ditemukan->count() > 4)
-                            <a href="/ditemukan"><button
-                                    class="btn btn-sm btn-outline-primary rounded-pill lihat-semua px-3 py-1">Lihat
-                                    Semua</button></a>
+                        @if ($jml_postingans_ditemukan > 4)
+                            @if (isset($_GET['filter']))
+                                @if (!$_GET['filter'] == 'postingan_saya')
+                                    <a href="/ditemukan"><button
+                                            class="btn btn-sm btn-outline-primary rounded-pill lihat-semua px-3 py-1">Lihat
+                                            Semua</button></a>
+                                @endif
+                            @else
+                                <a href="/ditemukan"><button
+                                        class="btn btn-sm btn-outline-primary rounded-pill lihat-semua px-3 py-1">Lihat
+                                        Semua</button></a>
+                            @endif
                         @endif
                     </div>
                 </div>
             </div>
             <div class="row pt-2 g-1 g-md-4">
-                <?php $count = 0; ?>
                 @foreach ($postingans_ditemukan as $postingan_ditemukan)
-                    <?php if ($count == 4) break; ?>
                     <div class="col-lg-3">
                         <div class="card h-100">
                             <div class="card-content">
@@ -115,7 +147,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php $count++; ?>
                 @endforeach
             </div>
         </div>
@@ -124,183 +155,99 @@
     {{-- KEHILANGAN --}}
     <section class="kehilangan cards-container mt-5">
         <div class="container my-4">
-            <div class="section-title">
+            <div class="section-title mb-3">
                 <div class="line d-none d-md-block"></div>
                 <div class="d-md-flex justify-content-between align-items-center">
-                    <div class="{{ $postingans_kehilangan->count() > 4 ? '' : 'mb-3' }}">
+                    <div>
                         <h2 class="mt-4 mb-0 mb-md-2">KEHILANGAN</h2>
                         <p class="lead m-0">Barang yang belum ditemukan.</p>
                     </div>
                     <div class="flex-shrink-0 d-flex align-items-center justify-content-between d-md-block mt-4">
-                        @if ($postingans_kehilangan->count() > 4)
-                            <a href="/kehilangan"><button
-                                    class="btn btn-sm btn-outline-primary rounded-pill lihat-semua px-3 py-1">Lihat
-                                    Semua</button></a>
+                        @if ($jml_postingans_kehilangan > 4)
+                            @if (isset($_GET['filter']))
+                                @if (!$_GET['filter'] == 'postingan_saya')
+                                    <a href="/kehilangan"><button
+                                            class="btn btn-sm btn-outline-primary rounded-pill lihat-semua px-3 py-1">Lihat
+                                            Semua</button></a>
+                                @endif
+                            @else
+                                <a href="/kehilangan"><button
+                                        class="btn btn-sm btn-outline-primary rounded-pill lihat-semua px-3 py-1">Lihat
+                                        Semua</button></a>
+                            @endif
                         @endif
                     </div>
                 </div>
             </div>
-            <div id="carouselKehilangan" class="carousel slide position-relative">
-                {{-- <div class="carousel-indicators gap-3 m-0">
-                    @if ($postingans_kehilangan->count() > 4)
-                        <button type="button" data-bs-target="#carouselKehilangan" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselKehilangan" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    @endif
-                    <button type="button" data-bs-target="#carouselKehilangan" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div> --}}
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row pt-2 g-1 g-md-4">
-                            @foreach ($postingans_kehilangan->slice(0, 4) as $postingan_kehilangan)
-                                <div class="col-lg-3">
-                                    <div class="card h-100">
-                                        <div class="card-content h-100 d-flex flex-column">
-                                            <p hidden class="kategori">kehilangan</p>
-                                            <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
-                                            <p hidden class="lokasi_kehilangan">
+            <div class="row pt-2 g-1 g-md-4">
+                @foreach ($postingans_kehilangan as $postingan_kehilangan)
+                    <div class="col-lg-3">
+                        <div class="card h-100">
+                            <div class="card-content h-100 d-flex flex-column">
+                                <p hidden class="kategori">kehilangan</p>
+                                <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
+                                <p hidden class="lokasi_kehilangan">
+                                    {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
+                                </p>
+                                <p hidden class="lokasi_ditemukan">
+                                    {{ $postingan_kehilangan->lokasi_ditemukan ? $postingan_kehilangan->lokasi_ditemukan : '-' }}
+                                </p>
+                                <p hidden class="lokasi_disimpan">
+                                    {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
+                                </p>
+                                <p hidden class="tgl_kehilangan">
+                                    {{ $postingan_kehilangan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
+                                </p>
+                                <p hidden class="tgl_ditemukan">
+                                    {{ $postingan_kehilangan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}
+                                </p>
+                                <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
+                                <p hidden class="tgl_ajukan_time">
+                                    {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->format('H:i') }}
+                                </p>
+                                <p hidden class="tgl_ajukan_date">
+                                    {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}
+                                </p>
+                                <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPostKehilangan">
+                                    <img src="{{ $postingan_kehilangan->getImageURL() }}" alt=""
+                                        class="img-fluid foto_barang">
+                                    <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
+                                    </div>
+                                </div>
+                                <div class="card-body pb-0 d-none d-md-block flex-fill">
+                                    <p class="fs-18 fw-bold mb-0 judul_postingan">
+                                        {{ $postingan_kehilangan->judul_postingan }}</p>
+                                    <p class="mb-2 deskripsi_postingan">
+                                        {{ $postingan_kehilangan->deskripsi_postingan }}</p>
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <i class="small fa-solid fa-user"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="small m-0 nama_akun">
+                                                {{ $postingan_kehilangan->akun->nama_akun }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                        <div class="col-1">
+                                            <i class="small fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="small m-0 lokasi_kehilangan">
                                                 {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
                                             </p>
-                                            <p hidden class="lokasi_ditemukan">
-                                                {{ $postingan_kehilangan->lokasi_ditemukan ? $postingan_kehilangan->lokasi_ditemukan : '-' }}
-                                            </p>
-                                            <p hidden class="lokasi_disimpan">
-                                                {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
-                                            </p>
-                                            <p hidden class="tgl_kehilangan">
-                                                {{ $postingan_kehilangan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
-                                            </p>
-                                            <p hidden class="tgl_ditemukan">
-                                                {{ $postingan_kehilangan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}
-                                            </p>
-                                            <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
-                                            <p hidden class="tgl_ajukan_time">
-                                                {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->format('H:i') }}
-                                            </p>
-                                            <p hidden class="tgl_ajukan_date">
-                                                {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}
-                                            </p>
-                                            <div class="card-img" data-bs-toggle="modal"
-                                                data-bs-target="#lihatPostKehilangan">
-                                                <img src="{{ $postingan_kehilangan->getImageURL() }}" alt=""
-                                                    class="img-fluid foto_barang">
-                                                <div class="card-img-floating"><button
-                                                        class="btn btn-outline-light">Lihat</button>
-                                                </div>
-                                            </div>
-                                            <div class="card-body pb-0 d-none d-md-block flex-fill">
-                                                <p class="fs-18 fw-bold mb-0 judul_postingan">
-                                                    {{ $postingan_kehilangan->judul_postingan }}</p>
-                                                <p class="mb-2 deskripsi_postingan">
-                                                    {{ $postingan_kehilangan->deskripsi_postingan }}</p>
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                        <i class="small fa-solid fa-user"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <p class="small m-0 nama_akun">
-                                                            {{ $postingan_kehilangan->akun->nama_akun }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-1">
-                                                    <div class="col-1">
-                                                        <i class="small fa-solid fa-location-dot"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <p class="small m-0 lokasi_kehilangan">
-                                                            {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="px-3 pb-3">
-                                                <hr class="mb-2">
-                                                <small
-                                                    class="muted small">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row pt-2 g-1 g-md-4">
-                            @foreach ($postingans_kehilangan->slice(4, 8) as $postingan_kehilangan)
-                                <div class="col-lg-3">
-                                    <div class="card h-100">
-                                        <div class="card-content h-100 d-flex flex-column">
-                                            <p hidden class="kategori">kehilangan</p>
-                                            <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
-                                            <p hidden class="lokasi_kehilangan">
-                                                {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
-                                            </p>
-                                            <p hidden class="lokasi_ditemukan">
-                                                {{ $postingan_kehilangan->lokasi_ditemukan ? $postingan_kehilangan->lokasi_ditemukan : '-' }}
-                                            </p>
-                                            <p hidden class="lokasi_disimpan">
-                                                {{ $postingan_kehilangan->lokasi_disimpan ? $postingan_kehilangan->lokasi_disimpan : '-' }}
-                                            </p>
-                                            <p hidden class="tgl_kehilangan">
-                                                {{ $postingan_kehilangan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
-                                            </p>
-                                            <p hidden class="tgl_ditemukan">
-                                                {{ $postingan_kehilangan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}
-                                            </p>
-                                            <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
-                                            <p hidden class="tgl_ajukan_time">
-                                                {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->format('H:i') }}
-                                            </p>
-                                            <p hidden class="tgl_ajukan_date">
-                                                {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}
-                                            </p>
-                                            <div class="card-img" data-bs-toggle="modal"
-                                                data-bs-target="#lihatPostKehilangan">
-                                                <img src="{{ $postingan_kehilangan->getImageURL() }}" alt=""
-                                                    class="img-fluid foto_barang">
-                                                <div class="card-img-floating"><button
-                                                        class="btn btn-outline-light">Lihat</button>
-                                                </div>
-                                            </div>
-                                            <div class="card-body pb-0 d-none d-md-block flex-fill">
-                                                <p class="fs-18 fw-bold mb-0 judul_postingan">
-                                                    {{ $postingan_kehilangan->judul_postingan }}</p>
-                                                <p class="mb-2 deskripsi_postingan">
-                                                    {{ $postingan_kehilangan->deskripsi_postingan }}</p>
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                        <i class="small fa-solid fa-user"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <p class="small m-0 nama_akun">
-                                                            {{ $postingan_kehilangan->akun->nama_akun }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-1">
-                                                    <div class="col-1">
-                                                        <i class="small fa-solid fa-location-dot"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <p class="small m-0 lokasi_kehilangan">
-                                                            {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : '-' }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="px-3 pb-3">
-                                                <hr class="mb-2">
-                                                <small
-                                                    class="muted small">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="px-3 pb-3">
+                                    <hr class="mb-2">
+                                    <small
+                                        class="muted small">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

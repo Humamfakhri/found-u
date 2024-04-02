@@ -44,7 +44,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li class="py-1"><a href="#" class="small"><i
+                                <li class="py-1"><a href="/?filter=postingan_saya" class="small"><i
                                             class='me-1 fa-solid fa-layer-group'></i> Postingan saya</a></li>
                                 <li class="py-1"><a href="{{ route('logout') }}" class="small"><i
                                             class='me-1 fa-solid fa-arrow-right-from-bracket fa-flip-horizontal'></i>

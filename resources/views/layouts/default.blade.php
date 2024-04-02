@@ -78,15 +78,15 @@
                                     <div>
                                         <label for="judul_postingan" class="form-label">Nama Barang <span
                                                 class="text-primary">*</span></label>
-                                        <input type="text" class="form-control rounded-pill" id="judul_postingan"
-                                            name="judul_postingan">
+                                        <input type="text" class="mandatory form-control rounded-pill"
+                                            id="judul_postingan" name="judul_postingan">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div>
                                         <label for="no_telp" class="form-label">No. Telepon Pemilik <span
                                                 class="text-primary">*</span></label>
-                                        <input type="text" class="form-control rounded-pill" id="no_telp"
+                                        <input type="text" class="mandatory form-control rounded-pill" id="no_telp"
                                             name="no_telp">
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                     <div>
                                         <label for="tanggal" class="form-label">Tanggal Kehilangan <span
                                                 class="text-primary">*</span></label>
-                                        <input type="date" class="form-control rounded-pill" id="tanggal"
+                                        <input type="date" class="mandatory form-control rounded-pill" id="tanggal"
                                             name="tanggal">
                                     </div>
                                 </div>
@@ -125,9 +125,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-center mt-5">
-                                <button type="submit" name="submit"
-                                    class="btn btn-primary rounded-pill px-4">Ajukan
-                                    Postingan</button>
+                                <button id="continue" type="submit" name="submit" disabled
+                                    class="btn btn-primary rounded-pill px-4">Ajukan Postingan</button>
                             </div>
                         </form>
                     </div>
@@ -264,7 +263,18 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
-        @if (Request::segment(1) == null && !isset($_GET["search"]))
+        // console.log(document.querySelectorAll('.mandatory').values);
+        let mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
+            e.addEventListener('input', function() {
+                if (document.getElementById('judul_postingan').value != "" && document.getElementById('no_telp').value != "" && document.getElementById('tanggal').value != "") {
+                    document.getElementById("continue").removeAttribute("disabled");
+                    // document.getElementById("continue").removeAttribute("disabled");
+                } else {
+                    document.getElementById("continue").setAttribute("disabled", "disabled");
+                }
+            })
+        })
+        @if (Request::segment(1) == null && !isset($_GET['search']))
             window.addEventListener("scroll", function() {
                 let header = document.querySelector(".navbar");
                 let windowPosition = window.scrollY > 0;
