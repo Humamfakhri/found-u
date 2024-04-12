@@ -1,0 +1,145 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+class PostinganSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        DB::table('postingans')->insert([
+            [
+                'id_akun' => 3 , 
+                'status' => 1 , 
+                'judul_postingan' => 'Kartu Tanda Mahasiswa', 
+                'deskripsi_postingan' => 'KTM dengan nama Rigel, dengan ciri-ciri kartu sudah lumayan pudar', 
+                'image' => 'foto-barang/ktm.jpg', 
+                'lokasi_kehilangan' => NULL, 
+                'lokasi_ditemukan' => NULL, 
+                'lokasi_disimpan' => NULL, 
+                'tgl_kehilangan' => '2023-12-15 20:44:06', 
+                'tgl_ditemukan' => NULL, 
+                'tgl_publikasi' => '2024-01-04 14:10:29', 
+                'no_telp' => '08513728927', 
+            ],
+            [
+                'id_akun' => 3,
+                'status' => 1,
+                'judul_postingan' => 'Charger Handphone Samsung',
+                'deskripsi_postingan' => 'Warna hitam, di kepala charger lumayan banyak baret dan ada bekas sticker',
+                'image' => 'foto-barang/charger_samsung.jpg',
+                'lokasi_kehilangan' => 'Kemungkinan di GKU 3 Lt. 8',
+                'lokasi_ditemukan' => 'GKU 3 Lt. 7',
+                'lokasi_disimpan' => 'Laboran FTE',
+                'tgl_kehilangan' => '2023-12-13 20:55:52',
+                'tgl_ditemukan' => '2024-01-04 00:00:00',
+                'tgl_publikasi' => '2024-01-07 06:22:57',
+                'no_telp' => '08137583795',
+            ],
+            [
+                'id_akun' => 3, 
+                'status' => 1, 
+                'judul_postingan' => 'Windbreaker', 
+                'deskripsi_postingan' => 'Windbreaker warna hitam, dengan merk OG', 
+                'image' => 'foto-barang/windbreaker.jpg', 
+                'lokasi_kehilangan' => 'Ruangan D2 FIT', 
+                'lokasi_ditemukan' => 'Lab D4 FIT', 
+                'lokasi_disimpan' => 'Laboran FIT', 
+                'tgl_kehilangan' => '2023-12-25 20:52:20', 
+                'tgl_ditemukan' => '2024-01-01 21:37:27', 
+                'tgl_publikasi' => '2024-01-01 21:37:27', 
+                'no_telp' => '08513728927', 
+            ],
+            [
+                'id_akun' => 4, 
+                'status' => 2, 
+                'judul_postingan' => 'TWS Soundcore', 
+                'deskripsi_postingan' => 'TWS beserta case warna hitam dengan merk soundcore', 
+                'image' => 'foto-barang/tws.jpg', 
+                'lokasi_kehilangan' => NULL, 
+                'lokasi_ditemukan' => NULL, 
+                'lokasi_disimpan' => NULL, 
+                'tgl_kehilangan' => '2023-12-27 20:52:20', 
+                'tgl_ditemukan' => NULL, 
+                'tgl_publikasi' => '2024-01-04 14:10:24', 
+                'no_telp' => '081337832102', 
+            ],
+            [
+                'id_akun' => 4, 
+                'status' => 2, 
+                'judul_postingan' => 'Card Holder', 
+                'deskripsi_postingan' => 'Card Holder berwarna abu &amp; hitam, terdapat KTM didalam atas nama Rigel', 
+                'image' => 'foto-barang/card_holder.jpg', 
+                'lokasi_kehilangan' => NULL, 
+                'lokasi_ditemukan' => 'FIT lt. 2', 
+                'lokasi_disimpan' => 'Laboran FIT', 
+                'tgl_kehilangan' => '2023-12-27 00:00:00', 
+                'tgl_ditemukan' => '2024-01-07 00:00:00', 
+                'tgl_publikasi' => '2024-01-01 14:52:43', 
+                'no_telp' => '08137583795', 
+            ],
+            [
+                'id_akun' => 4, 
+                'status' => 2, 
+                'judul_postingan' => 'Kacamata', 
+                'deskripsi_postingan' => 'Warna hitam, merek levis, bahan titanium, lensa bulat.', 
+                'image' => 'foto-barang/kacamata.jpg', 
+                'lokasi_kehilangan' => NULL, 
+                'lokasi_ditemukan' => NULL, 
+                'lokasi_disimpan' => NULL, 
+                'tgl_kehilangan' => '2023-01-25 00:00:00', 
+                'tgl_ditemukan' => NULL, 
+                'tgl_publikasi' => '2024-01-05 18:31:27', 
+                'no_telp' => '08137583921', 
+            ],
+            [
+                'id_akun' => 5, 
+                'status' => 2, 
+                'judul_postingan' => 'Mouse', 
+                'deskripsi_postingan' => 'Mouse wireless warna merah, merek logitech, tanpa dongle ', 
+                'image' => 'foto-barang/mouse.jpg', 
+                'lokasi_kehilangan' => 'Ruangan D3 FIT', 
+                'lokasi_ditemukan' => 'Ruangan D3 FIT', 
+                'lokasi_disimpan' => 'Laboran FIT', 
+                'tgl_kehilangan' => '2024-01-01 10:22:49', 
+                'tgl_ditemukan' => '2024-01-04 15:34:49', 
+                'tgl_publikasi' => '2024-01-05 18:31:33', 
+                'no_telp' => '08137583795', 
+            ],
+            [
+                'id_akun' => 5, 
+                'status' => 2, 
+                'judul_postingan' => 'Pick Gitar', 
+                'deskripsi_postingan' => 'Warna hitam, merk Dunlop, ukuran 1,38 mm, bahan nylon', 
+                'image' => 'foto-barang/pick.jpeg', 
+                'lokasi_kehilangan' => NULL, 
+                'lokasi_ditemukan' => NULL, 
+                'lokasi_disimpan' => NULL, 
+                'tgl_kehilangan' => '2024-01-07 14:23:33', 
+                'tgl_ditemukan' => NULL, 
+                'tgl_publikasi' => '2024-01-09 12:03:33', 
+                'no_telp' => '085147833287', 
+            ],
+            [
+                'id_akun' => 5, 
+                'status' => 2, 
+                'judul_postingan' => 'Mousepad', 
+                'deskripsi_postingan' => 'Warna hitam dan hijau, merk robot, ukuran 220 x 180 mm  ', 
+                'image' => 'foto-barang/mousepad.jpg', 
+                'lokasi_kehilangan' => 'GKU Lt.7', 
+                'lokasi_ditemukan' => 'GKU Lt.1', 
+                'lokasi_disimpan' => 'Laboran FTE', 
+                'tgl_kehilangan' => '2024-01-14 16:31:25', 
+                'tgl_ditemukan' => '2024-01-17 09:34:15', 
+                'tgl_publikasi' => '2024-01-05 18:31:36', 
+                'no_telp' => '08137583795', 
+            ],
+        ]);
+    }
+}
