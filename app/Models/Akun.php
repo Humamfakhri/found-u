@@ -20,6 +20,7 @@ class Akun extends Model implements Authenticatable
         'password',
         'no_telp',
         'role',
+        'nomor_induk',
         'image'
     ];
 
@@ -48,9 +49,9 @@ class Akun extends Model implements Authenticatable
 
     public function getImageURL() {
         if ($this->image) {
-            return url('storage/foto-profil/'. $this->image);
+            return url('storage/'. $this->image);
         }
-        return "/img/rigel.jpg";
+        return "storage/foto-profil/avatar.png";
     }
 
 }

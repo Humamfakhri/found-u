@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Akun;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,20 +12,51 @@ class AkunSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('akun')->insert([
+        DB::table('akuns')->insert([
             [
-                'username' => 'humam',
-                'nama_akun' => 'Humam Ibadillah Fakhri',
+                'username' => 'admin',
+                'nama_akun' => 'Administrator',
+                'nomor_induk' => null,
                 'password' => bcrypt('12345678'),
                 'no_telp' => '0812345678',
                 'role' => 1,
+                'image' => null,
+            ],
+            [
+                'username' => 'pengguna',
+                'nama_akun' => 'Pengguna',
+                'nomor_induk' => null,
+                'password' => bcrypt('12345678'),
+                'no_telp' => '0812345678',
+                'role' => 0,
+                'image' => null,
+            ],
+            [
+                'username' => 'humam',
+                'nama_akun' => 'Humam Ibadillah Fakhri',
+                'nomor_induk' => '6706223118',
+                'password' => bcrypt('12345678'),
+                'no_telp' => '0812345678',
+                'role' => 0,
+                'image' => 'foto-profil/humam.png',
+            ],
+            [
+                'username' => 'luthfi',
+                'nama_akun' => 'Luthfi Revansyah Pratama',
+                'nomor_induk' => '6706220112',
+                'password' => bcrypt('12345678'),
+                'no_telp' => '08198765432',
+                'role' => 0,
+                'image' => 'foto-profil/luthfi.jpg',
             ],
             [
                 'username' => 'rigel',
                 'nama_akun' => 'Rigel Rafiq Setiawan',
+                'nomor_induk' => '6706220112',
                 'password' => bcrypt('12345678'),
                 'no_telp' => '08198765432',
                 'role' => 0,
+                'image' => 'foto-profil/rigel.jpg',
             ]
         ]);
     }

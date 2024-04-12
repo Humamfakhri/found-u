@@ -37,15 +37,15 @@
                         <div class="dropdown">
                             <button class="btn btn-sm rounded-pill px-1 dropdown-toggle border-0" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/img/rigel.jpg" alt="Rigel" class="img-fluid rounded-circle" width="30">
+                                <img src="{{ Auth::user()->getImageURL() }}" alt="Foto Profil" class="img-fluid rounded-circle" width="30">
                                 {{-- <i class="fa-solid fa-user"></i> --}}
                                 {{-- <i class="fa-solid fa-caret-down"></i> --}}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end rounded-4 mt-1 border shadow px-4 py-3">
-                                <img src="img/rigel.jpg" alt="Rigel"
+                                <img src="{{ Auth::user()->getImageURL() }}" alt="Foto Profil"
                                     class="d-block mx-auto text-center img-fluid rounded-circle" width="100">
                                 <p class="text-center mb-0 mt-2 fw-bold small">{{ Auth::user()->nama_akun }}</p>
-                                <p class="text-center mb-0 small">6706220112</p>
+                                <p class="text-center mb-0 small">{{ Auth::user()->nomor_induk }}</p>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

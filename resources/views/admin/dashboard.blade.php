@@ -102,7 +102,7 @@
                         <div class="card-top d-flex align-items-center justify-content-between px-3 py-2">
                             <div class="d-flex align-items-center gap-2">
                                 {{-- <i class="fa-solid fa-user small"></i> --}}
-                                <img src="/img/rigel.jpg" alt="" class="img-fluid rounded-circle" width="35">
+                                <img src="{{ $postingan_diajukan->akun->getImageURL() }}" alt="Foto Profil" class="img-fluid rounded-circle" width="35">
                                 <div class="d-flex flex-column gap-0 g-0">
                                     <p class="mb-0 p-0 fw-semibold small nama_akun">
                                         {{ $postingan_diajukan->akun->nama_akun }}</p>
