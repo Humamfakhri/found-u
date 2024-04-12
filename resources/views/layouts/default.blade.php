@@ -37,9 +37,9 @@
         {{-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> --}}
         @if (session()->has('success'))
             <div class="toast-container position-fixed bottom-0 start-0 m-4">
-                <div id="liveToast" class="toast rounded-pill border-primary px-3 shadow" role="alert"
+                <div id="liveToast" class="toast rounded-pill border-success px-3 shadow" role="alert"
                     aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body text-primary fw-bold">
+                    <div class="toast-body text-success fw-bold">
                         {{ session()->get('success') }}
                     </div>
                 </div>
@@ -118,9 +118,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div>
-                                        <label for="image" class="form-label">Foto Barang</label>
-                                        <input type="file" class="input-file form-control rounded-pill"
-                                            id="image" name="image">
+                                        <label for="image" class="form-label">Foto Barang <span
+                                                class="text-primary">*</span></label>
+                                        <input type="file" class="mandatory input-file form-control rounded-pill @error('image') is-invalid @enderror"
+                                            id="image" name="image" accept="image/png, image/jpg, image/jpeg">
+                                            @error('image')
+                                            <div class="form-text text-danger" id="basic-addon4">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                     </div>
                                 </div>
                             </div>
@@ -263,10 +269,11 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
-        // console.log(document.querySelectorAll('.mandatory').values);
         let mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
             e.addEventListener('input', function() {
-                if (document.getElementById('judul_postingan').value != "" && document.getElementById('no_telp').value != "" && document.getElementById('tanggal').value != "") {
+                if (document.getElementById('judul_postingan').value != "" && document.getElementById(
+                        'no_telp').value != "" && document.getElementById('tanggal').value != "" && document
+                    .getElementById('image').value != "") {
                     document.getElementById("continue").removeAttribute("disabled");
                     // document.getElementById("continue").removeAttribute("disabled");
                 } else {
@@ -313,6 +320,10 @@
             header.classList.add('scrolled')
             header.classList.add("bg-white");
             header.classList.add("shadow-sm");
+            if (header.querySelector('.login-btn')) {
+                header.querySelector('.login-btn').classList.remove("btn-outline-white")
+                header.querySelector('.login-btn').classList.add("btn-outline-primary")
+            }
             header.classList.remove("bg-transparent");
             header.classList.remove("navbar-dark");
             document.querySelectorAll('.navbar-brand img').forEach(function(e) {

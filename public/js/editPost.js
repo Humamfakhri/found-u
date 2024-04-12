@@ -16,11 +16,12 @@ btnEditPost.forEach(card => {
     if (form) {
       form.action = "postingan/"+id;
     }
+    console.log(document.querySelector('.etgl_ajukan_time').innerHTML);
     document.querySelector('.etgl_ajukan_time').innerHTML = card_content.querySelector('.tgl_ajukan_time').innerHTML;
     document.querySelector('.etgl_ajukan_date').innerHTML = card_content.querySelector('.tgl_ajukan_date').innerHTML;
     document.querySelectorAll('.enama_akun').forEach(function (el) {
       el.innerHTML = card_content.querySelector('.nama_akun').innerHTML;
-    });
+    }); 
     document.querySelectorAll('[name="ejudul_postingan"]').forEach(function (el) {
       el.value = card_content.querySelector('.judul_postingan').innerHTML;
     });

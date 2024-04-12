@@ -1,7 +1,7 @@
 <div class='sidebar d-none d-md-block'>
     <div class='sidebar-top p-4'>
-        <a href='admin-index.php'><img class='nav-brand' src='../img/logo.png' alt='Logo MEIN-U'></a>
-        <a href='admin-index.php'><img class='nav-brand-closed' src='../img/tel-u.png' alt='Logo MEIN-U'></a>
+        <a href='/dashboard'><img class='nav-brand' src='../img/logo.png' alt='Logo MEIN-U'></a>
+        <a href='/dashboard'><img class='nav-brand-closed' src='../img/tel-u.png' alt='Logo MEIN-U'></a>
         <button class='toggle'>
             <i class='fa-solid fa-angle-left fs-6 m-1'></i>
         </button>

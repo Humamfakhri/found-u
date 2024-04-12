@@ -20,12 +20,17 @@ class Akun extends Model implements Authenticatable
         'password',
         'no_telp',
         'role',
-        'foto_profil'
+        'image'
     ];
 
     public function postingans() : HasMany 
     {
         return $this->hasMany(Postingan::class);
+    }
+
+    public function notifikasis() : HasMany 
+    {
+        return $this->hasMany(Notifikasi::class);
     }
 
     public function masukan() : HasMany 
@@ -40,5 +45,12 @@ class Akun extends Model implements Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function getImageURL() {
+        if ($this->image) {
+            return url('storage/foto-profil/'. $this->image);
+        }
+        return "/img/rigel.jpg";
+    }
 
 }

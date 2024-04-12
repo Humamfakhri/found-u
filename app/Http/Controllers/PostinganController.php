@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Masukan;
+use App\Models\Notifikasi;
 use App\Models\Postingan;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -20,13 +21,14 @@ class PostinganController extends Controller
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view(request('search') ? 'user.pencarian' : 'user.beranda', [
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
             'jml_postingans_ditemukan' => Postingan::where('status', 2)
                 ->where(function (Builder $query) {
                     $query->whereNotNull('tgl_ditemukan')
                         ->WhereNotNull('lokasi_ditemukan');
                 })
                 ->count(),
-            'postingans_ditemukan' => Postingan::where('status', '=', 2)
+            'postingans_ditemukan' => Postingan::with('akun')->where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->where('judul_postingan', 'like', '%' . request('search') . '%')
                         ->orWhere('deskripsi_postingan', 'like', '%' . request('search') . '%')
@@ -50,7 +52,7 @@ class PostinganController extends Controller
                     $query->whereNull('tgl_ditemukan');
                 })
                 ->count(),
-            'postingans_kehilangan' => Postingan::where('status', '=', 2)
+            'postingans_kehilangan' => Postingan::with('akun')->where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->where('judul_postingan', 'like', '%' . request('search') . '%')
                         ->orWhere('deskripsi_postingan', 'like', '%' . request('search') . '%')
@@ -82,6 +84,7 @@ class PostinganController extends Controller
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view('user.kehilangan', [
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
             'postingans_kehilangan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->whereNull('tgl_ditemukan')
@@ -101,6 +104,7 @@ class PostinganController extends Controller
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view('user.ditemukan', [
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
             'postingans_ditemukan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->whereNotNull('tgl_ditemukan')
@@ -117,7 +121,17 @@ class PostinganController extends Controller
     public function tentang()
     {
         return view('user.tentang', [
-            'faqs' => Masukan::where('faq', 1)->get()
+            'faqs' => Masukan::where('faq', 1)->get(),
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
+        ]);
+    }
+
+    public function notifikasi()
+    {
+        return view('user.notifikasi', [
+            'faqs' => Masukan::where('faq', 1)->get(),
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->get(),
+            // 'notifikasis_late' => Masukan::where('id_akun', Auth::id())->oldest()->get(),
         ]);
     }
 
@@ -155,46 +169,93 @@ class PostinganController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        // dd($request->all());
-        // $request->file('image')
-        $image = $request->file('image');
-        // dd($image);
-        $filename = Auth::user()->username . time() . $image->getClientOriginalExtension();
-        $path = 'foto-barang/' . $filename;
-        Storage::disk('public')->put($path, file_get_contents($image));
-        $postingan = Postingan::create([
-            'id_akun' => Auth::id(),
-            'status' => request('status'),
-            'judul_postingan' => request('judul_postingan'),
-            'deskripsi_postingan' => request('deskripsi_postingan'),
-            'lokasi_kehilangan' => request('lokasi_kehilangan'),
-            'lokasi_ditemukan' => request('lokasi_ditemukan'),
-            'lokasi_disimpan' => request('lokasi_disimpan'),
-            'tgl_kehilangan' => request('tgl_kehilangan'),
-            'tgl_ditemukan' => request('tgl_ditemukan'),
-            'tgl_publikasi' => Carbon::now(),
-            'no_telp' => request('no_telp'),
-            'image' => $filename
+        // return $request->file('image')->store('foto-barang');
+        $validatedData = $request->validate([
+            'judul_postingan' => 'required|max:100',
+            'no_telp' => 'required|numeric',
+            'lokasi_kehilangan' => 'nullable|max:255',
+            'lokasi_ditemukan' => 'nullable|max:255',
+            'lokasi_disimpan' => 'nullable',
+            'tgl_kehilangan' => 'nullable|date',
+            'tgl_ditemukan' => 'nullable|date',
+            'deskripsi_postingan' => 'nullable|max:1000',
+            'image' => 'image|file|max:1024'
         ]);
 
+        $validatedData['id_akun'] = Auth::id();
+        $validatedData['status'] = request('status');
+        $validatedData['tgl_publikasi'] = Carbon::now();
 
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('foto-barang');
+        }
+
+        $postingan = Postingan::create($validatedData);
+        // dd(Postingan::latest()->value('id_postingan'));
+        Notifikasi::create([
+            'id_akun' => Auth::id(),
+            'id_postingan' => Postingan::latest()->value('id_postingan'),
+            'status' => 1,
+        ]);
+        // if ($postingan) {
+        //     Notifikasi::create([
+        //         'id_akun' => Auth::id(),
+        //         'id_postingan' => Postingan::latest()->first()->id,
+        //         'status' => 1,
+        //     ]);
+        // }
 
         if (request('status') == 1 && $postingan) {
-            // if (request()->has('image')) {
-            //     request()->file('image')->store('barang', 'public');
-            // }
             return redirect()->back()->with("success", "Berhasil mengajukan postingan");
         } elseif (request('status') == 2 && $postingan) {
-            // if (request()->has('image')) {
-            //     request()->file('image')->store('barang', 'public');
-            // }
             return redirect('postingan')->with("success", "Berhasil membuat postingan");
         } else {
             return redirect()->back()->with("success", "Gagal membuat postingan");
         }
     }
+
+    // public function store(Request $request): RedirectResponse
+    // {
+    //     // dd($request->all());
+    //     // $request->file('image')
+    //     $image = $request->file('image');
+    //     // dd($image);
+    //     $filename = Auth::user()->username . time() . $image->getClientOriginalExtension();
+    //     $path = 'foto-barang/' . $filename;
+    //     Storage::disk('public')->put($path, file_get_contents($image));
+    //     $postingan = Postingan::create([
+    //         'id_akun' => Auth::id(),
+    //         'status' => request('status'),
+    //         'judul_postingan' => request('judul_postingan'),
+    //         'deskripsi_postingan' => request('deskripsi_postingan'),
+    //         'lokasi_kehilangan' => request('lokasi_kehilangan'),
+    //         'lokasi_ditemukan' => request('lokasi_ditemukan'),
+    //         'lokasi_disimpan' => request('lokasi_disimpan'),
+    //         'tgl_kehilangan' => request('tgl_kehilangan'),
+    //         'tgl_ditemukan' => request('tgl_ditemukan'),
+    //         'tgl_publikasi' => Carbon::now(),
+    //         'no_telp' => request('no_telp'),
+    //         'image' => $filename
+    //     ]);
+
+
+
+    //     if (request('status') == 1 && $postingan) {
+    //         // if (request()->has('image')) {
+    //         //     request()->file('image')->store('barang', 'public');
+    //         // }
+    //         return redirect()->back()->with("success", "Berhasil mengajukan postingan");
+    //     } elseif (request('status') == 2 && $postingan) {
+    //         // if (request()->has('image')) {
+    //         //     request()->file('image')->store('barang', 'public');
+    //         // }
+    //         return redirect('postingan')->with("success", "Berhasil membuat postingan");
+    //     } else {
+    //         return redirect()->back()->with("success", "Gagal membuat postingan");
+    //     }
+    // }
 
     public function update($id_postingan): RedirectResponse
     {

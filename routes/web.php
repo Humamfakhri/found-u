@@ -35,6 +35,7 @@ Route::get('/', [PostinganController::class, "beranda"])->name("beranda");
 Route::get('/kehilangan', [PostinganController::class, "kehilangan"])->name("kehilangan");
 Route::get('/ditemukan', [PostinganController::class, "ditemukan"])->name("ditemukan");
 Route::get('/tentang', [PostinganController::class, "tentang"])->name("tentang");
+Route::get('/notifikasi', [PostinganController::class, "notifikasi"])->name("notifikasi");
 
 // POSTINGAN \\
 Route::post('postingan', [PostinganController::class, "store"])->name("postingan.store");

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('id_postingan')->references('id_postingan')->on('postingans')->onDelete('cascade');
             $table->primary(['id_akun', 'id_postingan']);
             $table->tinyInteger('status');
-            $table->boolean('baca');
+            $table->boolean('baca')->default(0);
             $table->string('deskripsi_notifikasi', 50);
             $table->timestamps();
         });

@@ -27,8 +27,13 @@
                     <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('tentang') ? 'active' : '' }}"
                         href="/tentang">Tentang</a>
                     @auth
-                        {{-- <a class="nav-link rounded-pill ps-3 {{ Route::is('tentang') ? 'active' : '' }}"
-                            href="/tentang"><i class="fa-solid fa-bell"></i></a> --}}
+                        <a class="nav-link nav-icon position-relative rounded-pill d-flex align-items-center justify-content-center {{ Route::is('notifikasi') ? 'active' : '' }}"
+                            href="/notifikasi">
+                            <i class="fs-5 fa-solid fa-bell"></i>
+                            @if ($notifikasis)
+                                <small class="fs-10 notif-count rounded-circle">{{ $notifikasis }}</small>
+                            @endif
+                        </a>
                         <div class="dropdown">
                             <button class="btn btn-sm rounded-pill px-1 dropdown-toggle border-0" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">

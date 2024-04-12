@@ -85,8 +85,8 @@
     <div class="row g-4">
         @foreach ($postingans_diajukan as $postingan_diajukan)
             <div class="col-6 col-lg-3">
-                <div class="card">
-                    <div class="card-content">
+                <div class="card h-100">
+                    <div class="card-content d-flex flex-column h-100">
                         @if (is_null($postingan_diajukan->tgl_ditemukan) and is_null($postingan_diajukan->lokasi_ditemukan))
                             <p hidden class="status-barang">kehilangan</p>
                         @else
@@ -119,8 +119,8 @@
                             <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <p class="judul_postingan fs-18 fw-bold mb-0">{{ $postingan_diajukan->judul_postingan }}</p>
+                        <div class="card-body d-flex flex-column flex-grow-1">
+                            <p class="judul_postingan flex-grow-1 fs-18 fw-bold mb-0">{{ $postingan_diajukan->judul_postingan }}</p>
                             <p class="mb-2">{{ $postingan_diajukan->deskripsi_postingan }}</p>
                             <div class="row align-items-center mt-1">
                                 <div class="col-1">

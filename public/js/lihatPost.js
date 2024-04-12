@@ -8,8 +8,8 @@ cards.forEach(card => {
         document.querySelector('.status-kehilangan').classList.add('d-none')
         // document.querySelector('.group-llokasi-disimpan').classList.remove('d-none')
       } else {
-        document.querySelector('.status-kehilangan').classList.remove('d-none')
         document.querySelector('.status-ditemukan').classList.add('d-none')
+        document.querySelector('.status-kehilangan').classList.remove('d-none')
         // document.querySelector('.group-llokasi-disimpan').classList.add('d-none')
       }
     }
@@ -24,25 +24,6 @@ cards.forEach(card => {
     });
     document.querySelectorAll('.ldeskripsi_postingan').forEach(function (el) {
       el.innerHTML = card.parentElement.querySelector('.deskripsi_postingan').innerHTML;
-    });
-    // LOKASI
-    document.querySelectorAll('.llokasi_kehilangan').forEach(function (el) {
-      el.innerHTML = card.parentElement.querySelector('.lokasi_kehilangan').innerHTML;
-    });
-    document.querySelectorAll('.llokasi_ditemukan').forEach(function (el) {
-      el.innerHTML = card.parentElement.querySelector('.lokasi_ditemukan').innerHTML;
-      if (card.parentElement.querySelector('.lokasi_ditemukan').innerHTML == '-') {
-        document.querySelectorAll('.atribut_ditemukan').forEach(function (el) {
-          el.classList.add('d-none');
-        });
-      } else {
-        document.querySelectorAll('.atribut_ditemukan').forEach(function (el) {
-          el.classList.remove('d-none');
-        });
-      }
-    });
-    document.querySelectorAll('.llokasi_disimpan').forEach(function (el) {
-      el.innerHTML = card.parentElement.querySelector('.lokasi_disimpan').innerHTML;
     });
     // TANGGAL
     document.querySelectorAll('.ltgl_kehilangan').forEach(function (el) {
@@ -99,6 +80,35 @@ cards.forEach(card => {
     //     // document.querySelector('.group-ltgl_ditemukan').classList.add('d-none')
     //   }
     // }
+    // LOKASI
+    document.querySelectorAll('.llokasi_kehilangan').forEach(function (el) {
+      el.innerHTML = card.parentElement.querySelector('.lokasi_kehilangan').innerHTML;
+      if (el.innerHTML == '' || el.innerHTML == '-' || el.innerHTML == '0') {
+        document.querySelectorAll('.lokasi_terakhir').forEach(function (el) {
+          el.classList.add('d-none')
+        });
+      }
+    });
+    document.querySelectorAll('.llokasi_ditemukan').forEach(function (el) {
+      el.innerHTML = card.parentElement.querySelector('.lokasi_ditemukan').innerHTML;
+      if (card.parentElement.querySelector('.lokasi_ditemukan').innerHTML == '-') {
+        document.querySelectorAll('.atribut_ditemukan').forEach(function (el) {
+          el.classList.add('d-none');
+        });
+      } else {
+        document.querySelectorAll('.atribut_ditemukan').forEach(function (el) {
+          el.classList.remove('d-none');
+        });
+      }
+    });
+    document.querySelectorAll('.llokasi_disimpan').forEach(function (el) {
+      el.innerHTML = card.parentElement.querySelector('.lokasi_disimpan').innerHTML;
+      if (el.innerHTML == '0') {
+        document.querySelectorAll('.atribut_ditemukan').forEach(function (el) {
+          el.classList.add('d-none')
+        });
+      }
+    });
   })
 })
 

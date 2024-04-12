@@ -1,7 +1,7 @@
 <footer class="pb-4 {{ Route::is('tentang') ? 'footer-tentang' : 'footer-all' }}">
     <div class="footer-img"><img src="/img/footer-wave2.svg" alt="" class="img-fluid"></div>
     <div class="container">
-        <h3 class="mt-3 text-white fw-bold {{ $faqs->count() ? '' : 'd-none' }}">Pertanyaan Sering Diajukan</h3>
+        <h3 class="mt-3 mb-3 text-white fw-bold {{ $faqs->count() ? '' : 'd-none' }}">Pertanyaan Sering Diajukan</h3>
         <div class="row align-items-center {{ $faqs->count() ? '' : 'justify-content-center' }}">
             @if ($faqs->count())
             <div class="col-lg-7">

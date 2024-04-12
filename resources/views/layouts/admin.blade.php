@@ -60,21 +60,20 @@
                 <div class="modal-body px-4 pb-0">
                     <form enctype="multipart/form-data" method="POST" action="{{ route('postingan.store') }}">
                         @csrf
-                        <input type="hidden" name="status" value=2> 
+                        <input type="hidden" name="status" value=2>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div>
                                     <label for="judul_postingan" class="form-label">Nama Barang <span
                                             class="text-primary">*</span></label>
-                                    <input type="text" class="form-control rounded-pill" id="judul_postingan"
+                                    <input type="text" class="mandatory form-control rounded-pill" id="judul_postingan"
                                         name="judul_postingan">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div>
-                                    <label for="no_telp" class="form-label">No. Telepon Pemilik <span
-                                            class="text-primary">*</span></label>
-                                    <input type="text" class="form-control rounded-pill" id="no_telp"
+                                    <label for="no_telp" class="form-label">No. Telepon Pemilik</label>
+                                    <input type="text" class="mandatory form-control rounded-pill" id="no_telp"
                                         name="no_telp">
                                 </div>
                             </div>
@@ -122,18 +121,18 @@
                             <div class="col-md-6">
                                 <div>
                                     <label for="lokasi_disimpan" class="form-label">Lokasi Disimpan</label>
-                                    <input type="text" class="form-control rounded-pill" id="lokasi_disimpan" name="lokasi_disimpan">
+                                    <input type="text" class="form-control rounded-pill" id="lokasi_disimpan"
+                                        name="lokasi_disimpan">
                                 </div>
                                 <div class="mt-3">
-                                    <label for="image" class="form-label">Foto Barang</label>
-                                    <input type="file" class="input-file form-control rounded-pill"
-                                        id="image" name="image">
+                                    <label for="image" class="form-label">Foto Barang <span class="text-primary">*</span></label>
+                                    <input type="file" class="mandatory input-file form-control rounded-pill" id="image"
+                                        name="image">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center mt-5">
-                            <button type="submit" name="submit" class="btn btn-primary rounded-pill px-4">Buat
-                                Postingan</button>
+                            <button id="continue" disabled type="submit" name="submit" class="btn btn-primary rounded-pill px-4">Buat Postingan</button>
                         </div>
                     </form>
                 </div>
@@ -184,7 +183,7 @@
                                         <p class="fw-bold m-0">Deskripsi</p>
                                         <p class="ldeskripsi_postingan">deskripsi_postingan</p>
                                     </div>
-                                    <div>
+                                    <div class="lokasi_terakhir">
                                         <p class="fw-bold m-0">Lokasi Terakhir</p>
                                         <p class="llokasi_kehilangan">lokasi_kehilangan</p>
                                     </div>
@@ -207,8 +206,12 @@
                                     <div class="row lstatus-barang">
                                         <div class="col">
                                             <p class="fw-bold m-0">Status Barang:</p>
-                                            <p class="status-ditemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">Ditemukan</p>
-                                            <p class="status-kehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">Hilang</p>
+                                            <p
+                                                class="status-ditemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">
+                                                Ditemukan</p>
+                                            <p
+                                                class="status-kehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">
+                                                Hilang</p>
                                         </div>
                                         <div class="col atribut_ditemukan">
                                             <p class="fw-bold m-0">Lokasi saat ini:</p>
@@ -259,6 +262,15 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
+        const mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
+            e.addEventListener('input', function() {
+                if (document.getElementById('judul_postingan').value != "" && document.getElementById('image').value != "") {
+                    document.getElementById("continue").removeAttribute("disabled");
+                } else {
+                    document.getElementById("continue").setAttribute("disabled", "disabled");
+                }
+            })
+        })
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
@@ -343,13 +355,13 @@
                 }
             });
             Toast.fire({
-                icon: "error",
+                icon: "success",
                 title: "Postingan ditolak"
             });
         </script>
     @endif
     <script src="/js/lihatPost.js"></script>
-    
+
     <script src="/js/editPost.js"></script>
 </body>
 

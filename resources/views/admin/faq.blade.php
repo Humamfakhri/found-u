@@ -112,7 +112,7 @@
                                     <small class="d-flex align-items-center gap-1">- FAQ</small>
                                 </button>
                             </form>
-                            <button class="btnToggle btn btn-sm fw-bold rounded-pill px-3 py-1"
+                            <button class="btnToggle btnUbah btn btn-sm fw-bold rounded-pill px-3 py-1"
                                 onclick="buttonToggle(this, 'ubah')">
                                 <small class="d-flex align-items-center gap-1">Ubah</small>
                             </button>
@@ -189,7 +189,7 @@
         }
 
         function closeToggle(e) {
-            e.parentElement.parentElement.previousElementSibling.querySelector('.btnToggle').click();
+            e.parentElement.parentElement.previousElementSibling.querySelector('.btnUbah').click();
             // e.parentElement.parentElement.previousElementSibling.querySelector('.btnToggle').classList.toggle(
             //     'buttonActive')
             // const panjang = inputJawaban.value.length;

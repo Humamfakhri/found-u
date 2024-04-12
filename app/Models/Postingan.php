@@ -37,7 +37,7 @@ class Postingan extends Model
 
     public function getImageURL() {
         if ($this->image) {
-            return url('storage/foto-barang/'. $this->image);
+            return url('storage/'. $this->image);
         }
         return "/img/mouse.jpg";
     }

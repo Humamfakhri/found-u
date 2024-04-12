@@ -41,18 +41,32 @@
                 <div class="card h-100">
                     <div class="card-content">
                         <p hidden class="id_postingan">{{ $postingan_dipublikasi->id_postingan }}</p>
-                        <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->format('H:i') }}</p>
-                        <p hidden class="tgl_ajukan_date">{{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->translatedFormat('d F Y') }}</p>
-                        <p hidden class="lokasi_ditemukan">{{ $postingan_dipublikasi->lokasi_ditemukan ? $postingan_dipublikasi->lokasi_ditemukan : '-' }}</p>
-                        <p hidden class="lokasi_disimpan">{{ $postingan_dipublikasi->lokasi_disimpan ? $postingan_dipublikasi->lokasi_disimpan : '-' }}</p>
-                        <p hidden class="tgl_kehilangan">{{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}</p>
-                        <p hidden class="tgl_ditemukan">{{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}</p>
-                        <p hidden class="etgl_kehilangan">{{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('Y-m-d') : '-' }}</p>
-                        <p hidden class="etgl_ditemukan">{{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('Y-m-d') : '-' }}</p>
+                        <p hidden class="tgl_ajukan_time">
+                            {{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->format('H:i') }}</p>
+                        <p hidden class="tgl_ajukan_date">
+                            {{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->translatedFormat('d F Y') }}</p>
+                        <p hidden class="lokasi_ditemukan">
+                            {{ $postingan_dipublikasi->lokasi_ditemukan ? $postingan_dipublikasi->lokasi_ditemukan : '-' }}
+                        </p>
+                        <p hidden class="lokasi_disimpan">
+                            {{ $postingan_dipublikasi->lokasi_disimpan ? $postingan_dipublikasi->lokasi_disimpan : '-' }}
+                        </p>
+                        <p hidden class="tgl_kehilangan">
+                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
+                        </p>
+                        <p hidden class="tgl_ditemukan">
+                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}
+                        </p>
+                        <p hidden class="etgl_kehilangan">
+                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('Y-m-d') : '-' }}
+                        </p>
+                        <p hidden class="etgl_ditemukan">
+                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('Y-m-d') : '-' }}
+                        </p>
                         <p hidden class="no_telp">{{ $postingan_dipublikasi->no_telp }}</p>
                         <div class="card-top d-flex align-items-center justify-content-between px-3 py-2">
                             <div class="d-flex align-items-center gap-2">
-                                <img src="/img/rigel.jpg" alt="" class="img-fluid rounded-circle" width="35">
+                                <img src="{{ $postingan_dipublikasi->akun->getImageURL() }}" alt="" class="img-fluid rounded-circle" width="35">
                                 <div class="d-flex flex-column gap-0 g-0">
                                     <p class="mb-0 p-0 fw-semibold small nama_akun">
                                         {{ $postingan_dipublikasi->akun->nama_akun }}</p>
@@ -92,7 +106,8 @@
                             </div>
                         </div>
                         <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPost">
-                            <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt="" class="img-fluid rounded-0 foto_barang">
+                            <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt=""
+                                class="img-fluid rounded-0 foto_barang">
                             <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                             </div>
                         </div>
@@ -106,19 +121,24 @@
                             @endif
                             <p class="judul_postingan fs-18 fw-bold mb-0">{{ $postingan_dipublikasi->judul_postingan }}</p>
                             <p class="mb-2 deskripsi_postingan">{{ $postingan_dipublikasi->deskripsi_postingan }}</p>
-                            <div class="row align-items-center mt-1">
-                                <div class="col-1">
-                                    <i class="fa-solid fa-location-dot small"></i>
+                            @if ($postingan_dipublikasi->lokasi_disimpan != null)
+                                <div class="row align-items-center mt-1">
+                                    <div class="col-1">
+                                        <i class="fa-solid fa-location-dot small"></i>
+                                    </div>
+                                    <div class="col">
+                                        @if (is_null($postingan_dipublikasi->tgl_ditemukan) and is_null($postingan_dipublikasi->lokasi_ditemukan))
+                                            <p class="m-0 small lokasi_kehilangan">
+                                                {{ $postingan_dipublikasi->lokasi_kehilangan ? $postingan_dipublikasi->lokasi_kehilangan : '-' }}
+                                            </p>
+                                        @else
+                                            <p class="m-0 small">{{ $postingan_dipublikasi->lokasi_disimpan }}</p>
+                                            <p hidden class="lokasi_kehilangan">
+                                                {{ $postingan_dipublikasi->lokasi_kehilangan }}</p>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    @if (is_null($postingan_dipublikasi->tgl_ditemukan) and is_null($postingan_dipublikasi->lokasi_ditemukan))
-                                    <p class="m-0 small lokasi_kehilangan">{{ $postingan_dipublikasi->lokasi_kehilangan ? $postingan_dipublikasi->lokasi_kehilangan : '-' }}</p>
-                                    @else
-                                    <p class="m-0 small">{{ $postingan_dipublikasi->lokasi_disimpan }}</p>
-                                    <p hidden class="lokasi_kehilangan">{{ $postingan_dipublikasi->lokasi_kehilangan }}</p>
-                                    @endif
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -130,13 +150,14 @@
         <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
             <div class="modal-content rounded-4 h-100">
                 <div class="modal-body p-3 h-100">
-                    <form id="formEdit" method="POST" action="{{ route('postingan.update', $postingan_dipublikasi->id_postingan) }}"
-                        class="h-100">
+                    <form id="formEdit" method="POST"
+                        action="{{ route('postingan.update', $postingan_dipublikasi->id_postingan) }}" class="h-100">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3 h-100">
                             <div class="col-md-6 col-img">
-                                <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt="" class="img-fluid rounded-3">
+                                <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt=""
+                                    class="img-fluid rounded-3">
                                 {{-- <img src="{{ asset('storage/foto-barang/'.$postingan_dipublikasi->image) }}" alt="" class="img-fluid rounded-3"> --}}
                             </div>
                             <div class="col-md-6 d-flex flex-column">
