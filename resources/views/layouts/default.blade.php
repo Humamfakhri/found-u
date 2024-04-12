@@ -79,15 +79,18 @@
                                         <label for="judul_postingan" class="form-label">Nama Barang <span
                                                 class="text-primary">*</span></label>
                                         <input type="text" class="mandatory form-control rounded-pill"
-                                            id="judul_postingan" name="judul_postingan">
+                                            id="judul_postingan" name="judul_postingan"
+                                            value="{{ old('judul_postingan') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div>
                                         <label for="no_telp" class="form-label">No. Telepon Pemilik <span
                                                 class="text-primary">*</span></label>
-                                        <input type="text" class="mandatory form-control rounded-pill" id="no_telp"
-                                            name="no_telp">
+                                        <input type="tel" pattern="[0-9]*"
+                                            class="mandatory form-control rounded-pill" id="no_telp" name="no_telp"
+                                            value="{{ old('no_telp') }}">
+                                        <small class="telp-error d-none text-danger d-block mt-2">* Hanya masukkan angka</small>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +99,7 @@
                                     <div>
                                         <label for="lokasi_kehilangan" class="form-label">Lokasi Terakhir</label>
                                         <input type="text" class="form-control rounded-pill" id="lokasi_kehilangan"
-                                            name="lokasi_kehilangan">
+                                            name="lokasi_kehilangan" value="{{ old('lokasi_kehilangan') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -104,7 +107,7 @@
                                         <label for="tanggal" class="form-label">Tanggal Kehilangan <span
                                                 class="text-primary">*</span></label>
                                         <input type="date" class="mandatory form-control rounded-pill" id="tanggal"
-                                            name="tanggal">
+                                            name="tanggal" value="{{ old('tanggal') }}">
                                     </div>
                                 </div>
                             </div>
@@ -113,20 +116,23 @@
                                     <div>
                                         <label for="deskripsi_postingan" class="form-label">Deskripsi Barang</label>
                                         <textarea class="form-control rounded-4" id="deskripsi_postingan" name="deskripsi_postingan"
-                                            style="height: 100px; resize: none"></textarea>
+                                            value="{{ old('deskripsi_postingan') }}" style="height: 100px; resize: none"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div>
                                         <label for="image" class="form-label">Foto Barang <span
                                                 class="text-primary">*</span></label>
-                                        <input type="file" class="mandatory input-file form-control rounded-pill @error('image') is-invalid @enderror"
+                                        <input type="file"
+                                            class="mandatory input-file form-control rounded-pill @error('image') is-invalid @enderror"
                                             id="image" name="image" accept="image/png, image/jpg, image/jpeg">
-                                            @error('image')
-                                            <div class="form-text text-danger" id="basic-addon4">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
+                                        <small class="image-note text-muted d-block mt-2">* Ukuran gambar maksimal 1
+                                            MB</small>
+                                        <small class="image-error d-none text-danger d-block mt-2">* Ukuran gambar
+                                            lebih dari 1 MB</small>
+                                        @error('image')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -269,18 +275,53 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
+        let imageValid = false;
         let mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
             e.addEventListener('input', function() {
                 if (document.getElementById('judul_postingan').value != "" && document.getElementById(
                         'no_telp').value != "" && document.getElementById('tanggal').value != "" && document
                     .getElementById('image').value != "") {
-                    document.getElementById("continue").removeAttribute("disabled");
                     // document.getElementById("continue").removeAttribute("disabled");
                 } else {
                     document.getElementById("continue").setAttribute("disabled", "disabled");
                 }
             })
         })
+
+        // Memeriksa ukuran gambar <= 1MB
+        var fileInput = document.getElementById("image");
+        fileInput.addEventListener("change", function(event) {
+            var files = event.target.files;
+            if (files.length > 0) {
+                var file = files[0];
+                var fileSize = file.size;
+                var fileSizeKB = fileSize / 1024;
+                console.log(fileSizeKB.toFixed(2) < 1024);
+                if (fileSizeKB.toFixed(2) < 1024) {
+                    imageValid = true;
+                    document.querySelector('.image-note').classList.remove('d-none');
+                    document.querySelector('.image-error').classList.add('d-none');
+                } else {
+                    document.querySelector('.image-note').classList.add('d-none');
+                    document.querySelector('.image-error').classList.remove('d-none');
+                }
+            }
+        });
+        document.getElementById('no_telp').addEventListener('input', function(event) {
+            // Mendapatkan nilai input
+            let inputValue = event.target.value;
+
+            // Regular expression untuk memeriksa apakah input hanya terdiri dari angka
+            let numericRegex = /^[0-9]+$/;
+
+            // Jika input tidak berupa angka, hapus karakter terakhir dari input
+            if (numericRegex.test(inputValue) || inputValue == '') {
+                // event.target.value = inputValue.slice(0, -1);
+                document.querySelector('.telp-error').classList.add('d-none')
+            } else {
+                document.querySelector('.telp-error').classList.remove('d-none')
+            }
+        });
         @if (Request::segment(1) == null && !isset($_GET['search']))
             window.addEventListener("scroll", function() {
                 let header = document.querySelector(".navbar");
@@ -331,6 +372,7 @@
                 e.style.width = '100px';
             })
         @endif
+
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 

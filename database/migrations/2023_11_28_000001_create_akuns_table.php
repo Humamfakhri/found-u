@@ -15,10 +15,11 @@ return new class extends Migration
             $table->integer('id_akun', true);
             $table->string('username', 50);
             $table->string('nama_akun', 50);
+            $table->string('nomor_induk', 30)->nullable();
             $table->string('password', 200);
             $table->string('no_telp', 15);
             $table->boolean('role');
-            $table->text('foto_profil')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

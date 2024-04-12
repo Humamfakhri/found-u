@@ -30,8 +30,8 @@
                         <a class="nav-link nav-icon position-relative rounded-pill d-flex align-items-center justify-content-center {{ Route::is('notifikasi') ? 'active' : '' }}"
                             href="/notifikasi">
                             <i class="fs-5 fa-solid fa-bell"></i>
-                            @if ($notifikasis)
-                                <small class="fs-10 notif-count rounded-circle">{{ $notifikasis }}</small>
+                            @if ($notifikasis->count())
+                                <small class="fs-10 notif-count rounded-circle">{{ $notifikasis->count() }}</small>
                             @endif
                         </a>
                         <div class="dropdown">

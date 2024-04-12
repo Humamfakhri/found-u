@@ -60,6 +60,8 @@
                             <i class="fa-solid fa-lock position-absolute icon-left"></i>
                             <i class="fa-regular fa-eye-slash position-absolute icon-right" id="passwordToggle"
                                 onclick="togglePasswordVisibility()"></i>
+                            {{-- <i class="fa-regular fa-eye-slash position-absolute icon-right" id="passwordToggle"
+                                onclick="togglePasswordVisibility()"></i> --}}
                         </div>
                         <button type="submit" class="btn btn-primary d-block rounded-pill w-100 fw-bold">Login</button>
                     </form>

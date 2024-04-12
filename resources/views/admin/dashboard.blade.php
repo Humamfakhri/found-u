@@ -78,7 +78,7 @@
     </div>
     @if (!$postingans_diajukan->count())
         <div class="text-center mt-5 pt-4">
-            <i class='fa-solid fa-inbox     play-1'></i>
+            <i class='fa-solid fa-inbox fs-1'></i>
             <p class="text-muted mt-3">Tidak ada postingan dalam pengajuan</p>
         </div>
     @endif

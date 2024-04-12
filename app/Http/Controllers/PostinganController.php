@@ -21,7 +21,7 @@ class PostinganController extends Controller
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view(request('search') ? 'user.pencarian' : 'user.beranda', [
-            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
             'jml_postingans_ditemukan' => Postingan::where('status', 2)
                 ->where(function (Builder $query) {
                     $query->whereNotNull('tgl_ditemukan')
@@ -84,7 +84,7 @@ class PostinganController extends Controller
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view('user.kehilangan', [
-            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
             'postingans_kehilangan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->whereNull('tgl_ditemukan')
@@ -104,7 +104,7 @@ class PostinganController extends Controller
         $filter = $request->query('filter') == 'terlama' ? 'Terlama' : 'Terbaru';
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view('user.ditemukan', [
-            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
             'postingans_ditemukan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->whereNotNull('tgl_ditemukan')
@@ -122,15 +122,17 @@ class PostinganController extends Controller
     {
         return view('user.tentang', [
             'faqs' => Masukan::where('faq', 1)->get(),
-            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->count(),
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
         ]);
     }
 
     public function notifikasi()
     {
+        Notifikasi::where('id_akun', Auth::id())->update(['baca' => 1]);
         return view('user.notifikasi', [
             'faqs' => Masukan::where('faq', 1)->get(),
-            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->get(),
+            'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
+            'notifikasis_detail' => Notifikasi::where('id_akun', Auth::id())->get(),
             // 'notifikasis_late' => Masukan::where('id_akun', Auth::id())->oldest()->get(),
         ]);
     }
@@ -193,21 +195,13 @@ class PostinganController extends Controller
         }
 
         $postingan = Postingan::create($validatedData);
-        // dd(Postingan::latest()->value('id_postingan'));
-        Notifikasi::create([
-            'id_akun' => Auth::id(),
-            'id_postingan' => Postingan::latest()->value('id_postingan'),
-            'status' => 1,
-        ]);
-        // if ($postingan) {
-        //     Notifikasi::create([
-        //         'id_akun' => Auth::id(),
-        //         'id_postingan' => Postingan::latest()->first()->id,
-        //         'status' => 1,
-        //     ]);
-        // }
 
         if (request('status') == 1 && $postingan) {
+            Notifikasi::create([
+                'id_akun' => Auth::id(),
+                'id_postingan' => Postingan::latest()->value('id_postingan'),
+                'status' => 1,
+            ]);
             return redirect()->back()->with("success", "Berhasil mengajukan postingan");
         } elseif (request('status') == 2 && $postingan) {
             return redirect('postingan')->with("success", "Berhasil membuat postingan");

@@ -9,15 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Notifikasi extends Model
 {
     use HasFactory;
-    protected $primaryKey = ['id_akun', 'id_postingan'];
+    protected $primaryKey = 'id_notifikasi';
     protected $fillable = [
         'id_akun',
         'id_postingan',
         'status',
         'baca',
-        'deskripsi_notifikasi',
     ];
-    public $incrementing = false;
 
     public function akun() : BelongsTo
     {

@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notifikasis', function (Blueprint $table) {
+            $table->integer('id_notifikasi', true);
             $table->integer('id_akun');
             $table->integer('id_postingan');
             $table->foreign('id_akun')->references('id_akun')->on('akuns')->onDelete('cascade');
             $table->foreign('id_postingan')->references('id_postingan')->on('postingans')->onDelete('cascade');
-            $table->primary(['id_akun', 'id_postingan']);
             $table->tinyInteger('status');
             $table->boolean('baca')->default(0);
-            $table->string('deskripsi_notifikasi', 50);
             $table->timestamps();
         });
     }

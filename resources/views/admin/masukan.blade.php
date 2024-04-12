@@ -34,7 +34,7 @@
     <ul class="list-unstyled d-flex flex-column gap-3">
         @if (!$masukans->count())
             <div class="text-center mt-5 pt-4">
-                <i class='fa-solid fa-comment-dots display-1'></i>
+                <i class='fa-solid fa-comment-dots fs-1'></i>
                 <p class="text-muted mt-3">Tidak ada masukan dari pengguna</p>
             </div>
         @endif

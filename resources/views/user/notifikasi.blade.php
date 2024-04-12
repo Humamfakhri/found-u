@@ -9,9 +9,9 @@
                 <h3 class="fw-bold">Notifikasi & Riwayat</h3>
             </div>
             <ul class="p-0 d-flex flex-column gap-2 list-unstyled">
-                @if ($notifikasis->count())
-                    @foreach ($notifikasis as $notifikasi)
-                        <li class="px-4 py-3 rounded-3 gap-2 {{ $notifikasi->baca ? '' : 'read' }}">
+                @if ($notifikasis_detail->count())
+                    @foreach ($notifikasis_detail as $notifikasi)
+                        <li class="px-4 py-3 rounded-3 gap-2 {{ $notifikasi->baca ? 'read' : '' }}">
                             <div class="header d-flex align-items-center justify-content-between mb-1">
                                 <h5 class="m-0 fw-bold">
                                     @if ($notifikasi->status == 1)
@@ -24,21 +24,28 @@
                                         Postingan dibatalkan
                                     @endif
                                 </h5>
-                                <div class="time"><small class="text-muted">{{ $notifikasi->created_at }}</small></div>
+                                <div class="time"><small
+                                        class="text-muted">{{ Carbon\Carbon::parse($notifikasi->created_at)->diffForHumans(null, true) . ' lalu' }}</small>
+                                </div>
                             </div>
-                            <p class="m-0">
-                                @if ($notifikasi->status == 1)
-                                    Harap menunggu konfirmasi dari admin.
-                                @elseif ($notifikasi->status == 2)
-                                    Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> telah disetujui
-                                    oleh admin.
-                                @elseif ($notifikasi->status == 3)
-                                    <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil ditemukan. Segera ambil
-                                    barangmu di lokasi yang tertera pada postingan.
-                                    {{-- @elseif ($notifikasi->status == 4)
-                            Postingan dibatalkan --}}
-                                @endif
-                            </p>
+                            <div class="body d-flex justify-content-between">
+                                <p class="m-0">
+                                    @if ($notifikasi->status == 1)
+                                        Harap menunggu konfirmasi dari admin.
+                                    @elseif ($notifikasi->status == 2)
+                                        Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> telah
+                                        disetujui
+                                        oleh admin.
+                                    @elseif ($notifikasi->status == 3)
+                                        <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil ditemukan. Segera
+                                        ambil
+                                        barangmu di lokasi yang tertera pada postingan.
+                                    @elseif ($notifikasi->status == 4)
+                                        Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> dibatalkan.
+                                    @endif
+                                </p>
+                                <div class="time"><small class="text-muted fs-12">{{ Carbon\Carbon::parse($notifikasi->created_at)->translatedFormat('d F Y') }}</small></div>
+                            </div>
                         </li>
                     @endforeach
                 @else
