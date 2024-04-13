@@ -31,7 +31,7 @@ cards.forEach(card => {
     });
     document.querySelectorAll('.ltgl_ditemukan').forEach(function (el) {
       el.innerHTML = card.parentElement.querySelector('.tgl_ditemukan').innerHTML;
-      if (card.parentElement.querySelector('.tgl_ditemukan').innerHTML == '-') {
+      if (card.parentElement.querySelector('.tgl_ditemukan').innerHTML == '') {
         document.querySelectorAll('.atribut_ditemukan').forEach(function (el) {
           el.classList.add('d-none');
         });
@@ -81,17 +81,30 @@ cards.forEach(card => {
     //   }
     // }
     // LOKASI
+    // document.querySelectorAll('.llokasi_kehilangan').forEach(function (el) {
+    //   el.innerHTML = card.parentElement.querySelector('.lokasi_kehilangan').innerHTML;
+    //   if (el.innerHTML == '' || el.innerHTML == null || el.innerHTML == '' || el.innerHTML == '0') {
+    //     console.log("masuk");
+    //     document.querySelectorAll('.atribut_lokasi_kehilangan').forEach(function (el) {
+    //       el.classList.add('d-none');
+    //     });
+    //   }
+    // });
     document.querySelectorAll('.llokasi_kehilangan').forEach(function (el) {
       el.innerHTML = card.parentElement.querySelector('.lokasi_kehilangan').innerHTML;
-      if (el.innerHTML == '' || el.innerHTML == '-' || el.innerHTML == '0') {
-        document.querySelectorAll('.lokasi_terakhir').forEach(function (el) {
-          el.classList.add('d-none')
+      if (card.parentElement.querySelector('.lokasi_kehilangan').innerHTML == '') {
+        document.querySelectorAll('.atribut_lokasi_kehilangan').forEach(function (el) {
+          el.classList.add('d-none');
+        });
+      } else {
+        document.querySelectorAll('.atribut_lokasi_kehilangan').forEach(function (el) {
+          el.classList.remove('d-none');
         });
       }
     });
     document.querySelectorAll('.llokasi_ditemukan').forEach(function (el) {
       el.innerHTML = card.parentElement.querySelector('.lokasi_ditemukan').innerHTML;
-      if (card.parentElement.querySelector('.lokasi_ditemukan').innerHTML == '-') {
+      if (card.parentElement.querySelector('.lokasi_ditemukan').innerHTML == '') {
         document.querySelectorAll('.atribut_ditemukan').forEach(function (el) {
           el.classList.add('d-none');
         });

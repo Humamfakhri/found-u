@@ -24,7 +24,8 @@
     @auth()
         <div class="floating-icon">
             <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#buatPost">
-                <i class="fs-1 text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Buat Postingan"></i>
+                <i class="fs-1 text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip" data-bs-placement="left"
+                    data-bs-title="Buat Postingan"></i>
             </button>
         </div>
     @endauth
@@ -90,7 +91,8 @@
                                         <input type="tel" pattern="[0-9]*"
                                             class="mandatory form-control rounded-pill" id="no_telp" name="no_telp"
                                             value="{{ old('no_telp') }}">
-                                        <small class="telp-error d-none text-danger d-block mt-2">* Hanya masukkan angka</small>
+                                        <small class="telp-error d-none text-danger d-block mt-2">* Hanya masukkan
+                                            angka</small>
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +184,7 @@
                                             <p class="ldeskripsi_postingan">deskripsi_postingan</p>
                                         </div>
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col atribut_lokasi_kehilangan">
                                                 <p class="fw-bold m-0">Lokasi Terakhir</p>
                                                 <p class="llokasi_kehilangan">lokasi_kehilangan</p>
                                             </div>
@@ -201,9 +203,12 @@
                                                 <p class="ltgl_ditemukan">tgl_ditemukan</p>
                                             </div>
                                         </div>
-                                        <div class="atribut_ditemukan">
-                                            <p class="fw-bold m-0">Lokasi saat ini:</p>
-                                            <p class="llokasi_disimpan">lokasi_disimpan</p>
+                                        <div class="atribut_ditemukan border border-secondary d-inline-flex gap-3 rounded-3 px-3 py-2 mt-2">
+                                            <i class="fa-solid fa-location-dot fs-1 text-muted"></i>
+                                            <div>
+                                                <p class="small m-0">Lokasi saat ini:</p>
+                                                <p class="fw-bold llokasi_disimpan m-0">lokasi_disimpan</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +254,7 @@
                                             <p class="fw-bold m-0">Deskripsi</p>
                                             <p class="ldeskripsi_postingan">deskripsi_postingan</p>
                                         </div>
-                                        <div>
+                                        <div class="atribut_lokasi_kehilangan">
                                             <p class="fw-bold m-0">Lokasi Terakhir</p>
                                             <p class="llokasi_kehilangan">lokasi_kehilangan</p>
                                         </div>

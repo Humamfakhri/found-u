@@ -183,7 +183,7 @@
                                         <p class="fw-bold m-0">Deskripsi</p>
                                         <p class="ldeskripsi_postingan">deskripsi_postingan</p>
                                     </div>
-                                    <div class="lokasi_terakhir">
+                                    <div class="lokasi_terakhir atribut_lokasi_kehilangan">
                                         <p class="fw-bold m-0">Lokasi Terakhir</p>
                                         <p class="llokasi_kehilangan">lokasi_kehilangan</p>
                                     </div>

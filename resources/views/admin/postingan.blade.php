@@ -41,29 +41,28 @@
                 <div class="card h-100">
                     <div class="card-content">
                         <p hidden class="id_postingan">{{ $postingan_dipublikasi->id_postingan }}</p>
-                        <p hidden class="tgl_ajukan_time">
-                            {{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->format('H:i') }}</p>
+                        <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->format('H:i') }}</p>
                         <p hidden class="tgl_ajukan_date">
                             {{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->translatedFormat('d F Y') }}</p>
                         <p hidden class="lokasi_kehilangan">
                             {{ $postingan_dipublikasi->lokasi_kehilangan }}</p>
                         <p hidden class="lokasi_ditemukan">
-                            {{ $postingan_dipublikasi->lokasi_ditemukan ? $postingan_dipublikasi->lokasi_ditemukan : '-' }}
+                            {{ $postingan_dipublikasi->lokasi_ditemukan ? $postingan_dipublikasi->lokasi_ditemukan : null }}
                         </p>
                         <p hidden class="lokasi_disimpan">
-                            {{ $postingan_dipublikasi->lokasi_disimpan ? $postingan_dipublikasi->lokasi_disimpan : '-' }}
+                            {{ $postingan_dipublikasi->lokasi_disimpan ? $postingan_dipublikasi->lokasi_disimpan : null }}
                         </p>
                         <p hidden class="tgl_kehilangan">
-                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
+                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('d F Y') : null }}
                         </p>
                         <p hidden class="tgl_ditemukan">
-                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}
+                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('d F Y') : null }}
                         </p>
                         <p hidden class="etgl_kehilangan">
-                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('Y-m-d') : '-' }}
+                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('Y-m-d') : null }}
                         </p>
                         <p hidden class="etgl_ditemukan">
-                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('Y-m-d') : '-' }}
+                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('Y-m-d') : null }}
                         </p>
                         <p hidden class="no_telp">{{ $postingan_dipublikasi->no_telp }}</p>
                         <div class="card-top d-flex align-items-center justify-content-between px-3 py-2">
@@ -132,7 +131,7 @@
                                     <div class="col">
                                         @if (is_null($postingan_dipublikasi->tgl_ditemukan) and is_null($postingan_dipublikasi->lokasi_ditemukan))
                                             <p class="m-0 small lokasi_kehilangan">
-                                                {{ $postingan_dipublikasi->lokasi_kehilangan ? $postingan_dipublikasi->lokasi_kehilangan : '-' }}
+                                                {{ $postingan_dipublikasi->lokasi_kehilangan ? $postingan_dipublikasi->lokasi_kehilangan : null }}
                                             </p>
                                         @else
                                             <p class="m-0 small">{{ $postingan_dipublikasi->lokasi_disimpan }}</p>
@@ -193,7 +192,7 @@
                                             <input type="text" class="form-control" name="edeskripsi_postingan" id="edeskripsi_postingan">
                                         </div> --}}
                                         </div>
-                                        <div>
+                                        <div class="atribut_lokasi_kehilangan">
                                             <p class="fw-bold m-0">Lokasi Terakhir</p>
                                             <div class="mb-3">
                                                 <input type="text" class="form-control" name="elokasi_kehilangan">
