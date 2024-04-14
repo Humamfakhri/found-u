@@ -88,23 +88,23 @@
                 <div class="card h-100">
                     <div class="card-content d-flex flex-column h-100">
                         @if (is_null($postingan_diajukan->tgl_ditemukan) and is_null($postingan_diajukan->lokasi_ditemukan))
-                            <p hidden class="status-barang">kehilangan</p>
+                            <p hidden class="statusBarangSource">Kehilangan</p>
                         @else
-                            <p hidden class="status-barang">ditemukan</p>
+                            <p hidden class="statusBarangSource">Ditemukan</p>
                         @endif
-                        <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->format('H:i') }}</p>
-                        <p hidden class="tgl_ajukan_date">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
-                        <p hidden class="deskripsi_postingan">{{ $postingan_diajukan->deskripsi_postingan }}</p>
-                        <p hidden class="lokasi_ditemukan">{{ $postingan_diajukan->lokasi_ditemukan ? $postingan_diajukan->lokasi_ditemukan : '-' }}</p>
-                        <p hidden class="lokasi_disimpan">{{ $postingan_diajukan->lokasi_disimpan ? $postingan_diajukan->lokasi_disimpan : '-' }}</p>
-                        <p hidden class="tgl_ditemukan">{{ $postingan_diajukan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_diajukan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}</p>
-                        <p hidden class="no_telp">{{ $postingan_diajukan->no_telp }}</p>
+                        <p hidden class="jamPublikasiSource">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->format('H:i') }}</p>
+                        <p hidden class="hariPublikasiSource">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
+                        {{-- <p hidden class="deskripsi_postingan">{{ $postingan_diajukan->deskripsi_postingan }}</p> --}}
+                        <p hidden class="lokasiDitemukanSource">{{ $postingan_diajukan->lokasi_ditemukan ? $postingan_diajukan->lokasi_ditemukan : '-' }}</p>
+                        <p hidden class="lokasiDisimpanSource">{{ $postingan_diajukan->lokasi_disimpan ? $postingan_diajukan->lokasi_disimpan : '-' }}</p>
+                        <p hidden class="tanggalDitemukanSource">{{ $postingan_diajukan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_diajukan->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}</p>
+                        <p hidden class="noTelpPengajuSource">{{ $postingan_diajukan->no_telp }}</p>
                         <div class="card-top d-flex align-items-center justify-content-between px-3 py-2">
                             <div class="d-flex align-items-center gap-2">
                                 {{-- <i class="fa-solid fa-user small"></i> --}}
                                 <img src="{{ $postingan_diajukan->akun->getImageURL() }}" alt="Foto Profil" class="img-fluid rounded-circle" width="35">
                                 <div class="d-flex flex-column gap-0 g-0">
-                                    <p class="mb-0 p-0 fw-semibold small nama_akun">
+                                    <p class="mb-0 p-0 fw-semibold small nama_akun pengajuSource">
                                         {{ $postingan_diajukan->akun->nama_akun }}</p>
                                     <div class="d-flex gap-1">
                                         <small class="m-0 p-0 fs-12">Diposting:</small>
@@ -115,19 +115,19 @@
                             </div>
                         </div>
                         <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPost">
-                            <img src="{{ $postingan_diajukan->getImageURL() }}" alt="" class="img-fluid rounded-0 foto_barang">
+                            <img src="{{ $postingan_diajukan->getImageURL() }}" alt="" class="img-fluid rounded-0 imageSource">
                             <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                             </div>
                         </div>
                         <div class="card-body d-flex flex-column flex-grow-1">
-                            <p class="judul_postingan flex-grow-1 fs-18 fw-bold mb-0">{{ $postingan_diajukan->judul_postingan }}</p>
-                            <p class="mb-2">{{ $postingan_diajukan->deskripsi_postingan }}</p>
+                            <p class="namaBarangSource flex-grow-1 fs-18 fw-bold mb-0">{{ $postingan_diajukan->judul_postingan }}</p>
+                            <p class="mb-2 deskripsiSource">{{ $postingan_diajukan->deskripsi_postingan }}</p>
                             <div class="row align-items-center mt-1">
                                 <div class="col-1">
                                     <i class="fa-solid fa-location-dot small"></i>
                                 </div>
                                 <div class="col">
-                                    <p class="m-0 small lokasi_kehilangan">{{ $postingan_diajukan->lokasi_kehilangan ? $postingan_diajukan->lokasi_kehilangan : '-' }}</p>
+                                    <p class="m-0 small lokasiKehilanganSource">{{ $postingan_diajukan->lokasi_kehilangan ? $postingan_diajukan->lokasi_kehilangan : '-' }}</p>
                                 </div>
                             </div>
                             <div class="row align-items-center mt-1">
@@ -135,7 +135,7 @@
                                     <i class="fa-regular fa-calendar"></i>
                                 </div>
                                 <div class="col">
-                                    <p class="m-0 small tgl_kehilangan">
+                                    <p class="m-0 small tanggalKehilanganSource">
                                         {{ $postingan_diajukan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_diajukan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
                                     </p>
                                 </div>

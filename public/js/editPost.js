@@ -1,66 +1,85 @@
+const textarea = document.getElementById('edeskripsi_postingan');
+function setHeight() {
+  textarea.style.height = 'auto'; // Set tinggi ke 'auto' untuk mengukur tinggi konten
+  textarea.style.height = textarea.scrollHeight + 'px'; // Set tinggi ke tinggi konten yang sebenarnya
+}
+textarea.addEventListener('input', setHeight);
+window.onload = setHeight;
+
+// MENGUBAH NILAI-NILAI PADA MODAL EDIT
+const form = document.getElementById('formEdit');
 const btnEditPost = document.querySelectorAll('.btnEditPost');
 btnEditPost.forEach(card => {
-  card.addEventListener("click", function () {
-    const card_content = card.parentElement.parentElement.parentElement.parentElement.parentElement;
-    if (card_content.querySelector('.status-barang') != null) {
-      if (card_content.querySelector('.status-barang').innerHTML == 'Ditemukan') {
-        document.querySelector('.status-ditemukan').classList.remove('d-none')
-        document.querySelector('.status-kehilangan').classList.add('d-none')
-      } else {
-        document.querySelector('.status-kehilangan').classList.remove('d-none')
-        document.querySelector('.status-ditemukan').classList.add('d-none')
-      }
-    }
-    const form = document.getElementById('formEdit') || null;
-    const id = card_content.querySelector('.id_postingan').innerHTML;
-    if (form) {
-      form.action = "postingan/"+id;
-    }
-    console.log(document.querySelector('.etgl_ajukan_time').innerHTML);
-    document.querySelector('.etgl_ajukan_time').innerHTML = card_content.querySelector('.tgl_ajukan_time').innerHTML;
-    document.querySelector('.etgl_ajukan_date').innerHTML = card_content.querySelector('.tgl_ajukan_date').innerHTML;
-    document.querySelectorAll('.enama_akun').forEach(function (el) {
-      el.innerHTML = card_content.querySelector('.nama_akun').innerHTML;
-    }); 
-    document.querySelectorAll('[name="ejudul_postingan"]').forEach(function (el) {
-      el.value = card_content.querySelector('.judul_postingan').innerHTML;
-    });
-    document.querySelectorAll('[name="edeskripsi_postingan"]').forEach(function (el) {
-      el.value = card_content.querySelector('.deskripsi_postingan').innerHTML;
-    });
-    document.querySelectorAll('[name="elokasi_kehilangan"]').forEach(function (el) {
-      el.value = card_content.querySelector('.lokasi_kehilangan').innerHTML;
-      if (card_content.querySelector('.lokasi_kehilangan').innerHTML == '') {
-        el.value = 'Tidak diketahui';
-      }
-    });
-    document.querySelectorAll('[name="etgl_kehilangan"]').forEach(function (el) {
-      if (card_content.querySelector('.etgl_kehilangan').innerHTML != 'Tidak diketahui') {
-        el.value = card_content.querySelector('.etgl_kehilangan').innerHTML;
-      }
-    });
-    document.querySelectorAll('[name="eno_telp"]').forEach(function (el) {
-      el.value = card_content.querySelector('.no_telp').innerHTML;
-    });
+  // SOURCE
+  const cardContent = card.parentElement.parentElement.parentElement.parentElement.parentElement;
+  const idSource = cardContent.querySelector('.idSource').innerHTML.trim();
+  const imageSource = cardContent.querySelector('.imageSource').src;
+  const pengajuSource = cardContent.querySelector('.pengajuSource').innerHTML.trim();
+  const jamPublikasiSource = cardContent.querySelector('.jamPublikasiSource').innerHTML.trim();
+  const hariPublikasiSource = cardContent.querySelector('.hariPublikasiSource').innerHTML.trim();
+  const namaBarangSource = cardContent.querySelector('.namaBarangSource').innerHTML.trim();
+  const deskripsiSource = cardContent.querySelector('.deskripsiSource').innerHTML.trim();
+  const lokasiKehilanganSource = cardContent.querySelector('.lokasiKehilanganSource').innerHTML.trim();
+  const lokasiDitemukanSource = cardContent.querySelector('.lokasiDitemukanSource').innerHTML.trim();
+  const lokasiDisimpanSource = cardContent.querySelector('.lokasiDisimpanSource').innerHTML.trim();
+  const tanggalKehilanganSource = cardContent.querySelector('.etgl_kehilangan').innerHTML.trim();
+  const tanggalDitemukanSource = cardContent.querySelector('.etgl_ditemukan').innerHTML.trim();
+  const noTelpPengajuSource = cardContent.querySelector('.noTelpPengajuSource').innerHTML.trim();
+  const staticElementsSource = [pengajuSource, jamPublikasiSource, hariPublikasiSource];
+  const editElementsSource = [namaBarangSource, deskripsiSource, lokasiKehilanganSource, lokasiDitemukanSource, tanggalKehilanganSource, tanggalDitemukanSource, noTelpPengajuSource, lokasiDisimpanSource];
 
-    // KHUSUS DITEMUKAN
-    document.querySelectorAll('[name="elokasi_ditemukan"]').forEach(function (el) {
-      if (card_content.querySelector('.lokasi_ditemukan').innerHTML != 'Tidak diketahui') {
-        el.value = card_content.querySelector('.lokasi_ditemukan').innerHTML;
-      }
+  // POPUP DETAILS
+  let image = document.querySelector('.eimage');
+  let pengaju = document.querySelector('.enama_akun');
+  let jamPublikasi = document.querySelector('.etgl_ajukan_time');
+  let hariPublikasi = document.querySelector('.etgl_ajukan_date');
+  let namaBarang = document.querySelector('[name="ejudul_postingan"]');
+  let deskripsi = document.querySelector('[name="edeskripsi_postingan"]');
+  let lokasiKehilangan = document.querySelector('[name="elokasi_kehilangan"]');
+  let lokasiDitemukan = document.querySelector('[name="elokasi_ditemukan"]');
+  let lokasiDisimpan = document.querySelector('[name="elokasi_disimpan"]');
+  let tanggalKehilangan = document.querySelector('[name="etgl_kehilangan"]');
+  let tanggalDitemukan = document.querySelector('[name="etgl_ditemukan"]');
+  let noTelpPengaju = document.querySelector('[name="eno_telp"]');
+  let staticElements = [pengaju, jamPublikasi, hariPublikasi];
+  let editElements = [namaBarang, deskripsi, lokasiKehilangan, lokasiDitemukan, tanggalKehilangan, tanggalDitemukan, noTelpPengaju, lokasiDisimpan];
+
+  // ON CLICK ACTION @CARD
+  card.addEventListener("click", function () {
+    // Mengganti form Action sesuai ID postingan yang diklik
+    var url = form.action;
+    var urlBaru = url.replace(/\d+$/g, "") + idSource;
+    form.action = urlBaru
+    console.log(form.action);
+    // \d+ mencocokkan satu atau lebih digit angka.
+    // $ menandakan akhir dari string.
+    // /g menandakan pencarian akan dilakukan secara global, sehingga akan menghapus semua angka yang berada di akhir string.
+
+    image.src = imageSource;
+    // Static Elements
+    staticElements.forEach((element, index) => {
+      // console.log(element);
+      // console.log(staticElementsSource[index]);
+      element.innerHTML = staticElementsSource[index];
     });
-    document.querySelectorAll('[name="elokasi_disimpan"]').forEach(function (el) {
-      if (card_content.querySelector('.lokasi_disimpan').innerHTML != 'Tidak diketahui') {
-        el.value = card_content.querySelector('.lokasi_disimpan').innerHTML;
+    // Edit Elements
+    editElements.forEach((element, index) => {
+      // console.log(element);
+      // console.log(editElementsSource[index]);
+      if (editElementsSource[index] == "-" || editElementsSource[index] === "-") {
+        // console.log(true);
+      } else {
+        // console.log(false);
       }
-    });
-    document.querySelectorAll('[name="etgl_ditemukan"]').forEach(function (el) {
-      if (card_content.querySelector('.etgl_ditemukan').innerHTML != 'Tidak diketahui') {
-        el.value = card_content.querySelector('.etgl_ditemukan').innerHTML;
+      if (editElementsSource[index] != '-' && editElementsSource[index] != '' && editElementsSource[index] != null) {
+        element.value = editElementsSource[index];
+      } else {
+        element.value = '';
       }
     });
   })
 })
+
 
 if (window.location.pathname == '/dashboard') {
   if (document.querySelector('.estatus-barang') != null) {

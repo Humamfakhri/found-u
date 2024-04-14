@@ -133,4 +133,4 @@ if (window.location.pathname != '/dashboard') {
   if (document.querySelector('.lihat-post-footer') != null) {
     document.querySelector('.lihat-post-footer').classList.add('d-none')
   }
-}
+} 

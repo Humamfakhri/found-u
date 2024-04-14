@@ -17,6 +17,9 @@ i {
 .text-primary {
   color: var(--primary) !important;
 }
+.bg-success-50 {
+  background-color: rgba(123, 255, 193, 0.2);
+}
 
 .border-primary {
   border-color: var(--primary) !important;

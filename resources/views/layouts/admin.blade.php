@@ -161,61 +161,61 @@
                         @csrf
                         <div class="row mb-3 h-100">
                             <div class="col-md-6 col-img">
-                                <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 lfoto_barang">
+                                <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 image">
                             </div>
                             <div class="col-md-6 d-flex flex-column">
                                 <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
                                     <div>
                                         <small>Pengaju</small>
-                                        <p class="mb-0 lnama_akun">nama_akun</p>
+                                        <p class="mb-0 pengaju">nama_akun</p>
                                     </div>
                                     <div class="text-end">
-                                        <small class="d-block text-muted ltgl_ajukan_time">tgl_publikasi(jam)</small>
-                                        <small class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
+                                        <small class="d-block text-muted jamPublikasi">tgl_publikasi(jam)</small>
+                                        <small class="d-block text-muted hariPublikasi">tgl_publikasi(hari)</small>
                                     </div>
                                 </div>
                                 <div class="lihat-post-content h-100 pt-3">
                                     <div>
                                         <p class="fw-bold m-0">Nama Barang</p>
-                                        <p class="ljudul_postingan">judul_postingan</p>
+                                        <p class="namaBarang">judul_postingan</p>
                                     </div>
                                     <div>
                                         <p class="fw-bold m-0">Deskripsi</p>
-                                        <p class="ldeskripsi_postingan">deskripsi_postingan</p>
+                                        <p class="deskripsi">deskripsi_postingan</p>
                                     </div>
                                     <div class="lokasi_terakhir atribut_lokasi_kehilangan">
                                         <p class="fw-bold m-0">Lokasi Terakhir</p>
-                                        <p class="llokasi_kehilangan">lokasi_kehilangan</p>
+                                        <p class="lokasiKehilangan">lokasi_kehilangan</p>
                                     </div>
                                     <div class="atribut_ditemukan">
                                         <p class="fw-bold m-0">Lokasi Ditemukan</p>
-                                        <p class="llokasi_ditemukan">lokasi_ditemukan</p>
+                                        <p class="lokasiDitemukan">lokasi_ditemukan</p>
                                     </div>
                                     <div>
                                         <p class="fw-bold m-0">Tanggal Kehilangan</p>
-                                        <p class="ltgl_kehilangan">tgl_kehilangan</p>
+                                        <p class="tanggalKehilangan">tgl_kehilangan</p>
                                     </div>
                                     <div class="atribut_ditemukan">
                                         <p class="fw-bold m-0">Tanggal Ditemukan</p>
-                                        <p class="ltgl_ditemukan">tgl_ditemukan</p>
+                                        <p class="tanggalDitemukan">tgl_ditemukan</p>
                                     </div>
                                     <div>
                                         <p class="fw-bold m-0">Nomor Telepon Pengaju</p>
-                                        <p class="lno_telp">no_telp</p>
+                                        <p class="noTelpPengaju">no_telp</p>
                                     </div>
-                                    <div class="row lstatus-barang">
+                                    <div class="row statusBarang">
                                         <div class="col">
                                             <p class="fw-bold m-0">Status Barang:</p>
                                             <p
-                                                class="status-ditemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">
-                                                Ditemukan</p>
-                                            <p
-                                                class="status-kehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">
+                                                class="statusBarangKehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">
                                                 Hilang</p>
+                                            <p
+                                                class="statusBarangDitemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">
+                                                Ditemukan</p>
                                         </div>
                                         <div class="col atribut_ditemukan">
                                             <p class="fw-bold m-0">Lokasi saat ini:</p>
-                                            <p class="mt-1 llokasi_disimpan">lokasi_disimpan</p>
+                                            <p class="mt-1 lokasiDisimpan">lokasi_disimpan</p>
                                         </div>
                                     </div>
                                 </div>
@@ -262,15 +262,52 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
-        const mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
+        let imageValid = false;
+        let mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
             e.addEventListener('input', function() {
-                if (document.getElementById('judul_postingan').value != "" && document.getElementById('image').value != "") {
-                    document.getElementById("continue").removeAttribute("disabled");
+                if (document.getElementById('judul_postingan').value != "" && document.getElementById(
+                        'no_telp').value != "" && document.getElementById('image').value != "") {
+                    // document.getElementById("continue").removeAttribute("disabled");
                 } else {
                     document.getElementById("continue").setAttribute("disabled", "disabled");
                 }
             })
         })
+
+        // Memeriksa ukuran gambar <= 1MB
+        var fileInput = document.getElementById("image");
+        fileInput.addEventListener("change", function(event) {
+            var files = event.target.files;
+            if (files.length > 0) {
+                var file = files[0];
+                var fileSize = file.size;
+                var fileSizeKB = fileSize / 1024;
+                console.log(fileSizeKB.toFixed(2) < 1024);
+                if (fileSizeKB.toFixed(2) < 1024) {
+                    imageValid = true;
+                    document.querySelector('.image-note').classList.remove('d-none');
+                    document.querySelector('.image-error').classList.add('d-none');
+                } else {
+                    document.querySelector('.image-note').classList.add('d-none');
+                    document.querySelector('.image-error').classList.remove('d-none');
+                }
+            }
+        });
+        document.getElementById('no_telp').addEventListener('input', function(event) {
+            // Mendapatkan nilai input
+            let inputValue = event.target.value;
+
+            // Regular expression untuk memeriksa apakah input hanya terdiri dari angka
+            let numericRegex = /^[0-9]+$/;
+
+            // Jika input tidak berupa angka, hapus karakter terakhir dari input
+            if (numericRegex.test(inputValue) || inputValue == '') {
+                // event.target.value = inputValue.slice(0, -1);
+                document.querySelector('.telp-error').classList.add('d-none')
+            } else {
+                document.querySelector('.telp-error').classList.remove('d-none')
+            }
+        });
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
@@ -341,6 +378,24 @@
                 title: "Berhasil mengedit postingan"
             });
         </script>
+    @elseif (Session::get('gagalEditPostingan'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Gagal mengedit postingan"
+            });
+        </script>
     @elseif (Session::get('ditolak'))
         <script>
             const Toast = Swal.mixin({
@@ -360,7 +415,7 @@
             });
         </script>
     @endif
-    <script src="/js/lihatPost.js"></script>
+    <script src="/js/lihatPostAdmin.js"></script>
 
     <script src="/js/editPost.js"></script>
 </body>

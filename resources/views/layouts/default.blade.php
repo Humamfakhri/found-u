@@ -125,7 +125,7 @@
                                     <div>
                                         <label for="image" class="form-label">Foto Barang <span
                                                 class="text-primary">*</span></label>
-                                        <input type="file"
+                                        <input type="file" value="{{ old('image') }}"
                                             class="mandatory input-file form-control rounded-pill @error('image') is-invalid @enderror"
                                             id="image" name="image" accept="image/png, image/jpg, image/jpeg">
                                         <small class="image-note text-muted d-block mt-2">* Ukuran gambar maksimal 1
@@ -153,16 +153,15 @@
             aria-labelledby="lihatPostDitemukanLabel" aria-hidden="true">
             <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
                 <div class="modal-content rounded-4 h-100">
-                    <div class="modal-body p-3 h-100">
+                    <div class="modal-body p-0 w-100 h-100">
                         <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
                             @csrf
-                            <div class="row mb-3 h-100">
+                            <div class="row mb-3 w-100 h-100">
                                 <div class="col-md-6 col-img">
-                                    <img src="/img/mouse.jpg" alt=""
-                                        class="img-fluid rounded-3 lfoto_barang">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
                                 </div>
-                                <div class="col-md-6 d-flex flex-column">
-                                    <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
+                                <div class="col-md-6 d-flex flex-column p-4">
+                                    <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                         <div>
                                             <small>Pembuat Post</small>
                                             <p class="mb-0 lnama_akun">nama_akun</p>
@@ -203,13 +202,15 @@
                                                 <p class="ltgl_ditemukan">tgl_ditemukan</p>
                                             </div>
                                         </div>
-                                        <div class="atribut_ditemukan border border-secondary d-inline-flex gap-3 rounded-3 px-3 py-2 mt-2">
-                                            <i class="fa-solid fa-location-dot fs-1 text-muted"></i>
+                                        <div
+                                            class="atribut_ditemukan border border-success bg-success-50 d-inline-flex align-items-center gap-3 rounded-3 px-4 py-2 mt-3">
+                                            <i class="fa-solid fa-location-dot fs-3 text-success"></i>
                                             <div>
                                                 <p class="small m-0">Lokasi saat ini:</p>
                                                 <p class="fw-bold llokasi_disimpan m-0">lokasi_disimpan</p>
                                             </div>
                                         </div>
+                                        <p class="small mt-2">* Barang dapat diambil di lokasi yang tertera.</p>
                                     </div>
                                 </div>
                             </div>
@@ -284,9 +285,9 @@
         let mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
             e.addEventListener('input', function() {
                 if (document.getElementById('judul_postingan').value != "" && document.getElementById(
-                        'no_telp').value != "" && document.getElementById('tanggal').value != "" && document
-                    .getElementById('image').value != "") {
-                    // document.getElementById("continue").removeAttribute("disabled");
+                        'no_telp').value != "" && document.getElementById('tanggal').value != "" &&
+                    imageValid) {
+                    document.getElementById("continue").removeAttribute("disabled");
                 } else {
                     document.getElementById("continue").setAttribute("disabled", "disabled");
                 }
@@ -306,6 +307,12 @@
                     imageValid = true;
                     document.querySelector('.image-note').classList.remove('d-none');
                     document.querySelector('.image-error').classList.add('d-none');
+                    if (document.getElementById('judul_postingan').value != "" && document.getElementById('no_telp')
+                        .value != "" && document.getElementById('tanggal').value != "" && imageValid) {
+                        document.getElementById("continue").removeAttribute("disabled");
+                    } else {
+                        document.getElementById("continue").setAttribute("disabled", "disabled");
+                    }
                 } else {
                     document.querySelector('.image-note').classList.add('d-none');
                     document.querySelector('.image-error').classList.remove('d-none');

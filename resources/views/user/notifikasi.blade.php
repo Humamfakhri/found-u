@@ -7,6 +7,7 @@
         <div class="container min-h-100">
             <div class="page-title mb-3">
                 <h3 class="fw-bold">Notifikasi & Riwayat</h3>
+                <p class="idAkun" hidden>{{ Auth::id() }}</p>
             </div>
             <ul class="p-0 d-flex flex-column gap-2 list-unstyled">
                 @if ($notifikasis_detail->count())
@@ -31,20 +32,18 @@
                             <div class="body d-flex justify-content-between">
                                 <p class="m-0">
                                     @if ($notifikasi->status == 1)
-                                        Harap menunggu konfirmasi dari admin.
+                                        Postingan kehilangan <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil diajukan, mohon menunggu konfirmasi dari admin.
                                     @elseif ($notifikasi->status == 2)
-                                        Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> telah
-                                        disetujui
-                                        oleh admin.
+                                        Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> telah disetujui dan dipublikasikan oleh admin.
                                     @elseif ($notifikasi->status == 3)
-                                        <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil ditemukan. Segera
-                                        ambil
-                                        barangmu di lokasi yang tertera pada postingan.
+                                        <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil ditemukan. Mohon segera ambil barang di lokasi yang tertera.
                                     @elseif ($notifikasi->status == 4)
                                         Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> dibatalkan.
                                     @endif
                                 </p>
-                                <div class="time"><small class="text-muted fs-12">{{ Carbon\Carbon::parse($notifikasi->created_at)->translatedFormat('d F Y') }}</small></div>
+                                <div class="time"><small
+                                        class="text-muted fs-12">{{ Carbon\Carbon::parse($notifikasi->created_at)->translatedFormat('d F Y') }}</small>
+                                </div>
                             </div>
                         </li>
                     @endforeach
@@ -64,6 +63,18 @@
     {{-- Alert Sudah Login --}}
     @if (Session::get('alreadyLogin'))
         <script>
+            // Handle event sebelum pengguna meninggalkan halaman
+            window.addEventListener("beforeunload", function(event) {
+                // Kirim permintaan AJAX ke endpoint untuk mengubah data dalam database
+                var idAkun = document.querySelector('.idAkun').innerHTML.trim(); // Ganti dengan id notifikasi yang sesuai
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/update-notifikasi", true);
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.send(JSON.stringify({
+                    id_akun: idAkun
+                }));
+            });
+            
             const Toast = Swal.mixin({
                 toast: true,
                 position: "bottom-start",

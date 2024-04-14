@@ -37,7 +37,8 @@
                         <div class="dropdown">
                             <button class="btn btn-sm rounded-pill px-1 dropdown-toggle border-0" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ Auth::user()->getImageURL() }}" alt="Foto Profil" class="img-fluid rounded-circle" width="30">
+                                <img src="{{ Auth::user()->getImageURL() }}" alt="Foto Profil"
+                                    class="img-fluid rounded-circle" width="30">
                                 {{-- <i class="fa-solid fa-user"></i> --}}
                                 {{-- <i class="fa-solid fa-caret-down"></i> --}}
                             </button>
@@ -49,6 +50,10 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
+                                @if (Auth::user()->role == 1)
+                                    <li class="py-1"><a href="/dashboard" class="small"><i
+                                                class='me-1 fa-solid fa-gauge'></i> Dashboard</a></li>
+                                @endif
                                 <li class="py-1"><a href="/?filter=postingan_saya" class="small"><i
                                             class='me-1 fa-solid fa-layer-group'></i> Postingan saya</a></li>
                                 <li class="py-1"><a href="{{ route('logout') }}" class="small"><i

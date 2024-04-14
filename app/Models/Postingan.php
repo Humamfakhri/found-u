@@ -10,13 +10,13 @@ class Postingan extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_postingan';
-    protected $dates = [
-        'tgl_kehilangan',
-        'tgl_ditemukan',
-        'tgl_publikasi',
-        'created_at',
-        'updated_at'
-    ];
+    // protected $dates = [
+    //     'tgl_kehilangan',
+    //     'tgl_ditemukan',
+    //     'tgl_publikasi',
+    //     'created_at',
+    //     'updated_at'
+    // ];
     protected $fillable = [
         'id_akun',
         'status',
@@ -25,7 +25,9 @@ class Postingan extends Model
         'image',
         'lokasi_kehilangan',
         'lokasi_ditemukan',
-        'tgl_pengajuan',
+        'lokasi_disimpan',
+        'tgl_kehilangan',
+        'tgl_ditemukan',
         'tgl_publikasi',
         'no_telp'
     ];
@@ -39,6 +41,6 @@ class Postingan extends Model
         if ($this->image) {
             return url('storage/'. $this->image);
         }
-        return "/img/mouse.jpg";
+        return url('storage/foto-barang/no-image.jpg');
     }
 }

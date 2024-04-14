@@ -73,7 +73,7 @@
                 @elseif (!Auth::check())
                     <div class="form-floating mt-5">
                         <textarea class="form-control" placeholder="Pesan" name="pesan" id="pesan" style="height: 100px" disabled></textarea>
-                        <label for="pesan">( Silakan login terlebih dahulu untuk mengirimkan masukan )</label>
+                        <label for="pesan" class="text-muted">(Silakan login terlebih dahulu untuk dapat mengirimkan masukan)</label>
                     </div>
                     <div class="text-end">
                         <button type="submit" name="submit"

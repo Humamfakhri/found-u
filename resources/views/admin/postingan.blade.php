@@ -40,37 +40,39 @@
             <div class="col-6 col-lg-3">
                 <div class="card h-100">
                     <div class="card-content">
-                        <p hidden class="id_postingan">{{ $postingan_dipublikasi->id_postingan }}</p>
-                        <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->format('H:i') }}</p>
-                        <p hidden class="tgl_ajukan_date">
+                        <p hidden class="idSource">{{ $postingan_dipublikasi->id_postingan }}</p>
+                        <p hidden class="jamPublikasiSource">
+                            {{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->format('H:i') }}</p>
+                        <p hidden class="hariPublikasiSource">
                             {{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->translatedFormat('d F Y') }}</p>
-                        <p hidden class="lokasi_kehilangan">
-                            {{ $postingan_dipublikasi->lokasi_kehilangan }}</p>
-                        <p hidden class="lokasi_ditemukan">
-                            {{ $postingan_dipublikasi->lokasi_ditemukan ? $postingan_dipublikasi->lokasi_ditemukan : null }}
+                        <p hidden class="lokasiKehilanganSource">
+                            {{ $postingan_dipublikasi->lokasi_kehilangan ? $postingan_dipublikasi->lokasi_kehilangan : '-' }}
                         </p>
-                        <p hidden class="lokasi_disimpan">
-                            {{ $postingan_dipublikasi->lokasi_disimpan ? $postingan_dipublikasi->lokasi_disimpan : null }}
+                        <p hidden class="lokasiDitemukanSource">
+                            {{ $postingan_dipublikasi->lokasi_ditemukan ? $postingan_dipublikasi->lokasi_ditemukan : '-' }}
                         </p>
-                        <p hidden class="tgl_kehilangan">
-                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('d F Y') : null }}
+                        <p hidden class="lokasiDisimpanSource">
+                            {{ $postingan_dipublikasi->lokasi_disimpan ? $postingan_dipublikasi->lokasi_disimpan : '-' }}
                         </p>
-                        <p hidden class="tgl_ditemukan">
-                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('d F Y') : null }}
+                        <p hidden class="tanggalKehilanganSource">
+                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
+                        </p>
+                        <p hidden class="tanggalDitemukanSource">
+                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('d F Y') : '-' }}
                         </p>
                         <p hidden class="etgl_kehilangan">
-                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('Y-m-d') : null }}
+                            {{ $postingan_dipublikasi->tgl_kehilangan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_kehilangan)->translatedFormat('Y-m-d') : '' }}
                         </p>
                         <p hidden class="etgl_ditemukan">
-                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('Y-m-d') : null }}
+                            {{ $postingan_dipublikasi->tgl_ditemukan ? Carbon\Carbon::parse($postingan_dipublikasi->tgl_ditemukan)->translatedFormat('Y-m-d') : '' }}
                         </p>
-                        <p hidden class="no_telp">{{ $postingan_dipublikasi->no_telp }}</p>
+                        <p hidden class="noTelpPengajuSource">{{ $postingan_dipublikasi->no_telp }}</p>
                         <div class="card-top d-flex align-items-center justify-content-between px-3 py-2">
                             <div class="d-flex align-items-center gap-2">
                                 <img src="{{ $postingan_dipublikasi->akun->getImageURL() }}" alt=""
                                     class="img-fluid rounded-circle" width="35">
                                 <div class="d-flex flex-column gap-0 g-0">
-                                    <p class="mb-0 p-0 fw-semibold small nama_akun">
+                                    <p class="mb-0 p-0 fw-semibold small pengajuSource">
                                         {{ $postingan_dipublikasi->akun->nama_akun }}</p>
                                     <div class="d-flex gap-1">
                                         <small class="m-0 p-0 fs-12">Diposting:</small>
@@ -109,34 +111,29 @@
                         </div>
                         <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPost">
                             <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt=""
-                                class="img-fluid rounded-0 foto_barang">
+                                class="img-fluid rounded-0 imageSource">
                             <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                             </div>
                         </div>
                         <div class="card-body">
                             @if (is_null($postingan_dipublikasi->tgl_ditemukan) and is_null($postingan_dipublikasi->lokasi_ditemukan))
                                 <small
-                                    class="small mb-0 bg-primary rounded-pill px-3 py-1 d-inline-block text-white status-barang">Kehilangan</small>
+                                    class="small mb-0 bg-primary rounded-pill px-3 py-1 d-inline-block text-white statusBarangSource">Kehilangan</small>
                             @else
                                 <small
-                                    class="small mb-0 bg-success rounded-pill px-3 py-1 d-inline-block text-white status-barang">Ditemukan</small>
+                                    class="small mb-0 bg-success rounded-pill px-3 py-1 d-inline-block text-white statusBarangSource">Ditemukan</small>
                             @endif
-                            <p class="judul_postingan fs-18 fw-bold mb-0">{{ $postingan_dipublikasi->judul_postingan }}</p>
-                            <p class="mb-2 deskripsi_postingan">{{ $postingan_dipublikasi->deskripsi_postingan }}</p>
+                            <p class="namaBarangSource fs-18 fw-bold mb-0">{{ $postingan_dipublikasi->judul_postingan }}
+                            </p>
+                            <p class="mb-2 deskripsiSource">{{ $postingan_dipublikasi->deskripsi_postingan }}</p>
                             @if ($postingan_dipublikasi->lokasi_disimpan != null)
                                 <div class="row align-items-center mt-1">
                                     <div class="col-1">
                                         <i class="fa-solid fa-location-dot small"></i>
                                     </div>
                                     <div class="col">
-                                        @if (is_null($postingan_dipublikasi->tgl_ditemukan) and is_null($postingan_dipublikasi->lokasi_ditemukan))
-                                            <p class="m-0 small lokasi_kehilangan">
-                                                {{ $postingan_dipublikasi->lokasi_kehilangan ? $postingan_dipublikasi->lokasi_kehilangan : null }}
-                                            </p>
-                                        @else
+                                        @if (!is_null($postingan_dipublikasi->lokasi_ditemukan) or !is_null($postingan_dipublikasi->tgl_ditemukan))
                                             <p class="m-0 small">{{ $postingan_dipublikasi->lokasi_disimpan }}</p>
-                                            <p hidden class="lokasi_kehilangan">
-                                                {{ $postingan_dipublikasi->lokasi_kehilangan }}</p>
                                         @endif
                                     </div>
                                 </div>
@@ -157,11 +154,12 @@
                             action="{{ route('postingan.update', $postingan_dipublikasi->id_postingan) }}" class="h-100">
                             @csrf
                             @method('PUT')
+                            <input type="hidden" name="status" value="edit">
+                            <small></small>
                             <div class="row mb-3 h-100">
                                 <div class="col-md-6 col-img">
                                     <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt=""
-                                        class="img-fluid rounded-3">
-                                    {{-- <img src="{{ asset('storage/foto-barang/'.$postingan_dipublikasi->image) }}" alt="" class="img-fluid rounded-3"> --}}
+                                        class="img-fluid rounded-3 eimage">
                                 </div>
                                 <div class="col-md-6 d-flex flex-column">
                                     <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
@@ -185,7 +183,13 @@
                                             <p class="fw-bold m-0">Deskripsi</p>
                                             <div class="form-floating border-0 p-0">
                                                 <textarea class="form-control py-2 bg-white" spellcheck="false" id="edeskripsi_postingan"
-                                                    name="edeskripsi_postingan" style="resize: none; overflow:hidden"></textarea>
+                                                    name="edeskripsi_postingan"
+                                                    style="
+                                                    resize: none;
+                                                    overflow: hidden;
+                                                    min-height: 50px;
+                                                    padding: 10px;
+                                                    font-size: 16px;"></textarea>
                                                 {{-- <label for="floatingTextarea">Comments</label> --}}
                                             </div>
                                             {{-- <div class="mb-3">
@@ -223,15 +227,6 @@
                                             </div>
                                         </div>
                                         <div class="row estatus-barang">
-                                            {{-- <div class="col">
-                                            <p class="fw-bold m-0">Status Barang:</p>
-                                            <p
-                                                class="status-ditemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">
-                                                Ditemukan</p>
-                                            <p
-                                                class="status-kehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">
-                                                Hilang</p>
-                                        </div> --}}
                                             <div class="col group-llokasi-disimpan">
                                                 <p class="fw-bold m-0">Lokasi saat ini:</p>
                                                 <div class="mb-3">
@@ -245,7 +240,7 @@
                                         <button type="button" data-bs-dismiss="modal"
                                             class="btn btn-sm rounded-pill btn-outline-primary d-flex align-items-center justify-content-center gap-1">Batal
                                             <i class="fa-solid fa-xmark"></i></button>
-                                        <button type="submit" name="simpanEditPost" value=1
+                                        <button type="submit"
                                             class="btn btn-sm rounded-pill btn-primary d-flex align-items-center justify-content-center gap-1">Simpan
                                             <i class="fa-solid fa-check"></i></button>
                                     </div>

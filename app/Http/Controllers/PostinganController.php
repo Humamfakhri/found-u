@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Masukan;
-use App\Models\Notifikasi;
 use App\Models\Postingan;
 use Illuminate\View\View;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 
 class PostinganController extends Controller
 {
@@ -132,7 +133,7 @@ class PostinganController extends Controller
         return view('user.notifikasi', [
             'faqs' => Masukan::where('faq', 1)->get(),
             'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
-            'notifikasis_detail' => Notifikasi::where('id_akun', Auth::id())->get(),
+            'notifikasis_detail' => Notifikasi::where('id_akun', Auth::id())->latest()->get(),
             // 'notifikasis_late' => Masukan::where('id_akun', Auth::id())->oldest()->get(),
         ]);
     }
@@ -251,29 +252,48 @@ class PostinganController extends Controller
     //     }
     // }
 
-    public function update($id_postingan): RedirectResponse
+    public function update(Request $request, $id_postingan): RedirectResponse
     {
         if (request('status') == 'publikasi') {
             $postingan = Postingan::find($id_postingan);
+            $berhasil = $postingan->update(['status' => 2, 'tgl_publikasi' => Carbon::now()]);
+            if ($berhasil) {
+                Notifikasi::create([
+                    'id_akun' => Auth::id(),
+                    'id_postingan' => $id_postingan,
+                    'status' => 2,
+                ]);
+            }
             $postingan->update(['status' => 2, 'tgl_publikasi' => Carbon::now()]);
             return redirect()->back()->with("dipublikasi", "Postingan telah dipublikasi");
         } elseif (request('status') == 'tolak') {
             $postingan = Postingan::find($id_postingan);
             $postingan->update(['status' => 3]);
             return redirect()->back()->with("ditolak", "Postingan ditolak");
-        } elseif (null !== request('simpanEditPost')) {
-            $postingan = Postingan::where('id_postingan', $id_postingan)
-                ->update([
+        } elseif (request('status') == 'edit') {
+            // dd($request->all()); // Cetak data yang diterima dari form
+            try {
+                $postingan = Postingan::find($id_postingan);
+                $berhasil = $postingan->update([
                     'judul_postingan' => request('ejudul_postingan'),
                     'deskripsi_postingan' => request('edeskripsi_postingan'),
-                    'lokasi_kehilangan' => trim(request('elokasi_kehilangan')) == '-' ? null : request('elokasi_kehilangan'),
-                    'lokasi_ditemukan' => trim(request('elokasi_ditemukan')) == '-' ? null : request('elokasi_ditemukan'),
-                    'lokasi_disimpan' => trim(request('elokasi_disimpan')) == '-' ? null : request('elokasi_disimpan'),
+                    'lokasi_kehilangan' => request('elokasi_kehilangan') == '-' ? null : request('elokasi_kehilangan'),
+                    'lokasi_ditemukan' => request('elokasi_ditemukan') == '-' ? null : request('elokasi_ditemukan'),
+                    'lokasi_disimpan' => request('elokasi_disimpan') == '-' ? null : request('elokasi_disimpan'),
                     'tgl_kehilangan' => request('etgl_kehilangan'),
                     'tgl_ditemukan' => request('etgl_ditemukan'),
                     'no_telp' => request('eno_telp'),
                 ]);
-            return redirect()->back()->with("editPostingan", "Berhasil mengedit postingan");
+                if ($berhasil) {
+                    return redirect()->back()->with("editPostingan", "Berhasil mengedit postingan");
+                } else {
+                    return redirect()->back()->with("gagalEditPostingan", "Gagal mengedit postingan");
+                }
+            } catch (\Exception $e) {
+                Log::error('Error saat melakukan update: ' . $e->getMessage());
+                // Atau, jika Anda ingin menampilkan pesan error langsung ke pengguna:
+                return response()->json(['error' => 'Terjadi kesalahan saat melakukan update.'], 500);
+            }
         }
     }
 
