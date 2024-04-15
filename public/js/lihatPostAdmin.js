@@ -47,8 +47,8 @@ cards.forEach(card => {
             statusBarangKehilangan.classList.remove('d-none')
         }
         popupElements.forEach((element, index) => {
-            console.log(element);
-            console.log(sourceElements[index]);
+            // console.log(element);
+            // console.log(sourceElements[index]);
             if (sourceElements[index] != '-') {
                 element.parentElement.classList.remove('d-none')
                 element.innerHTML = sourceElements[index];

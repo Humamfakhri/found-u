@@ -66,7 +66,7 @@
             <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content rounded-4">
                     <div class="modal-header justify-content-center position-relative">
-                        <h1 class="modal-title fs-4 text-center fw-bold" id="buatPostLabel">Buat Postingan Baru</h1>
+                        <h1 class="modal-title fs-4 text-center fw-bold" id="buatPostLabel">Buat Postingan Kehilangan</h1>
                         <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -160,7 +160,7 @@
                                 <div class="col-md-6 col-img">
                                     <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
                                 </div>
-                                <div class="col-md-6 d-flex flex-column p-4">
+                                <div class="col-md-6 d-flex flex-column p-3">
                                     <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                         <div>
                                             <small>Pembuat Post</small>
@@ -202,15 +202,17 @@
                                                 <p class="ltgl_ditemukan">tgl_ditemukan</p>
                                             </div>
                                         </div>
-                                        <div
-                                            class="atribut_ditemukan border border-success bg-success-50 d-inline-flex align-items-center gap-3 rounded-3 px-4 py-2 mt-3">
-                                            <i class="fa-solid fa-location-dot fs-3 text-success"></i>
-                                            <div>
-                                                <p class="small m-0">Lokasi saat ini:</p>
-                                                <p class="fw-bold llokasi_disimpan m-0">lokasi_disimpan</p>
+                                        <div class="atribut_ditemukan">
+                                            <div
+                                                class="border border-success bg-success-50 d-inline-flex align-items-center gap-3 rounded-3 px-4 py-2 mt-3">
+                                                <i class="fa-solid fa-location-dot fs-3 text-success"></i>
+                                                <div>
+                                                    <p class="small m-0">Lokasi saat ini:</p>
+                                                    <p class="fw-bold llokasi_disimpan m-0">lokasi_disimpan</p>
+                                                </div>
                                             </div>
+                                            <p class="small mt-2">* Barang dapat diambil di lokasi yang tertera.</p>
                                         </div>
-                                        <p class="small mt-2">* Barang dapat diambil di lokasi yang tertera.</p>
                                     </div>
                                 </div>
                             </div>
@@ -225,16 +227,16 @@
             aria-labelledby="lihatPostKehilanganLabel" aria-hidden="true">
             <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
                 <div class="modal-content rounded-4 h-100">
-                    <div class="modal-body p-3 h-100">
+                    <div class="modal-body p-0 w-100 h-100">
                         <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
                             @csrf
-                            <div class="row mb-3 h-100">
+                            <div class="row mb-3 w-100 h-100">
                                 <div class="col-md-6 col-img">
                                     <img src="/img/mouse.jpg" alt=""
-                                        class="img-fluid rounded-3 lfoto_barang">
+                                        class="img-fluid lfoto_barang">
                                 </div>
-                                <div class="col-md-6 d-flex flex-column">
-                                    <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
+                                <div class="col-md-6 d-flex flex-column p-3">
+                                    <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                         <div>
                                             <small>Pembuat Post</small>
                                             <p class="mb-0 lnama_akun">nama_akun</p>

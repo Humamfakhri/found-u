@@ -43,14 +43,19 @@ btnEditPost.forEach(card => {
   let noTelpPengaju = document.querySelector('[name="eno_telp"]');
   let staticElements = [pengaju, jamPublikasi, hariPublikasi];
   let editElements = [namaBarang, deskripsi, lokasiKehilangan, lokasiDitemukan, tanggalKehilangan, tanggalDitemukan, noTelpPengaju, lokasiDisimpan];
+  let options = document.querySelectorAll('[name="elokasi_disimpan"] option');
 
-  // ON CLICK ACTION @CARD
+  // ON CLICK ACTION @CARD  
   card.addEventListener("click", function () {
+    options.forEach(option => {
+      if (lokasiDisimpanSource == option.innerHTML) {
+        option.setAttribute("selected", "selected")
+      }
+    })
     // Mengganti form Action sesuai ID postingan yang diklik
     var url = form.action;
     var urlBaru = url.replace(/\d+$/g, "") + idSource;
     form.action = urlBaru
-    console.log(form.action);
     // \d+ mencocokkan satu atau lebih digit angka.
     // $ menandakan akhir dari string.
     // /g menandakan pencarian akan dilakukan secara global, sehingga akan menghapus semua angka yang berada di akhir string.

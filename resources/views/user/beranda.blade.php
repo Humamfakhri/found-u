@@ -186,7 +186,7 @@
                                     <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
                                     <p hidden class="lokasi_kehilangan">{{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : null }}</p>
                                     <p hidden class="lokasi_ditemukan">{{ $postingan_kehilangan->lokasi_ditemukan ? $postingan_kehilangan->lokasi_ditemukan : null }}</p>
-                                    <p hidden class="lokasi_disimpan">{{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : null }}</p>
+                                    <p hidden class="lokasi_disimpan">{{ $postingan_kehilangan->lokasi_disimpan ? $postingan_kehilangan->lokasi_disimpan : null }}</p>
                                     <p hidden class="tgl_kehilangan">{{ $postingan_kehilangan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_kehilangan)->translatedFormat('d F Y') : null }}</p>
                                     <p hidden class="tgl_ditemukan">{{ $postingan_kehilangan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') : null }}</p>
                                     <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
@@ -213,7 +213,7 @@
                                                     {{ $postingan_kehilangan->akun->nama_akun }}</p>
                                             </div>
                                         </div>
-                                        <div class="row mt-1">
+                                        {{-- <div class="row mt-1">
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-location-dot"></i>
                                             </div>
@@ -222,7 +222,7 @@
                                                     {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : null }}
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="px-3 pb-3">
                                         <hr class="mb-2">

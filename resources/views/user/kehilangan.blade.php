@@ -66,7 +66,7 @@
                                     <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->format('H:i') }}</p>
                                     <p hidden class="tgl_ajukan_date">
                                         {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
-                                    <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPostDitemukan">
+                                    <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPostKehilangan">
                                         <img src="{{ $postingan_kehilangan->getImageURL() }}" alt=""
                                             class="img-fluid foto_barang">
                                         <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
@@ -77,7 +77,7 @@
                                             {{ $postingan_kehilangan->judul_postingan }}</p>
                                         <p class="mb-2 deskripsi_postingan">
                                             {{ $postingan_kehilangan->deskripsi_postingan }}</p>
-                                        <div class="row" hidden>
+                                        <div class="row">
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-user"></i>
                                             </div>

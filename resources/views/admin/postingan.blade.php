@@ -149,20 +149,20 @@
         <div class="modal lihatPost" id="editPost" tabindex="-1" aria-labelledby="editPostLabel" aria-hidden="true">
             <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
                 <div class="modal-content rounded-4 h-100">
-                    <div class="modal-body p-3 h-100">
+                    <div class="modal-body p-0 w-100 h-100">
                         <form id="formEdit" method="POST"
                             action="{{ route('postingan.update', $postingan_dipublikasi->id_postingan) }}" class="h-100">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="status" value="edit">
                             <small></small>
-                            <div class="row mb-3 h-100">
+                            <div class="row mb-3 w-100 h-100">
                                 <div class="col-md-6 col-img">
                                     <img src="{{ $postingan_dipublikasi->getImageURL() }}" alt=""
-                                        class="img-fluid rounded-3 eimage">
+                                        class="img-fluid eimage">
                                 </div>
-                                <div class="col-md-6 d-flex flex-column">
-                                    <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
+                                <div class="col-md-6 d-flex flex-column p-3">
+                                    <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                         <div>
                                             <small>Pengaju</small>
                                             <p class="mb-0 enama_akun">nama_akun</p>
@@ -221,7 +221,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <p class="fw-bold m-0">Nomor Telepon Pengaju</p>
+                                            <p class="fw-bold m-0">Nomor Telepon</p>
                                             <div class="mb-3">
                                                 <input type="text" class="form-control" name="eno_telp">
                                             </div>
@@ -230,7 +230,19 @@
                                             <div class="col group-llokasi-disimpan">
                                                 <p class="fw-bold m-0">Lokasi saat ini:</p>
                                                 <div class="mb-3">
-                                                    <input type="text" class="form-control" name="elokasi_disimpan">
+                                                    <select name="elokasi_disimpan" class="form-select rounded-pill"
+                                                        aria-label="Default select example">
+                                                        <option>-- Lokasi barang disimpan --</option>
+                                                        <option value="FEB (Fakultas Ekonomi dan Bisnis)">FEB (Fakultas Ekonomi dan Bisnis)</option>
+                                                        <option value="FIF (Fakultas Informatika)">FIF (Fakultas Informatika)</option>
+                                                        <option value="FIK (Fakultas Industri Kreatif)">FIK (Fakultas Industri Kreatif)</option>
+                                                        <option value="FIT (Fakultas Ilmu Terapan)">FIT (Fakultas Ilmu Terapan)</option>
+                                                        <option value="FKB (Fakultas Komunikasi dan Bisnis)">FKB (Fakultas Komunikasi dan Bisnis)</option>
+                                                        <option value="FRI (Fakultas Rekayasa Industri)">FRI (Fakultas Rekayasa Industri)</option>
+                                                        <option value="FTE (Fakultas Teknik Elektro)">FTE (Fakultas Teknik Elektro)</option>
+                                                        <option value="GKU (Gedung Kuliah Umum)">GKU (Gedung Kuliah Umum)</option>
+                                                    </select>
+                                                    {{-- <input type="text" class="form-control" name="elokasi_disimpan"> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -252,6 +264,8 @@
             </div>
         </div>
     @endif
+@endsection
+@section('script')
     <script>
         document.getElementById('edeskripsi_postingan').addEventListener('keyup', function() {
             this.style.overflow = 'hidden';
@@ -264,4 +278,5 @@
         inputJawaban.style.height = 0;
         inputJawaban.style.height = inputJawaban.scrollHeight + 'px';
     </script>
+    <script src="/js/editPost.js"></script>
 @endsection

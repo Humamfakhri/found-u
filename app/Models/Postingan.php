@@ -37,6 +37,11 @@ class Postingan extends Model
         return $this->belongsTo(Akun::class, 'id_akun');
     }
 
+    public function status() : BelongsTo
+    {
+        return $this->belongsTo(Status::class, 'status');
+    }
+
     public function getImageURL() {
         if ($this->image) {
             return url('storage/'. $this->image);

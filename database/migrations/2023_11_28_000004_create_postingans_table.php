@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('postingans', function (Blueprint $table) {
             $table->integer('id_postingan', true);
             $table->integer('id_akun')->default(0);
-            $table->foreign('id_akun')->references('id_akun')->on('akuns')->onDelete('cascade');
             $table->tinyInteger('status')->default(1);
+            $table->foreign('id_akun')->references('id_akun')->on('akuns')->onDelete('cascade');
+            $table->foreign('status')->references('status')->on('status')->onDelete('cascade');
             $table->string('judul_postingan', 50);
             $table->text('deskripsi_postingan')->nullable();
             $table->text('image')->nullable();

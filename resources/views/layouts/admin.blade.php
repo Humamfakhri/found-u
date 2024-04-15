@@ -66,8 +66,8 @@
                                 <div>
                                     <label for="judul_postingan" class="form-label">Nama Barang <span
                                             class="text-primary">*</span></label>
-                                    <input type="text" class="mandatory form-control rounded-pill" id="judul_postingan"
-                                        name="judul_postingan">
+                                    <input type="text" class="mandatory form-control rounded-pill"
+                                        id="judul_postingan" name="judul_postingan">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -75,6 +75,8 @@
                                     <label for="no_telp" class="form-label">No. Telepon Pemilik</label>
                                     <input type="text" class="mandatory form-control rounded-pill" id="no_telp"
                                         name="no_telp">
+                                    <small class="telp-error d-none text-danger d-block mt-2">* Hanya masukkan
+                                        angka</small>
                                 </div>
                             </div>
                         </div>
@@ -120,19 +122,56 @@
                             </div>
                             <div class="col-md-6">
                                 <div>
-                                    <label for="lokasi_disimpan" class="form-label">Lokasi Disimpan</label>
-                                    <input type="text" class="form-control rounded-pill" id="lokasi_disimpan"
-                                        name="lokasi_disimpan">
+                                    <label for="lokasi_disimpan" class="form-label">Lokasi Disimpan <small
+                                            class="text-muted">(jika ditemukan)</small></label>
+                                    <select name="lokasi_disimpan" class="form-select rounded-pill" aria-label="Default select example">
+                                        <option selected>-- Lokasi barang disimpan --</option>
+                                        <option value="FEB (Fakultas Ekonomi dan Bisnis)">FEB (Fakultas Ekonomi dan Bisnis)</option>
+                                        <option value="FIF (Fakultas Informatika)">FIF (Fakultas Informatika)</option>
+                                        <option value="FIK (Fakultas Industri Kreatif)">FIK (Fakultas Industri Kreatif)</option>
+                                        <option value="FIT (Fakultas Ilmu Terapan)">FIT (Fakultas Ilmu Terapan)</option>
+                                        <option value="FKB (Fakultas Komunikasi dan Bisnis)">FKB (Fakultas Komunikasi dan Bisnis)</option>
+                                        <option value="FRI (Fakultas Rekayasa Industri)">FRI (Fakultas Rekayasa Industri)</option>
+                                        <option value="FTE (Fakultas Teknik Elektro)">FTE (Fakultas Teknik Elektro)</option>
+                                        <option value="GKU (Gedung Kuliah Umum)">GKU (Gedung Kuliah Umum)</option>
+                                    </select>
+                                    {{-- <div class="dropdown">
+                                        <button
+                                            class="btn btn-outline-secondary rounded-pill px-3 dropdown-toggle"
+                                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ $filter }}
+                                            <i class="ms-2 fa-solid fa-chevron-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu py-0 rounded">
+                                            <li class="rounded-top dropdown-item ">FIT (Fakultas Ilmu Terapan)</li>
+                                            <li class="dropdown-item ">FIT (Fakultas Ilmu Terapan)</li>
+                                            <li class="dropdown-item ">FIT (Fakultas Ilmu Terapan)</li>
+                                            <li class="dropdown-item ">FIT (Fakultas Ilmu Terapan)</li>
+                                            <li class="rounded-bottom dropdown-item ">FIT (Fakultas Ilmu Terapan)</li>
+                                        </ul>
+                                    </div> --}}
+                                    {{-- <input type="text" class="form-control rounded-pill" id="lokasi_disimpan"
+                                        name="lokasi_disimpan"> --}}
                                 </div>
                                 <div class="mt-3">
-                                    <label for="image" class="form-label">Foto Barang <span class="text-primary">*</span></label>
-                                    <input type="file" class="mandatory input-file form-control rounded-pill" id="image"
-                                        name="image">
+                                    <label for="image" class="form-label">Foto Barang <span
+                                            class="text-primary">*</span></label>
+                                    <input type="file" value="{{ old('image') }}"
+                                        class="mandatory input-file form-control rounded-pill @error('image') is-invalid @enderror"
+                                        id="image" name="image" accept="image/png, image/jpg, image/jpeg">
+                                    <small class="image-note text-muted d-block mt-2">* Ukuran gambar maksimal 1
+                                        MB</small>
+                                    <small class="image-error d-none text-danger d-block mt-2">* Ukuran gambar
+                                        lebih dari 1 MB</small>
+                                    @error('image')
+                                        {{ $message }}
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center mt-5">
-                            <button id="continue" disabled type="submit" name="submit" class="btn btn-primary rounded-pill px-4">Buat Postingan</button>
+                            <button id="continue" disabled type="submit" name="submit"
+                                class="btn btn-primary rounded-pill px-4">Buat Postingan</button>
                         </div>
                     </form>
                 </div>
@@ -156,17 +195,17 @@
     <div class="modal lihatPost" id="lihatPost" tabindex="-1" aria-labelledby="lihatPostLabel" aria-hidden="true">
         <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
             <div class="modal-content rounded-4 h-100">
-                <div class="modal-body p-3 h-100">
+                <div class="modal-body p-0 w-100 h-100">
                     <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
                         @csrf
-                        <div class="row mb-3 h-100">
+                        <div class="row mb-3 w-100 h-100">
                             <div class="col-md-6 col-img">
-                                <img src="/img/mouse.jpg" alt="" class="img-fluid rounded-3 image">
+                                <img src="/img/mouse.jpg" alt="" class="img-fluid image">
                             </div>
-                            <div class="col-md-6 d-flex flex-column">
-                                <div class="lihat-post-header pb-3 d-flex justify-content-between border-bottom">
+                            <div class="col-md-6 d-flex flex-column p-3">
+                                <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                     <div>
-                                        <small>Pengaju</small>
+                                        <small>{{ request()->path() == 'dashboard' ? 'Pengaju' : 'Pembuat Post'}}</small>
                                         <p class="mb-0 pengaju">nama_akun</p>
                                     </div>
                                     <div class="text-end">
@@ -200,7 +239,7 @@
                                         <p class="tanggalDitemukan">tgl_ditemukan</p>
                                     </div>
                                     <div>
-                                        <p class="fw-bold m-0">Nomor Telepon Pengaju</p>
+                                        <p class="fw-bold m-0">Nomor Telepon</p>
                                         <p class="noTelpPengaju">no_telp</p>
                                     </div>
                                     <div class="row statusBarang">
@@ -266,8 +305,8 @@
         let mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
             e.addEventListener('input', function() {
                 if (document.getElementById('judul_postingan').value != "" && document.getElementById(
-                        'no_telp').value != "" && document.getElementById('image').value != "") {
-                    // document.getElementById("continue").removeAttribute("disabled");
+                        'no_telp').value != "" && imageValid) {
+                    document.getElementById("continue").removeAttribute("disabled");
                 } else {
                     document.getElementById("continue").setAttribute("disabled", "disabled");
                 }
@@ -287,6 +326,12 @@
                     imageValid = true;
                     document.querySelector('.image-note').classList.remove('d-none');
                     document.querySelector('.image-error').classList.add('d-none');
+                    if (document.getElementById('judul_postingan').value != "" && document.getElementById('no_telp')
+                        .value != "" && imageValid) {
+                        document.getElementById("continue").removeAttribute("disabled");
+                    } else {
+                        document.getElementById("continue").setAttribute("disabled", "disabled");
+                    }
                 } else {
                     document.querySelector('.image-note').classList.add('d-none');
                     document.querySelector('.image-error').classList.remove('d-none');
@@ -416,8 +461,7 @@
         </script>
     @endif
     <script src="/js/lihatPostAdmin.js"></script>
-
-    <script src="/js/editPost.js"></script>
+    @yield('script')
 </body>
 
 </html>
