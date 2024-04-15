@@ -16,13 +16,17 @@
                             <div class="header d-flex align-items-center justify-content-between mb-1">
                                 <h5 class="m-0 fw-bold">
                                     @if ($notifikasi->status == 1)
-                                        Postingan telah diajukan
+                                        Postingan telah Diajukan
                                     @elseif ($notifikasi->status == 2)
-                                        Postingan telah dipublikasi
+                                        Postingan telah Dipublikasi
                                     @elseif ($notifikasi->status == 3)
-                                        Barangmu telah ditemukan
+                                        Postingan Ditolak
                                     @elseif ($notifikasi->status == 4)
-                                        Postingan dibatalkan
+                                        Postingan Dibatalkan
+                                    @elseif ($notifikasi->status == 5)
+                                        Barang Anda telah Ditemukan
+                                    @elseif ($notifikasi->status == 6)
+                                        Barang telah Diambil
                                     @endif
                                 </h5>
                                 <div class="time"><small
@@ -32,13 +36,21 @@
                             <div class="body d-flex justify-content-between">
                                 <p class="m-0">
                                     @if ($notifikasi->status == 1)
-                                        Postingan kehilangan <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil diajukan, mohon menunggu konfirmasi dari admin.
+                                        Postingan kehilangan <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil
+                                        diajukan, mohon menunggu konfirmasi dari admin.
                                     @elseif ($notifikasi->status == 2)
-                                        Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> telah disetujui dan dipublikasikan oleh admin.
+                                        Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> telah
+                                        disetujui dan dipublikasikan oleh admin.
                                     @elseif ($notifikasi->status == 3)
-                                        <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil ditemukan. Mohon segera ambil barang di lokasi yang tertera.
+                                        Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> ditolak
+                                        oleh admin. Pastikan agar informasi yang dikirimkan valid dan sesuai dengan
+                                        ketentuan.
                                     @elseif ($notifikasi->status == 4)
                                         Pengajuan postingan <b>{{ $notifikasi->postingan->judul_postingan }}</b> dibatalkan.
+                                    @elseif ($notifikasi->status == 5)
+                                        <b>{{ $notifikasi->postingan->judul_postingan }}</b> berhasil ditemukan. Mohon segera ambil barang di lokasi yang tertera.
+                                    @elseif ($notifikasi->status == 6)
+                                        <b>{{ $notifikasi->postingan->judul_postingan }}</b> telah diambil. Jika itu bukan Anda, mohon untuk konfirmasi kepada admin di lokasi barang disimpan.
                                     @endif
                                 </p>
                                 <div class="time"><small
@@ -66,7 +78,8 @@
             // Handle event sebelum pengguna meninggalkan halaman
             window.addEventListener("beforeunload", function(event) {
                 // Kirim permintaan AJAX ke endpoint untuk mengubah data dalam database
-                var idAkun = document.querySelector('.idAkun').innerHTML.trim(); // Ganti dengan id notifikasi yang sesuai
+                var idAkun = document.querySelector('.idAkun').innerHTML
+                    .trim(); // Ganti dengan id notifikasi yang sesuai
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "/update-notifikasi", true);
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -74,7 +87,7 @@
                     id_akun: idAkun
                 }));
             });
-            
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: "bottom-start",

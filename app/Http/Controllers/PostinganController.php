@@ -23,6 +23,22 @@ class PostinganController extends Controller
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view(request('search') ? 'user.pencarian' : 'user.beranda', [
             'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
+            'jml_postingans_diajukan' => Postingan::with('akun')->where('id_akun', Auth::id())->where('status', 1)->count(),
+            'postingans_diajukan' => Postingan::with('akun')->where('id_akun', Auth::id())->where('status', 1)
+                ->where(function (Builder $query) {
+                    $query->where('judul_postingan', 'like', '%' . request('search') . '%')
+                        ->orWhere('deskripsi_postingan', 'like', '%' . request('search') . '%')
+                        ->orWhere('lokasi_kehilangan', 'like', '%' . request('search') . '%')
+                        ->orWhere('lokasi_ditemukan', 'like', '%' . request('search') . '%');
+                })
+                ->when($request->query('filter') == 'postingan_saya', function ($query) {
+                    return $query->where('id_akun', Auth::id());
+                })
+                ->when($request->query('filter') != 'postingan_saya', function ($query) {
+                    return $query->limit(4);
+                })
+                ->orderBy('created_at', $order)
+                ->get(),
             'jml_postingans_ditemukan' => Postingan::where('status', 2)
                 ->where(function (Builder $query) {
                     $query->whereNotNull('tgl_ditemukan')
