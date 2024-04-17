@@ -2,8 +2,8 @@
 /node_modules
 /public/build
 /public/hot
-/public/storage/foto-barang
-/storage/*.key
+# /public/storage/foto-barang
+# /storage/*.key
 /vendor
 .env
 .env.backup
