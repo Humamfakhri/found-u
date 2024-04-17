@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div>
-                                        <label for="no_telp" class="form-label">No. Telepon Pemilik <span
+                                        <label for="no_telp" class="form-label">No. Telepon<span
                                                 class="text-primary">*</span></label>
                                         <input type="tel" pattern="[0-9]*"
                                             class="mandatory form-control rounded-pill" id="no_telp" name="no_telp"
