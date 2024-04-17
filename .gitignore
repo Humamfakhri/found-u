@@ -2,7 +2,7 @@
 /node_modules
 /public/build
 /public/hot
-# /public/storage/foto-barang
+# /public/storage
 # /storage/*.key
 /vendor
 .env

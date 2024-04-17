@@ -304,8 +304,7 @@
         let imageValid = false;
         let mandatories = document.querySelectorAll('.mandatory').forEach(function(e) {
             e.addEventListener('input', function() {
-                if (document.getElementById('judul_postingan').value != "" && document.getElementById(
-                        'no_telp').value != "" && imageValid) {
+                if (document.getElementById('judul_postingan').value != "" && imageValid) {
                     document.getElementById("continue").removeAttribute("disabled");
                 } else {
                     document.getElementById("continue").setAttribute("disabled", "disabled");
