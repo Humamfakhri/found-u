@@ -27,7 +27,7 @@ cards.forEach(card => {
     });
     // TANGGAL
     document.querySelectorAll('.ltgl_kehilangan').forEach(function (el) {
-      console.log(card.parentElement.querySelector('.tgl_kehilangan').innerHTML == '');
+      // console.log(card.parentElement.querySelector('.tgl_kehilangan').innerHTML == '');
       el.innerHTML = card.parentElement.querySelector('.tgl_kehilangan').innerHTML;
       if (card.parentElement.querySelector('.tgl_kehilangan').innerHTML == '') {
         el.parentElement.classList.add('d-none');
@@ -97,12 +97,12 @@ cards.forEach(card => {
     //   }
     // });
     document.querySelectorAll('.llokasi_kehilangan').forEach(function (el) {
-      el.innerHTML = card.parentElement.querySelector('.lokasi_kehilangan').innerHTML;
-      if (card.parentElement.querySelector('.lokasi_kehilangan').innerHTML == '') {
+      if (card.parentElement.querySelector('.lokasi_kehilangan').innerHTML.trim() == '') {
         document.querySelectorAll('.atribut_lokasi_kehilangan').forEach(function (el) {
           el.classList.add('d-none');
         });
       } else {
+        el.innerHTML = card.parentElement.querySelector('.lokasi_kehilangan').innerHTML;
         document.querySelectorAll('.atribut_lokasi_kehilangan').forEach(function (el) {
           el.classList.remove('d-none');
         });
@@ -134,9 +134,3 @@ cards.forEach(card => {
 if (window.location.pathname == '/dashboard') {
   document.querySelector('.lstatus-barang').classList.add('d-none')
 }
-
-if (window.location.pathname != '/dashboard') {
-  if (document.querySelector('.lihat-post-footer') != null) {
-    document.querySelector('.lihat-post-footer').classList.add('d-none')
-  }
-} 

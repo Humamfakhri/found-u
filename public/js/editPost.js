@@ -91,7 +91,3 @@ if (window.location.pathname == '/dashboard') {
     document.querySelector('.estatus-barang').classList.add('d-none')
   }
 }
-
-if (window.location.pathname != '/dashboard') {
-  document.querySelector('.lihat-post-footer').classList.add('d-none')
-}

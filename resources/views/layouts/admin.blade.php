@@ -124,15 +124,22 @@
                                 <div>
                                     <label for="lokasi_disimpan" class="form-label">Lokasi Disimpan <small
                                             class="text-muted">(jika ditemukan)</small></label>
-                                    <select name="lokasi_disimpan" class="form-select rounded-pill" aria-label="Default select example">
+                                    <select name="lokasi_disimpan" class="form-select rounded-pill"
+                                        aria-label="Default select example">
                                         <option selected>-- Lokasi barang disimpan --</option>
-                                        <option value="FEB (Fakultas Ekonomi dan Bisnis)">FEB (Fakultas Ekonomi dan Bisnis)</option>
+                                        <option value="FEB (Fakultas Ekonomi dan Bisnis)">FEB (Fakultas Ekonomi dan
+                                            Bisnis)</option>
                                         <option value="FIF (Fakultas Informatika)">FIF (Fakultas Informatika)</option>
-                                        <option value="FIK (Fakultas Industri Kreatif)">FIK (Fakultas Industri Kreatif)</option>
-                                        <option value="FIT (Fakultas Ilmu Terapan)">FIT (Fakultas Ilmu Terapan)</option>
-                                        <option value="FKB (Fakultas Komunikasi dan Bisnis)">FKB (Fakultas Komunikasi dan Bisnis)</option>
-                                        <option value="FRI (Fakultas Rekayasa Industri)">FRI (Fakultas Rekayasa Industri)</option>
-                                        <option value="FTE (Fakultas Teknik Elektro)">FTE (Fakultas Teknik Elektro)</option>
+                                        <option value="FIK (Fakultas Industri Kreatif)">FIK (Fakultas Industri Kreatif)
+                                        </option>
+                                        <option value="FIT (Fakultas Ilmu Terapan)">FIT (Fakultas Ilmu Terapan)
+                                        </option>
+                                        <option value="FKB (Fakultas Komunikasi dan Bisnis)">FKB (Fakultas Komunikasi
+                                            dan Bisnis)</option>
+                                        <option value="FRI (Fakultas Rekayasa Industri)">FRI (Fakultas Rekayasa
+                                            Industri)</option>
+                                        <option value="FTE (Fakultas Teknik Elektro)">FTE (Fakultas Teknik Elektro)
+                                        </option>
                                         <option value="GKU (Gedung Kuliah Umum)">GKU (Gedung Kuliah Umum)</option>
                                     </select>
                                     {{-- <div class="dropdown">
@@ -205,7 +212,7 @@
                             <div class="col-md-6 d-flex flex-column p-3">
                                 <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                     <div>
-                                        <small>{{ request()->path() == 'dashboard' ? 'Pengaju' : 'Pembuat Post'}}</small>
+                                        <small>{{ request()->path() == 'dashboard' ? 'Pengaju' : 'Pembuat Post' }}</small>
                                         <p class="mb-0 pengaju">nama_akun</p>
                                     </div>
                                     <div class="text-end">
@@ -257,15 +264,6 @@
                                             <p class="mt-1 lokasiDisimpan">lokasi_disimpan</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div
-                                    class="lihat-post-footer d-flex gap-4 justify-content-center align-items-center pt-3 border-top">
-                                    <button
-                                        class="btn btn-sm rounded-pill btn-outline-primary d-flex align-items-center justify-content-center gap-1">Tolak
-                                        <i class="fa-solid fa-xmark"></i></button>
-                                    <button
-                                        class="btn btn-sm rounded-pill btn-primary d-flex align-items-center justify-content-center gap-1">Publikasi
-                                        <i class="fa-solid fa-check"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -325,8 +323,7 @@
                     imageValid = true;
                     document.querySelector('.image-note').classList.remove('d-none');
                     document.querySelector('.image-error').classList.add('d-none');
-                    if (document.getElementById('judul_postingan').value != "" && document.getElementById('no_telp')
-                        .value != "" && imageValid) {
+                    if (document.getElementById('judul_postingan').value != "" && imageValid) {
                         document.getElementById("continue").removeAttribute("disabled");
                     } else {
                         document.getElementById("continue").setAttribute("disabled", "disabled");

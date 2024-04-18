@@ -92,6 +92,7 @@
                         @else
                             <p hidden class="statusBarangSource">Ditemukan</p>
                         @endif
+                        <p hidden class="idSource">{{ $postingan_diajukan->id_postingan }}</p>
                         <p hidden class="jamPublikasiSource">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->format('H:i') }}</p>
                         <p hidden class="hariPublikasiSource">{{ Carbon\Carbon::parse($postingan_diajukan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
                         {{-- <p hidden class="deskripsi_postingan">{{ $postingan_diajukan->deskripsi_postingan }}</p> --}}

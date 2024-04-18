@@ -129,7 +129,7 @@
 
     {{-- DITEMUKAN --}}
     @if ($postingans_ditemukan->count())
-        <section class="ditemukan cards-container">
+        <section class="ditemukan cards-container mt-5">
             <div class="container my-4">
                 <div class="section-title mb-3">
                     <div class="line d-none d-md-block"></div>
