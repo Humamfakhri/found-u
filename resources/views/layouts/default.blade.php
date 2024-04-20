@@ -16,7 +16,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/cce5ebab8a.js" crossorigin="anonymous"></script>
-    <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     @yield('head')
 </head>
 
@@ -34,6 +34,14 @@
     </header>
     <main style="min-height: 80vh">
         @yield('content')
+        <div class="screen-breakpoints fixed-bottom bg-dark d-block">
+            <small class="text-white d-block d-sm-none">__SM </small>
+            <small class="text-white d-none d-sm-block d-md-none">SM</small>
+            <small class="text-white d-none d-md-block d-lg-none">MD</small>
+            <small class="text-white d-none d-lg-block d-xl-none">LG</small>
+            <small class="text-white d-none d-xl-block d-xxl-none">XL</small>
+            <small class="text-white d-none d-xxl-block">XXL</small>
+        </div>
         {{-- TOAST --}}
         {{-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> --}}
         @if (session()->has('success'))
@@ -66,11 +74,12 @@
             <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content rounded-4">
                     <div class="modal-header justify-content-center position-relative">
-                        <h1 class="modal-title fs-4 text-center fw-bold" id="buatPostLabel">Buat Postingan Kehilangan</h1>
+                        <h1 class="modal-title fs-4 text-center fw-bold" id="buatPostLabel">Buat Postingan Kehilangan
+                        </h1>
                         <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-4 pb-0">
+                    <div class="modal-body px-lg-4 pb-lg-0">
                         <form enctype="multipart/form-data" method="POST" action="{{ route('postingan.store') }}">
                             @csrf
                             <input type="hidden" name="status" value=1>
@@ -151,16 +160,17 @@
         {{-- MODAL LIHAT POST DITEMUKAN --}}
         <div class="modal lihatPost" id="lihatPostDitemukan" tabindex="-1"
             aria-labelledby="lihatPostDitemukanLabel" aria-hidden="true">
-            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
+            <div
+                class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative mx-auto">
                 <div class="modal-content rounded-4 h-100">
                     <div class="modal-body p-0 w-100 h-100">
-                        <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
+                        <form method="POST" action="{{ route('postingan.store') }}" class="h-lg-100">
                             @csrf
                             <div class="row mb-3 w-100 h-100">
                                 <div class="col-md-6 col-img">
                                     <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
                                 </div>
-                                <div class="col-md-6 d-flex flex-column p-3">
+                                <div class="col-md-6 d-flex flex-column p-4 p-lg-3">
                                     <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                         <div>
                                             <small>Pembuat Post</small>
@@ -173,7 +183,7 @@
                                                 class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
                                         </div>
                                     </div>
-                                    <div class="lihat-post-content h-100 pt-3 pe-2">
+                                    <div class="lihat-post-content h-100 pt-3 pe-lg-2">
                                         <div>
                                             <p class="fw-bold m-0">Nama Barang</p>
                                             <p class="ljudul_postingan">judul_postingan</p>
@@ -232,8 +242,7 @@
                             @csrf
                             <div class="row mb-3 w-100 h-100">
                                 <div class="col-md-6 col-img">
-                                    <img src="/img/mouse.jpg" alt=""
-                                        class="img-fluid lfoto_barang">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
                                 </div>
                                 <div class="col-md-6 d-flex flex-column p-3">
                                     <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
@@ -248,7 +257,7 @@
                                                 class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
                                         </div>
                                     </div>
-                                    <div class="lihat-post-content h-100 pt-3 pe-2">
+                                    <div class="lihat-post-content h-100 pt-3 pe-lg-2">
                                         <div>
                                             <p class="fw-bold m-0">Nama Barang</p>
                                             <p class="ljudul_postingan">judul_postingan</p>

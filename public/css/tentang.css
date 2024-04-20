@@ -4,8 +4,14 @@
 }
 
 .hero-tentang {
-  margin-top: 8rem;
-  margin-bottom: 5rem  ;  
+  margin-top: 5rem;
+  margin-bottom: 5rem ;
+}
+
+.hero-tentang img {
+  /* max-width: 70% !important; */
+  width: clamp(300px, 100%, 500px);
+  margin: 0 auto;
 }
 
 .alasan .card {
@@ -32,6 +38,10 @@
 
 .hubungi-kami {
   margin-top: 3rem;
+}
+
+.hubungi-kami img {
+  width: clamp(300px, 100%, 500px);
 }
 
 .tentang-sosmed a {
@@ -61,4 +71,28 @@
 
 .tentang-sosmed a i {
   width: 2.2rem;
+}
+
+/* MEDIUM (MD) */
+@media only screen and (min-width: 768px) {
+  .hero-tentang {
+    margin-top: 6.5rem;
+    margin-bottom: 5rem  ;  
+  }
+  /* .hero-tentang img {
+    max-width: 70% !important;
+    margin: unset;
+  } */
+}
+
+/* LARGE (LG) */
+@media only screen and (min-width: 992px) {
+  .hero-tentang {
+    margin-top: 8rem;
+    margin-bottom: 5rem  ;  
+  }
+  /* .hero-tentang img {
+    max-width: 100% !important;
+    margin: unset;
+  } */
 }

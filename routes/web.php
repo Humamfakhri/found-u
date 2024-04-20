@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NotifikasiController;
-
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +20,19 @@ use App\Http\Controllers\NotifikasiController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/storageLink', function() {
+    Artisan::call('storage:link');
+});
+
+Route::get('/npm-install', function() {
+    // Menjalankan perintah npm install
+    Artisan::call('npm:install');
+
+    // Menampilkan pesan sukses atau gagal
+    return 'npm install telah berhasil dijalankan.';
+});
+
 
 // Login 
 Route::middleware('guest')->group(function () {

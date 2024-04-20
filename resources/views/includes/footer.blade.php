@@ -23,7 +23,7 @@
             </div>
             @endif
             <div class="col-5 d-flex flex-column mt-4 mt-md-0">
-                <div class="px-5 order-2 order-md-1 mx-auto mt-4 mt-md-0">
+                <div class="px-lg-5 order-2 order-md-1 mx-auto mt-lg-4 mt-md-0">
                     <img src="/img/logo.png" alt="" class="img-fluid">
                 </div>
                 <div class="footer-sosmed d-flex justify-content-center gap-5 order-1 order-md-2">

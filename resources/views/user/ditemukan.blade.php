@@ -51,9 +51,9 @@
                     </div>
                 </div>
 
-                <div class="row pt-2 g-1 g-md-4">
+                <div class="row pt-2 g-3 g-md-4">
                     @foreach ($postingans_ditemukan as $postingan_ditemukan)
-                        <div class="col-lg-3">
+                        <div class="col-6 col-lg-3">
                             <div class="card h-100">
                                 <div class="card-content">
                                     <p hidden class="kategori">ditemukan</p>
@@ -87,33 +87,33 @@
                                         <div class="card-img-floating"><button class="btn btn-outline-light">Lihat</button>
                                         </div>
                                     </div>
-                                    <div class="card-body d-none d-md-block">
-                                        <p class="fs-18 fw-bold mb-0 judul_postingan">
+                                    <div class="card-body">
+                                        <p class="fs-16-18 fw-bold mb-0 judul_postingan">
                                             {{ $postingan_ditemukan->judul_postingan }}</p>
-                                        <p class="mb-2 deskripsi_postingan">
+                                        <p class="fs-14-16 mb-2 deskripsi_postingan">
                                             {{ $postingan_ditemukan->deskripsi_postingan }}</p>
                                         <div class="row" hidden>
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-user"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0 nama_akun">
+                                                <p class="small m-0 nama_akun fs-10-14">
                                                     {{ $postingan_ditemukan->akun->nama_akun }}</p>
                                             </div>
                                         </div>
-                                        <div class="row mt-1">
+                                        <div class="row align-items-center mt-1">
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-location-dot"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0 lokasi_disimpan">
+                                                <p class="small m-0 lokasi_disimpan fs-10-14">
                                                     {{ $postingan_ditemukan->lokasi_disimpan ? $postingan_ditemukan->lokasi_disimpan : '-' }}
                                                 </p>
                                             </div>
                                         </div>
                                         <hr class="mb-2">
                                         <small
-                                            class="muted small">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
+                                            class="muted fs-10-14">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
                                     </div>
                                 </div>
                             </div>

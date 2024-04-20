@@ -1,11 +1,13 @@
 {{-- {{ dd(Request::segment(1)) }} --}}
 @extends('layouts.default')
 @section('head')
-    <link href="{{ asset('/css/beranda.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/beranda.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    <section class="hero d-flex align-items-center justify-content-center" id="hero">
-        <img src="/img/hero-1.svg" alt="">
+    <section class="hero align-items-center justify-content-center" id="hero">
+        <img src="/img/hero-mobile.svg" alt="" class="d-md-none">
+        <img src="/img/hero-md.svg" alt="" class="d-none d-md-block d-lg-none">
+        <img src="/img/hero-1.svg" alt="" class="d-none d-lg-block">
     </section>
 
     {{-- FILTER --}}
@@ -67,13 +69,13 @@
         <section class="diajukan cards-container mt-5">
             <div class="container my-4">
                 <div class="section-title mb-3">
-                    <div class="line d-none d-md-block"></div>
+                    <div class="line"></div>
                     <h2 class="mt-4 mb-0 mb-md-2">DALAM PENGAJUAN</h2>
                     <p class="lead m-0">Postingan Anda yang masih dalam pengajuan dan menunggu konfirmasi admin.</p>
                 </div>
                 <div class="row pt-2 g-1 g-md-4">
                     @foreach ($postingans_diajukan as $postingan_diajukan)
-                        <div class="col-lg-3">
+                        <div class="col-md-4 col-lg-3">
                             <div class="card h-100">
                                 <div class="card-content h-100 d-flex flex-column">
                                     <p hidden class="kategori">kehilangan</p>
@@ -130,9 +132,9 @@
     {{-- DITEMUKAN --}}
     @if ($postingans_ditemukan->count())
         <section class="ditemukan cards-container mt-5">
-            <div class="container my-4">
-                <div class="section-title mb-3">
-                    <div class="line d-none d-md-block"></div>
+            <div class="container mt-4 mb-5">
+                <div class="section-title mb-lg-3">
+                    <div class="line"></div>
                     <div class="d-md-flex justify-content-between align-items-center">
                         <di>
                             <h3 class="mt-3 fw-black mb-0">DITEMUKAN</h3>
@@ -156,9 +158,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row pt-2 g-1 g-md-4">
+                <div class="row pt-2 g-md-4 g-3 justify-content-center justify-content-lg-start">
                     @foreach ($postingans_ditemukan as $postingan_ditemukan)
-                        <div class="col-lg-3">
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="card h-100">
                                 <div class="card-content">
                                     <p hidden class="kategori">ditemukan</p>
@@ -193,10 +195,10 @@
                                                 class="btn btn-outline-light">Lihat</button>
                                         </div>
                                     </div>
-                                    <div class="card-body d-none d-md-block">
-                                        <p class="fs-18 fw-bold mb-0 judul_postingan">
+                                    <div class="card-body">
+                                        <p class="fs-16-18 fw-bold mb-0 judul_postingan">
                                             {{ $postingan_ditemukan->judul_postingan }}</p>
-                                        <p class="mb-2 deskripsi_postingan">
+                                        <p class="fs-14-16 mb-2 deskripsi_postingan">
                                             {{ $postingan_ditemukan->deskripsi_postingan }}</p>
                                         <div class="row" hidden>
                                             <div class="col-1">
@@ -207,19 +209,19 @@
                                                     {{ $postingan_ditemukan->akun->nama_akun }}</p>
                                             </div>
                                         </div>
-                                        <div class="row mt-1">
+                                        <div class="row align-items-center mt-1">
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-location-dot"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0 lokasi_disimpan">
+                                                <p class="fs-10-14 m-0 lokasi_disimpan">
                                                     {{ $postingan_ditemukan->lokasi_disimpan ? $postingan_ditemukan->lokasi_disimpan : null }}
                                                 </p>
                                             </div>
                                         </div>
                                         <hr class="mb-2">
                                         <small
-                                            class="muted small">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
+                                            class="muted fs-10-14">{{ Carbon\Carbon::parse($postingan_ditemukan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +237,7 @@
         <section class="kehilangan cards-container mt-5">
             <div class="container my-4">
                 <div class="section-title mb-3">
-                    <div class="line d-none d-md-block"></div>
+                    <div class="line"></div>
                     <div class="d-md-flex justify-content-between align-items-center">
                         <div>
                             <h2 class="mt-4 mb-0 mb-md-2">KEHILANGAN</h2>
@@ -258,9 +260,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row pt-2 g-1 g-md-4">
+                <div class="row pt-2 g-3 g-md-4 justify-content-center">
                     @foreach ($postingans_kehilangan as $postingan_kehilangan)
-                        <div class="col-lg-3">
+                        <div class="col-6 col-md-4 col-lg-3">
                             <div class="card h-100">
                                 <div class="card-content h-100 d-flex flex-column">
                                     <p hidden class="kategori">kehilangan</p>
@@ -293,17 +295,17 @@
                                                 class="btn btn-outline-light">Lihat</button>
                                         </div>
                                     </div>
-                                    <div class="card-body pb-0 d-none d-md-block flex-fill">
-                                        <p class="fs-18 fw-bold mb-0 judul_postingan">
+                                    <div class="card-body pb-0 d-md-block flex-fill">
+                                        <p class="fs-16-18 fw-bold mb-0 judul_postingan">
                                             {{ $postingan_kehilangan->judul_postingan }}</p>
-                                        <p class="mb-2 deskripsi_postingan">
+                                        <p class="fs-14-16 mb-2 deskripsi_postingan">
                                             {{ $postingan_kehilangan->deskripsi_postingan }}</p>
-                                        <div class="row">
+                                        <div class="row align-items-center">
                                             <div class="col-1">
                                                 <i class="small fa-solid fa-user"></i>
                                             </div>
                                             <div class="col">
-                                                <p class="small m-0 nama_akun">
+                                                <p class="fs-10-14 m-0 nama_akun">
                                                     {{ $postingan_kehilangan->akun->nama_akun }}</p>
                                             </div>
                                         </div>
@@ -321,7 +323,7 @@
                                     <div class="px-3 pb-3">
                                         <hr class="mb-2">
                                         <small
-                                            class="muted small">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
+                                            class="muted fs-10-14">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</small>
                                     </div>
                                 </div>
                             </div>
