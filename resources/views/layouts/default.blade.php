@@ -24,10 +24,10 @@
     @auth()
         <div class="floating-icon">
             <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#buatPost">
-                <i class="display-1 d-lg-none text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip" data-bs-placement="left"
-                    data-bs-title="Buat Postingan"></i>
-                <i class="fs-1 d-none d-lg-block text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip" data-bs-placement="left"
-                    data-bs-title="Buat Postingan"></i>
+                <i class="display-1 d-lg-none text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip"
+                    data-bs-placement="left" data-bs-title="Buat Postingan"></i>
+                <i class="fs-1 d-none d-lg-block text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip"
+                    data-bs-placement="left" data-bs-title="Buat Postingan"></i>
             </button>
         </div>
     @endauth
@@ -35,15 +35,66 @@
         @include('includes.header')
     </header>
     <main style="min-height: 80vh">
+        @auth
+            <div class="mobile-sidebar d-block d-lg-none rounded-3 px-2 py-3">
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center gap-2 px-3">
+                        <div>
+                            <img src="{{ Auth::user()->getImageURL() }}" alt="Foto Profil"
+                                class="d-block mx-auto text-center img-fluid rounded-circle" width="50">
+                        </div>
+                        <div>
+                            <p class="mb-0 fw-bold small nama_akun">{{ Auth::user()->nama_akun }}</p>
+                            <p class="mb-0 small">{{ Auth::user()->nomor_induk }}</p>
+                        </div>
+                    </div>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('beranda') ? 'active' : '' }}"
+                        href="/">Beranda</a>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('ditemukan') ? 'active' : '' }}"
+                        href="/ditemukan">Ditemukan</a>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('kehilangan') ? 'active' : '' }}"
+                        href="/kehilangan">Kehilangan</a>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('tentang') ? 'active' : '' }}"
+                        href="/tentang">Tentang</a>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('notifikasi') ? 'active' : '' }}"
+                        href="/notifikasi">Notifikasi</a>
+                    <div class="px-3">
+                        <hr class="my-0">
+                    </div>
+                    <a href="/?filter=postingan_saya" class="nav-link py-1 px-3">Postingan saya</a>
+                    <a href="{{ route('logout') }}" class="nav-link py-1 px-3 text-primary">Logout</a>
+                </div>
+            </div>
+        @else
+            <div class="mobile-sidebar d-block d-lg-none rounded-3 px-2 py-3">
+                <div class="d-flex flex-column gap-3">
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('beranda') ? 'active' : '' }}"
+                        href="/">Beranda</a>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('ditemukan') ? 'active' : '' }}"
+                        href="/ditemukan">Ditemukan</a>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('kehilangan') ? 'active' : '' }}"
+                        href="/kehilangan">Kehilangan</a>
+                    <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('tentang') ? 'active' : '' }}"
+                        href="/tentang">Tentang</a>
+                    {{-- <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('notifikasi') ? 'active' : '' }}"
+                href="/notifikasi">Notifikasi</a> --}}
+                    <div class="px-3">
+                        <hr class="my-0">
+                    </div>
+                    <a class="nav-link rounded-pill py-1 px-3" href="/login"><button
+                            class="login-btn btn btn-outline-primary py-0 rounded-pill px-3">Login</button></a>
+                </div>
+            </div>
+        @endauth
         @yield('content')
-        <div class="screen-breakpoints fixed-bottom bg-dark d-block text-center">
+        {{-- <div class="screen-breakpoints fixed-bottom bg-dark d-block text-center">
             <small class="text-white d-block d-sm-none">__SM </small>
             <small class="text-white d-none d-sm-block d-md-none">SM</small>
             <small class="text-white d-none d-md-block d-lg-none">MD</small>
             <small class="text-white d-none d-lg-block d-xl-none">LG</small>
             <small class="text-white d-none d-xl-block d-xxl-none">XL</small>
             <small class="text-white d-none d-xxl-block">XXL</small>
-        </div>
+        </div> --}}
         {{-- TOAST --}}
         {{-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> --}}
         @if (session()->has('success'))
@@ -111,16 +162,17 @@
                                 <div class="col-md-6">
                                     <div>
                                         <label for="lokasi_kehilangan" class="form-label">Lokasi Terakhir</label>
-                                        <input type="text" class="form-control rounded-pill" id="lokasi_kehilangan"
-                                            name="lokasi_kehilangan" value="{{ old('lokasi_kehilangan') }}">
+                                        <input type="text" class="form-control rounded-pill"
+                                            id="lokasi_kehilangan" name="lokasi_kehilangan"
+                                            value="{{ old('lokasi_kehilangan') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div>
                                         <label for="tanggal" class="form-label">Tanggal Kehilangan <span
                                                 class="text-primary">*</span></label>
-                                        <input type="date" class="mandatory form-control rounded-pill" id="tanggal"
-                                            name="tanggal" value="{{ old('tanggal') }}">
+                                        <input type="date" class="mandatory form-control rounded-pill"
+                                            id="tanggal" name="tanggal" value="{{ old('tanggal') }}">
                                     </div>
                                 </div>
                             </div>
@@ -160,70 +212,71 @@
         </div>
 
         {{-- MODAL LIHAT POST DITEMUKAN --}}
-        <div class="modal lihatPost" id="lihatPostDitemukan" tabindex="-1"
-            aria-labelledby="lihatPostDitemukanLabel" aria-hidden="true">
-            <div
-                class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative mx-auto">
+        <div class="modal lihatPost" id="lihatPost" tabindex="-1" aria-labelledby="lihatPostLabel"
+            aria-hidden="true">
+            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
                 <div class="modal-content rounded-4 h-100">
                     <div class="modal-body p-0 w-100 h-100">
-                        <form method="POST" action="{{ route('postingan.store') }}" class="h-lg-100">
+                        <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
                             @csrf
                             <div class="row mb-3 w-100 h-100">
                                 <div class="col-md-6 col-img">
-                                    <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid image">
                                 </div>
-                                <div class="col-md-6 d-flex flex-column p-4 p-lg-3">
-                                    <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
+                                <div class="col-md-6 d-flex flex-column p-3">
+                                    <div class="lihat-post-header pt-0 pb-3 py-lg-3 d-flex justify-content-between border-bottom">
                                         <div>
-                                            <small>Pembuat Post</small>
-                                            <p class="mb-0 lnama_akun">nama_akun</p>
+                                            <small>{{ request()->path() == 'dashboard' ? 'Pengaju' : 'Pembuat Post' }}</small>
+                                            <p class="mb-0 pengaju">nama_akun</p>
                                         </div>
                                         <div class="text-end">
-                                            <small
-                                                class="d-block text-muted ltgl_ajukan_time">tgl_publikasi(jam)</small>
-                                            <small
-                                                class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
+                                            <small class="d-block text-muted jamPublikasi">tgl_publikasi(jam)</small>
+                                            <small class="d-block text-muted hariPublikasi">tgl_publikasi(hari)</small>
                                         </div>
                                     </div>
-                                    <div class="lihat-post-content h-100 pt-3 pe-lg-2">
+                                    <div class="lihat-post-content h-100 py-3">
                                         <div>
                                             <p class="fw-bold m-0">Nama Barang</p>
-                                            <p class="ljudul_postingan">judul_postingan</p>
+                                            <p class="namaBarang">judul_postingan</p>
                                         </div>
                                         <div>
                                             <p class="fw-bold m-0">Deskripsi</p>
-                                            <p class="ldeskripsi_postingan">deskripsi_postingan</p>
+                                            <p class="deskripsi">deskripsi_postingan</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col atribut_lokasi_kehilangan">
-                                                <p class="fw-bold m-0">Lokasi Terakhir</p>
-                                                <p class="llokasi_kehilangan">lokasi_kehilangan</p>
-                                            </div>
-                                            <div class="col atribut_ditemukan">
-                                                <p class="fw-bold m-0">Lokasi Ditemukan</p>
-                                                <p class="llokasi_ditemukan">lokasi_ditemukan</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="fw-bold m-0">Tanggal Kehilangan</p>
-                                                <p class="ltgl_kehilangan">tgl_kehilangan</p>
-                                            </div>
-                                            <div class="col atribut_ditemukan">
-                                                <p class="fw-bold m-0">Tanggal Ditemukan</p>
-                                                <p class="ltgl_ditemukan">tgl_ditemukan</p>
-                                            </div>
+                                        <div class="lokasi_terakhir atribut_lokasi_kehilangan">
+                                            <p class="fw-bold m-0">Lokasi Terakhir</p>
+                                            <p class="lokasiKehilangan">lokasi_kehilangan</p>
                                         </div>
                                         <div class="atribut_ditemukan">
-                                            <div
-                                                class="border border-success bg-success-50 d-inline-flex align-items-center gap-3 rounded-3 px-4 py-2 mt-3">
-                                                <i class="fa-solid fa-location-dot fs-3 text-success"></i>
-                                                <div>
-                                                    <p class="small m-0">Lokasi saat ini:</p>
-                                                    <p class="fw-bold llokasi_disimpan m-0">lokasi_disimpan</p>
-                                                </div>
+                                            <p class="fw-bold m-0">Lokasi Ditemukan</p>
+                                            <p class="lokasiDitemukan">lokasi_ditemukan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Tanggal Kehilangan</p>
+                                            <p class="tanggalKehilangan">tgl_kehilangan</p>
+                                        </div>
+                                        <div class="atribut_ditemukan">
+                                            <p class="fw-bold m-0">Tanggal Ditemukan</p>
+                                            <p class="tanggalDitemukan">tgl_ditemukan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Nomor Telepon</p>
+                                            <p class="noTelpPengaju">no_telp</p>
+                                        </div>
+                                        <div class="row statusBarang">
+                                            <div class="col">
+                                                <p class="fw-bold m-0">Status Barang:</p>
+                                                <p
+                                                    class="statusBarangKehilangan d-none mt-1 small bg-primary text-white d-inline-block rounded-pill px-3 py-1">
+                                                    Hilang</p>
+                                                <p
+                                                    class="statusBarangDitemukan d-none mt-1 small bg-success text-white d-inline-block rounded-pill px-3 py-1">
+                                                    Ditemukan</p>
                                             </div>
-                                            <p class="small mt-2">* Barang dapat diambil di lokasi yang tertera.</p>
+                                            <div class="col atribut_ditemukan">
+                                                <p class="fw-bold m-0">Lokasi saat ini:</p>
+                                                <p class="mt-1 lokasiDisimpan">lokasi_disimpan</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +287,7 @@
             </div>
         </div>
 
-        <div class="modal lihatPostOri" id="lihatPostDitemukan" tabindex="-1"
+        <div class="modal lihatPostOri" id="lihatPostDitemukanOri" tabindex="-1"
             aria-labelledby="lihatPostDitemukanLabel" aria-hidden="true">
             <div
                 class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative mx-auto">
@@ -242,8 +295,8 @@
                     <div class="modal-body p-0 w-100 h-100">
                         <form method="POST" action="{{ route('postingan.store') }}" class="h-lg-100">
                             @csrf
-                            <div class="row mb-3 w-100 h-100">
-                                <div class="col-md-6 col-img">
+                            <div class="row">
+                                <div class="col-md-6 p-0 m-0 col-img">
                                     <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
                                 </div>
                                 <div class="col-md-6 d-flex flex-column p-4 p-lg-3">
@@ -309,18 +362,18 @@
         </div>
 
         {{-- MODAL LIHAT POST KEHILANGAN --}}
-        <div class="modal lihatPost" id="lihatPostKehilangan" tabindex="-1"
+        <div class="modal lihatPost h-100" id="lihatPostKehilangan" tabindex="-1"
             aria-labelledby="lihatPostKehilanganLabel" aria-hidden="true">
-            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative">
-                <div class="modal-content rounded-4 h-100">
-                    <div class="modal-body p-0 w-100 h-100">
-                        <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
+            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative mx-auto h-100">
+                <div class="modal-content rounded-4">
+                    <div class="modal-body p-0 w-100">
+                        <form method="POST" action="{{ route('postingan.store') }}">
                             @csrf
-                            <div class="row mb-3 w-100 h-100">
-                                <div class="col-md-6 col-img">
+                            <div class="row mb-lg-3 w-100">
+                                <div class="col-md-6 col-img pt-2 pt-lg-0">
                                     <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
                                 </div>
-                                <div class="col-md-6 d-flex flex-column p-3">
+                                <div class="col-md-6 d-flex flex-column px-3 pb-3 p-lg-3">
                                     <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
                                         <div>
                                             <small>Pembuat Post</small>
@@ -333,7 +386,7 @@
                                                 class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
                                         </div>
                                     </div>
-                                    <div class="lihat-post-content h-100 pt-3 pe-lg-2">
+                                    <div class="lihat-post-content pt-3 pe-lg-2">
                                         <div>
                                             <p class="fw-bold m-0">Nama Barang</p>
                                             <p class="ljudul_postingan">judul_postingan</p>
@@ -352,7 +405,7 @@
                                         </div>
                                         <div>
                                             <p class="fw-bold m-0">No Telepon Pemilik</p>
-                                            <p class="lno_telp">no_telp</p>
+                                            <p class="lno_telp mb-0">no_telp</p>
                                         </div>
                                     </div>
                                 </div>

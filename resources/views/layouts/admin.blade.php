@@ -46,11 +46,12 @@
     {{-- BUAT POST --}}
     <div class="floating-icon">
         <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#buatPost">
-            <i class="fs-1 text-primary fa-solid fa-circle-plus"></i>
+            <i class="d-none d-lg-block fs-1 text-primary fa-solid fa-circle-plus"></i>
+            <i class="d-block d-lg-none display-1 text-primary fa-solid fa-circle-plus"></i>
         </button>
     </div>
     <div class="modal fade-scale" id="buatPost" tabindex="-1" aria-labelledby="buatPostLabel" aria-hidden="true">
-        <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto">
             <div class="modal-content rounded-4">
                 <div class="modal-header justify-content-center position-relative">
                     <h1 class="modal-title fs-4 text-center fw-bold" id="buatPostLabel">Buat Postingan Baru</h1>
@@ -205,7 +206,7 @@
                 <div class="modal-body p-0 w-100 h-100">
                     <form method="POST" action="{{ route('postingan.store') }}" class="h-100">
                         @csrf
-                        <div class="row mb-3 w-100 h-100">
+                        <div class="row w-100 h-100">
                             <div class="col-md-6 col-img">
                                 <img src="/img/mouse.jpg" alt="" class="img-fluid image">
                             </div>

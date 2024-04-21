@@ -17,6 +17,11 @@ i {
   color: #606062;
 }
 
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
 
 .text-primary {
   color: var(--primary) !important;
@@ -295,6 +300,7 @@ button[disabled] {
   color: var(--primary) !important;
   width: fit-content;
 }
+
 .mobile-sidebar .nav-link.active::after {
   content: '';
   display: block;
@@ -418,8 +424,12 @@ button[disabled] {
   z-index: 100;
 }
 
+.modal.lihatPost .row {
+  transform: translateX(10px);
+}
+
 .modal.lihatPost .col-img {
-  max-height: 100%;
+  height: fit-content;
 }
 
 .modal.lihatPost .col-md-6 {
@@ -433,12 +443,14 @@ button[disabled] {
 
 .modal.lihatPost .col-img img {
   width: 100%;
-  /* height: 100%; */
+  height: 40vh;
   object-fit: cover;
+  border-radius: 0;
+  border-radius: 10px;
 }
 
 .modal.lihatPost .lihat-post-content {
-  max-width: 100%;
+  max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -599,7 +611,7 @@ footer .hr-line {
 }
 
 .buat-post-modal.modal-dialog {
-  max-width: 80%;
+  max-width: 85%;
 }
 
 /* MOBILE SIDEBAR */
@@ -614,7 +626,7 @@ footer .hr-line {
   position: fixed;
   top: 4rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.65);
   box-shadow: 0 8px 20px 0 rgba(31, 38, 135, 0.2);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -622,6 +634,7 @@ footer .hr-line {
   border: 1px solid rgba(255, 255, 255, 0.18);
   max-width: 200px;
 }
+
 .mobile-sidebar.show {
   /* transform: translateX(0); */
   transform: scale(1);
@@ -637,7 +650,12 @@ footer .hr-line {
 
 /* MEDIUM (MD) */
 @media only screen and (min-width: 768px) {
-
+  .modal.lihatPost .col-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
   .card .card-img img {
     aspect-ratio: 1/1;
     object-fit: cover;
@@ -650,5 +668,20 @@ footer .hr-line {
 
   .floating-icon {
     right: 2rem;
+  }
+  .modal .modal-body,
+  .modal .modal-content, 
+  .modal form {
+    height: 100%;
+  }
+  .modal.lihatPost .col-img {
+    max-height: 100%;
+  }
+  .modal.lihatPost .row {
+    transform: translateX(0);
+    height: 100%;
+  }
+  .modal .lihat-post-content {
+    height: 100%;
   }
 }

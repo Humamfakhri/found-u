@@ -122,6 +122,12 @@ class PostinganController extends Controller
         $filter_list = $request->query('filter') == 'terlama' ? 'Terbaru' : 'Terlama';
         return view('user.ditemukan', [
             'notifikasis' => Notifikasi::where('id_akun', Auth::id())->where('baca', 0)->get(),
+            'jml_postingans_ditemukan' => Postingan::where('status', 2)
+                ->where(function (Builder $query) {
+                    $query->whereNotNull('tgl_ditemukan')
+                        ->WhereNotNull('lokasi_ditemukan');
+                })
+                ->count(),
             'postingans_ditemukan' => Postingan::where('status', '=', 2)
                 ->where(function (Builder $query) {
                     $query->whereNotNull('tgl_ditemukan')

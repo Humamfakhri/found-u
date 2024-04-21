@@ -14,14 +14,14 @@
         @if ($postingans_dipublikasi->count())
             <div class="filter d-flex gap-4">
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 dropdown-toggle" type="button"
+                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 dropdown-toggle fs-10-14" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ $filter }}
                         <i class="ms-2 fa-solid fa-chevron-down"></i>
                     </button>
                     <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
                         <li class="rounded-pill">
-                            <a class="rounded-pill dropdown-item small"
+                            <a class="rounded-pill dropdown-item fs-10-14"
                                 href="{{ $filter == 'Terbaru' ? 'postingan?filter=terlama' : 'postingan' }}">{{ $filter_list }}</a>
                         </li>
                     </ul>
@@ -73,10 +73,9 @@
                                 <img src="{{ $postingan_dipublikasi->akun->getImageURL() }}" alt=""
                                     class="img-fluid rounded-circle" width="35">
                                 <div class="d-flex flex-column gap-0 g-0">
-                                    <p class="mb-0 p-0 fw-semibold small pengajuSource">
+                                    <p class="mb-0 p-0 fw-semibold fs-10-14 pengajuSource">
                                         {{ $postingan_dipublikasi->akun->nama_akun }}</p>
                                     <div class="d-flex gap-1">
-                                        <small class="m-0 p-0 fs-12">Diposting:</small>
                                         <small
                                             class="m-0 p-0 fs-12">{{ Carbon\Carbon::parse($postingan_dipublikasi->tgl_publikasi)->diffForHumans(null, true) . ' lalu' }}</small>
                                     </div>
@@ -89,7 +88,7 @@
                                 </button>
                                 <ul class="dropdown-menu rounded-3 py-0 ">
                                     <li>
-                                        <a href="#" class="btnEditPost rounded-top dropdown-item small py-2"
+                                        <a href="#" class="btnEditPost rounded-top dropdown-item fs-10-14 py-2"
                                             data-bs-toggle="modal" data-bs-target="#editPost"><i
                                                 class="fa-regular fa-pen-to-square"></i> Edit</a>
                                     </li>
@@ -101,7 +100,7 @@
                                             @method('DELETE')
                                             <input type="hidden" name="hapus" value=1>
                                             <button type="submit"
-                                                class="rounded-bottom btn small px-0 py-1 d-flex align-items-center gap-1">
+                                                class="rounded-bottom btn fs-10-14 px-0 py-1 d-flex align-items-center gap-1">
                                                 <i class="fa-regular fa-trash-can"></i>
                                                 <small>Hapus</small>
                                             </button>
@@ -119,10 +118,10 @@
                         <div class="card-body">
                             @if (is_null($postingan_dipublikasi->tgl_ditemukan) and is_null($postingan_dipublikasi->lokasi_ditemukan))
                                 <small
-                                    class="small mb-0 bg-primary rounded-pill px-3 py-1 d-inline-block text-white statusBarangSource">Kehilangan</small>
+                                    class="fs-10-14 mb-0 bg-primary rounded-pill px-3 py-1 d-inline-block text-white statusBarangSource">Kehilangan</small>
                             @else
                                 <small
-                                    class="small mb-0 bg-success rounded-pill px-3 py-1 d-inline-block text-white statusBarangSource">Ditemukan</small>
+                                    class="fs-10-14 mb-0 bg-success rounded-pill px-3 py-1 d-inline-block text-white statusBarangSource">Ditemukan</small>
                             @endif
                             <p class="namaBarangSource fs-18 fw-bold mb-0">{{ $postingan_dipublikasi->judul_postingan }}
                             </p>
@@ -130,11 +129,11 @@
                             @if ($postingan_dipublikasi->lokasi_disimpan != null)
                                 <div class="row align-items-center mt-1">
                                     <div class="col-1">
-                                        <i class="fa-solid fa-location-dot small"></i>
+                                        <i class="fa-solid fa-location-dot fs-10-14"></i>
                                     </div>
                                     <div class="col">
                                         @if (!is_null($postingan_dipublikasi->lokasi_ditemukan) or !is_null($postingan_dipublikasi->tgl_ditemukan))
-                                            <p class="m-0 small">{{ $postingan_dipublikasi->lokasi_disimpan }}</p>
+                                            <p class="m-0 fs-10-14">{{ $postingan_dipublikasi->lokasi_disimpan }}</p>
                                         @endif
                                     </div>
                                 </div>

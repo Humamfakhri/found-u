@@ -47,28 +47,20 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mt-5">
-        <div>
-            <div class="d-flex align-items-center gap-2">
-                <h3 class="fw-black mb-0">Postingan Diajukan</h3>
-                {{-- @if ($postingans_diajukan->count())
-                    <small
-                        class="counter-postingan bg-primary rounded-pill text-white">{{ $postingans_diajukan->count() }}</small>
-                @endif --}}
-            </div>
-            <p class="fs-18">Postingan dari pengguna yang membutuhkan konfirmasi Admin.</p>
-        </div>
+    <h3 class="mt-5 fw-black mb-0">Postingan Diajukan</h3>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <p class="fs-16-18 mb-0">Postingan yang membutuhkan konfirmasi.</p>
         @if ($postingans_diajukan->count())
             <div class="filter d-flex gap-4">
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 dropdown-toggle" type="button"
+                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 dropdown-toggle fs-10-14" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ $filter }}
                         <i class="ms-2 fa-solid fa-chevron-down"></i>
                     </button>
                     <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
                         <li class="rounded-pill">
-                            <a class="rounded-pill dropdown-item small"
+                            <a class="rounded-pill dropdown-item fs-10-14"
                                 href="{{ $filter == 'Terbaru' ? 'dashboard?filter=terlama' : 'dashboard' }}">{{ $filter_list }}</a>
                         </li>
                     </ul>
@@ -108,7 +100,6 @@
                                     <p class="mb-0 p-0 fw-semibold small nama_akun pengajuSource">
                                         {{ $postingan_diajukan->akun->nama_akun }}</p>
                                     <div class="d-flex gap-1">
-                                        <small class="m-0 p-0 fs-12">Diposting:</small>
                                         <small
                                             class="m-0 p-0 fs-12">{{ Carbon\Carbon::parse($postingan_diajukan->created_at)->diffForHumans(null, true) . ' lalu' }}</small>
                                     </div>
@@ -121,14 +112,14 @@
                             </div>
                         </div>
                         <div class="card-body d-flex flex-column flex-grow-1">
-                            <p class="namaBarangSource flex-grow-1 fs-18 fw-bold mb-0">{{ $postingan_diajukan->judul_postingan }}</p>
-                            <p class="mb-2 deskripsiSource">{{ $postingan_diajukan->deskripsi_postingan }}</p>
+                            <p class="namaBarangSource flex-grow-1 fs-16-18 fw-bold mb-0">{{ $postingan_diajukan->judul_postingan }}</p>
+                            <p class="mb-2 deskripsiSource fs-14-16">{{ $postingan_diajukan->deskripsi_postingan }}</p>
                             <div class="row align-items-center mt-1">
                                 <div class="col-1">
-                                    <i class="fa-solid fa-location-dot small"></i>
+                                    <i class="fa-solid fa-location-dot fs-10-14"></i>
                                 </div>
                                 <div class="col">
-                                    <p class="m-0 small lokasiKehilanganSource">{{ $postingan_diajukan->lokasi_kehilangan ? $postingan_diajukan->lokasi_kehilangan : '-' }}</p>
+                                    <p class="m-0 fs-10-14 lokasiKehilanganSource">{{ $postingan_diajukan->lokasi_kehilangan ? $postingan_diajukan->lokasi_kehilangan : '-' }}</p>
                                 </div>
                             </div>
                             <div class="row align-items-center mt-1">
@@ -136,7 +127,7 @@
                                     <i class="fa-regular fa-calendar"></i>
                                 </div>
                                 <div class="col">
-                                    <p class="m-0 small tanggalKehilanganSource">
+                                    <p class="m-0 fs-10-14 tanggalKehilanganSource">
                                         {{ $postingan_diajukan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_diajukan->tgl_kehilangan)->translatedFormat('d F Y') : '-' }}
                                     </p>
                                 </div>
@@ -144,26 +135,26 @@
                             {{-- <hr class="mb-0 p-0"> --}}
                         </div>
                     </div>
-                    <div class="d-flex gap-3 p-3 pt-0">
+                    <div class="row g-2 g-lg-3 p-3 pt-0">
                         <form action="{{ route('postingan.update', $postingan_diajukan->id_postingan) }}" method="POST"
-                            class="w-50">
+                            class="col col-lg-6">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="status" value="tolak">
                             <button type="submit"
                                 class="w-100 btn btn-outline-primary py-1 rounded-pill d-flex align-items-center justify-content-center gap-1">
-                                <small>Tolak</small>
+                                <small class="fs-10-14">Tolak</small>
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
                         </form>
                         <form action="{{ route('postingan.update', $postingan_diajukan->id_postingan) }}" method="POST"
-                            class="w-50">
+                            class="col col-lg-6">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="status" value="publikasi">
                             <button type="submit"
                                 class="w-100 btn btn-primary py-1 rounded-pill d-flex align-items-center justify-content-center gap-1">
-                                <small>Publikasi</small>
+                                <small class="fs-10-14">Publikasi</small>
                                 <i class="fa-solid fa-check"></i>
                             </button>
                         </form>
