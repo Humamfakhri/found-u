@@ -34,7 +34,7 @@
     </header>
     <main style="min-height: 80vh">
         @yield('content')
-        <div class="screen-breakpoints fixed-bottom bg-dark d-block">
+        <div class="screen-breakpoints fixed-bottom bg-dark d-block text-center">
             <small class="text-white d-block d-sm-none">__SM </small>
             <small class="text-white d-none d-sm-block d-md-none">SM</small>
             <small class="text-white d-none d-md-block d-lg-none">MD</small>

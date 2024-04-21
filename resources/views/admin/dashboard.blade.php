@@ -82,7 +82,7 @@
             <p class="text-muted mt-3">Tidak ada postingan dalam pengajuan</p>
         </div>
     @endif
-    <div class="row g-4">
+    <div class="row g-3 g-md-4">
         @foreach ($postingans_diajukan as $postingan_diajukan)
             <div class="col-6 col-lg-3">
                 <div class="card h-100">

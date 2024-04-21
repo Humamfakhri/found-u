@@ -12,6 +12,7 @@ const btnEditPost = document.querySelectorAll('.btnEditPost');
 btnEditPost.forEach(card => {
   // SOURCE
   const cardContent = card.parentElement.parentElement.parentElement.parentElement.parentElement;
+  const idAkunSource = cardContent.querySelector('.idAkunSource').innerHTML.trim();
   const idSource = cardContent.querySelector('.idSource').innerHTML.trim();
   const imageSource = cardContent.querySelector('.imageSource').src;
   const pengajuSource = cardContent.querySelector('.pengajuSource').innerHTML.trim();
@@ -29,6 +30,7 @@ btnEditPost.forEach(card => {
   const editElementsSource = [namaBarangSource, deskripsiSource, lokasiKehilanganSource, lokasiDitemukanSource, tanggalKehilanganSource, tanggalDitemukanSource, noTelpPengajuSource, lokasiDisimpanSource];
 
   // POPUP DETAILS
+  let idAkun = document.querySelector('[name="eid_akun"]');
   let image = document.querySelector('.eimage');
   let pengaju = document.querySelector('.enama_akun');
   let jamPublikasi = document.querySelector('.etgl_ajukan_time');
@@ -47,6 +49,7 @@ btnEditPost.forEach(card => {
 
   // ON CLICK ACTION @CARD  
   card.addEventListener("click", function () {
+    // console.log(document.querySelector('[name="eid_akun"]'));
     options.forEach(option => {
       if (lokasiDisimpanSource == option.innerHTML) {
         option.setAttribute("selected", "selected")
@@ -60,6 +63,8 @@ btnEditPost.forEach(card => {
     // $ menandakan akhir dari string.
     // /g menandakan pencarian akan dilakukan secara global, sehingga akan menghapus semua angka yang berada di akhir string.
 
+    idAkun.value = idAkunSource;
+    console.log(idAkun.value);
     image.src = imageSource;
     // Static Elements
     staticElements.forEach((element, index) => {

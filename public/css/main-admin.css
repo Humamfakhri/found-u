@@ -510,7 +510,17 @@ footer {
   border-top: 3px solid var(--primary);
 }
 
+.floating-icon {
+  bottom: 4rem;
+  right: 1rem;
+}
+
 @media screen and (min-width:768px) {
+  .floating-icon {
+    bottom: 1.5rem;
+    right: 2rem;
+  }
+
   .logout-modal.modal-dialog {
     max-width: 30%;
   }

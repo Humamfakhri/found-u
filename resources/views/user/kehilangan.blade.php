@@ -56,16 +56,30 @@
                             <div class="card h-100">
                                 <div class="card-content">
                                     <p hidden class="kategori">ditemukan</p>
-                                    <p hidden class="lokasi_kehilangan">{{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : null }}</p>
-                                    <p hidden class="lokasi_ditemukan">{{ $postingan_kehilangan->lokasi_ditemukan ? $postingan_kehilangan->lokasi_ditemukan : null }}</p>
-                                    <p hidden class="lokasi_disimpan">{{ $postingan_kehilangan->lokasi_disimpan ? $postingan_kehilangan->lokasi_disimpan : null }}</p>
-                                    <p hidden class="tgl_kehilangan">{{ $postingan_kehilangan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_kehilangan)->translatedFormat('d F Y') : null }}</p>
-                                    <p hidden class="tgl_ditemukan">{{ $postingan_kehilangan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') : null }}</p>
-                                    <p hidden class="tgl_ditemukan">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') }}</p>
+                                    <p hidden class="lokasi_kehilangan">
+                                        {{ $postingan_kehilangan->lokasi_kehilangan ? $postingan_kehilangan->lokasi_kehilangan : null }}
+                                    </p>
+                                    <p hidden class="lokasi_ditemukan">
+                                        {{ $postingan_kehilangan->lokasi_ditemukan ? $postingan_kehilangan->lokasi_ditemukan : null }}
+                                    </p>
+                                    <p hidden class="lokasi_disimpan">
+                                        {{ $postingan_kehilangan->lokasi_disimpan ? $postingan_kehilangan->lokasi_disimpan : null }}
+                                    </p>
+                                    <p hidden class="tgl_kehilangan">
+                                        {{ $postingan_kehilangan->tgl_kehilangan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_kehilangan)->translatedFormat('d F Y') : null }}
+                                    </p>
+                                    <p hidden class="tgl_ditemukan">
+                                        {{ $postingan_kehilangan->tgl_ditemukan ? Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') : null }}
+                                    </p>
+                                    <p hidden class="tgl_ditemukan">
+                                        {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_ditemukan)->translatedFormat('d F Y') }}
+                                    </p>
                                     <p hidden class="no_telp">{{ $postingan_kehilangan->no_telp }}</p>
-                                    <p hidden class="tgl_ajukan_time">{{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->format('H:i') }}</p>
+                                    <p hidden class="tgl_ajukan_time">
+                                        {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->format('H:i') }}</p>
                                     <p hidden class="tgl_ajukan_date">
-                                        {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}</p>
+                                        {{ Carbon\Carbon::parse($postingan_kehilangan->tgl_publikasi)->translatedFormat('d F Y') }}
+                                    </p>
                                     <div class="card-img" data-bs-toggle="modal" data-bs-target="#lihatPostKehilangan">
                                         <img src="{{ $postingan_kehilangan->getImageURL() }}" alt=""
                                             class="img-fluid foto_barang">

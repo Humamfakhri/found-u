@@ -268,7 +268,7 @@ class PostinganController extends Controller
     //     }
     // }
 
-    public function update(Request $request, $id_postingan): RedirectResponse
+    public function update($id_postingan): RedirectResponse
     {
         if (request('status') == 'publikasi') {
             $postingan = Postingan::find($id_postingan);
@@ -280,14 +280,22 @@ class PostinganController extends Controller
                     'status' => 2,
                 ]);
             }
-            $postingan->update(['status' => 2, 'tgl_publikasi' => Carbon::now()]);
             return redirect()->back()->with("dipublikasi", "Postingan telah dipublikasi");
         } elseif (request('status') == 'tolak') {
             $postingan = Postingan::find($id_postingan);
-            $postingan->update(['status' => 3]);
+            $berhasil = $postingan->update(['status' => 3]);
+            if ($berhasil) {
+                Notifikasi::create([
+                    'id_akun' => Auth::id(),
+                    'id_postingan' => $id_postingan,
+                    'status' => 3,
+                ]);
+            }
             return redirect()->back()->with("ditolak", "Postingan ditolak");
         } elseif (request('status') == 'edit') {
-            // dd($request->all()); // Cetak data yang diterima dari form
+            // dd(Notifikasi::where('id_akun', request('eid_akun'))->where('id_postingan', $id_postingan)->where('status', 1)->exists());
+            // dd(request('elokasi_ditemukan'));
+            // dd(request('etgl_ditemukan'));
             try {
                 $postingan = Postingan::find($id_postingan);
                 $berhasil = $postingan->update([
@@ -301,6 +309,15 @@ class PostinganController extends Controller
                     'no_telp' => request('eno_telp'),
                 ]);
                 if ($berhasil) {
+                    if (request('elokasi_ditemukan') != null || request('etgl_ditemukan') != null) {
+                        if (Notifikasi::where('id_akun', request('eid_akun'))->where('id_postingan', $id_postingan)->where('status', 1)->exists()) {
+                            Notifikasi::create([
+                                'id_akun' => request('eid_akun'),
+                                'id_postingan' => $id_postingan,
+                                'status' => 5,
+                            ]);
+                        }
+                    }
                     return redirect()->back()->with("editPostingan", "Berhasil mengedit postingan");
                 } else {
                     return redirect()->back()->with("gagalEditPostingan", "Gagal mengedit postingan");

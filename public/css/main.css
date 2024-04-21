@@ -285,6 +285,20 @@ button[disabled] {
   color: var(--primary) !important;
 }
 
+.mobile-sidebar .nav-link.active {
+  font-weight: bold !important;
+  /* background-color: var(--primary); */
+  color: var(--primary) !important;
+  width: fit-content;
+}
+.mobile-sidebar .nav-link.active::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 2px;
+  background-color: var(--primary);
+}
+
 .scrolled .navbar-nav .nav-link.active {
   font-weight: bold !important;
   background-color: var(--primary);
@@ -584,9 +598,34 @@ footer .hr-line {
   max-width: 90%;
 }
 
+/* MOBILE SIDEBAR */
+.mobile-sidebar {
+  /* width: 100px;
+  height: 200px; */
+  z-index: 100;
+  position: fixed;
+  top: 4rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 20px 0 rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  /* border-radius: 10px; */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 200px;
+}
+
+.mobile-sidebar .nama_akun {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
 /* MEDIUM (MD) */
 @media only screen and (min-width: 768px) {
-  
+
   .card .card-img img {
     aspect-ratio: 1/1;
     object-fit: cover;
