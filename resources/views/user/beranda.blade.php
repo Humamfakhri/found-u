@@ -11,7 +11,7 @@
     </section>
 
     @auth
-        <div class="mobile-sidebar rounded-3 px-2 py-3">
+        <div class="mobile-sidebar d-block d-lg-none rounded-3 px-2 py-3">
             <div class="d-flex flex-column gap-3">
                 <div class="d-flex align-items-center gap-2 px-3">
                     <div>
@@ -40,7 +40,7 @@
             </div>
         </div>
     @else
-        <div class="mobile-sidebar rounded-3 px-2 py-3">
+        <div class="mobile-sidebar d-block d-lg-none rounded-3 px-2 py-3">
             <div class="d-flex flex-column gap-3">
                 <a class="nav-link rounded-pill py-1 px-3 {{ Route::is('beranda') ? 'active' : '' }}"
                     href="/">Beranda</a>

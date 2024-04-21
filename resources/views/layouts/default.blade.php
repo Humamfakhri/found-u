@@ -396,6 +396,13 @@
             })
         @endif
 
+        // MOBILE SIDEBAR
+        const navbarToggler = document.querySelector('.navbar-toggler')
+        const mobileSidebar = document.querySelector('.mobile-sidebar')
+        navbarToggler.addEventListener('click', function() {
+            mobileSidebar.classList.toggle('show')
+        })
+
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
