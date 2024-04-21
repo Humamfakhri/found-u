@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav d-none d-lg-flex gap-3 align-items-center justify-content-between w-100">
                 <div class="flex-fill px-4">
-                    <form class="w-100 position-relative" method="GET" action="{{ route('beranda') }}">
+                    <form class="searchBar w-100 position-relative" method="GET" action="{{ route('beranda') }}">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" class="form-control rounded-pill py-1 pe-3" name="search"
                             placeholder="Cari">

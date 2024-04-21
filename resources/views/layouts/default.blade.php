@@ -24,7 +24,9 @@
     @auth()
         <div class="floating-icon">
             <button type="button" class="btn border-0" data-bs-toggle="modal" data-bs-target="#buatPost">
-                <i class="fs-1 text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip" data-bs-placement="left"
+                <i class="display-1 d-lg-none text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip" data-bs-placement="left"
+                    data-bs-title="Buat Postingan"></i>
+                <i class="fs-1 d-none d-lg-block text-primary fa-solid fa-circle-plus" data-bs-toggle="tooltip" data-bs-placement="left"
                     data-bs-title="Buat Postingan"></i>
             </button>
         </div>
@@ -71,7 +73,7 @@
 
         <!-- MODAL BUAT POSTINGAN -->
         <div class="modal fade-scale" id="buatPost" tabindex="-1" aria-labelledby="buatPostLabel" aria-hidden="true">
-            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto">
                 <div class="modal-content rounded-4">
                     <div class="modal-header justify-content-center position-relative">
                         <h1 class="modal-title fs-4 text-center fw-bold" id="buatPostLabel">Buat Postingan Kehilangan
@@ -79,7 +81,7 @@
                         <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-lg-4 pb-lg-0">
+                    <div class="modal-body px-4 px-lg-4 pb-lg-0">
                         <form enctype="multipart/form-data" method="POST" action="{{ route('postingan.store') }}">
                             @csrf
                             <input type="hidden" name="status" value=1>
@@ -159,6 +161,80 @@
 
         {{-- MODAL LIHAT POST DITEMUKAN --}}
         <div class="modal lihatPost" id="lihatPostDitemukan" tabindex="-1"
+            aria-labelledby="lihatPostDitemukanLabel" aria-hidden="true">
+            <div
+                class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative mx-auto">
+                <div class="modal-content rounded-4 h-100">
+                    <div class="modal-body p-0 w-100 h-100">
+                        <form method="POST" action="{{ route('postingan.store') }}" class="h-lg-100">
+                            @csrf
+                            <div class="row mb-3 w-100 h-100">
+                                <div class="col-md-6 col-img">
+                                    <img src="/img/mouse.jpg" alt="" class="img-fluid lfoto_barang">
+                                </div>
+                                <div class="col-md-6 d-flex flex-column p-4 p-lg-3">
+                                    <div class="lihat-post-header py-3 d-flex justify-content-between border-bottom">
+                                        <div>
+                                            <small>Pembuat Post</small>
+                                            <p class="mb-0 lnama_akun">nama_akun</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <small
+                                                class="d-block text-muted ltgl_ajukan_time">tgl_publikasi(jam)</small>
+                                            <small
+                                                class="d-block text-muted ltgl_ajukan_date">tgl_publikasi(hari)</small>
+                                        </div>
+                                    </div>
+                                    <div class="lihat-post-content h-100 pt-3 pe-lg-2">
+                                        <div>
+                                            <p class="fw-bold m-0">Nama Barang</p>
+                                            <p class="ljudul_postingan">judul_postingan</p>
+                                        </div>
+                                        <div>
+                                            <p class="fw-bold m-0">Deskripsi</p>
+                                            <p class="ldeskripsi_postingan">deskripsi_postingan</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col atribut_lokasi_kehilangan">
+                                                <p class="fw-bold m-0">Lokasi Terakhir</p>
+                                                <p class="llokasi_kehilangan">lokasi_kehilangan</p>
+                                            </div>
+                                            <div class="col atribut_ditemukan">
+                                                <p class="fw-bold m-0">Lokasi Ditemukan</p>
+                                                <p class="llokasi_ditemukan">lokasi_ditemukan</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="fw-bold m-0">Tanggal Kehilangan</p>
+                                                <p class="ltgl_kehilangan">tgl_kehilangan</p>
+                                            </div>
+                                            <div class="col atribut_ditemukan">
+                                                <p class="fw-bold m-0">Tanggal Ditemukan</p>
+                                                <p class="ltgl_ditemukan">tgl_ditemukan</p>
+                                            </div>
+                                        </div>
+                                        <div class="atribut_ditemukan">
+                                            <div
+                                                class="border border-success bg-success-50 d-inline-flex align-items-center gap-3 rounded-3 px-4 py-2 mt-3">
+                                                <i class="fa-solid fa-location-dot fs-3 text-success"></i>
+                                                <div>
+                                                    <p class="small m-0">Lokasi saat ini:</p>
+                                                    <p class="fw-bold llokasi_disimpan m-0">lokasi_disimpan</p>
+                                                </div>
+                                            </div>
+                                            <p class="small mt-2">* Barang dapat diambil di lokasi yang tertera.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal lihatPostOri" id="lihatPostDitemukan" tabindex="-1"
             aria-labelledby="lihatPostDitemukanLabel" aria-hidden="true">
             <div
                 class="buat-post-modal modal-dialog modal-dialog-centered modal-dialog-scrollable position-relative mx-auto">

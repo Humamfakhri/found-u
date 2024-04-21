@@ -26,8 +26,8 @@
             <div class="col-lg-7 col-md-6 d-none d-md-flex position-relative h-100 align-items-center">
                 <div class="container image-container ps-5">
                     {{-- <i class="fs-5 fa-solid fa-house"></i> --}}
-                    <a href="/" data-bs-toggle="tooltip" data-bs-title="Kembali"><i
-                            class="fs-5 text-light fa-solid fa-arrow-left-long"></i></a>
+                    {{-- <a href="/" data-bs-toggle="tooltip" data-bs-title="Kembali"><i
+                            class="fs-5 text-light fa-solid fa-arrow-left-long"></i></a> --}}
                     <div class="mt-5">
                         <img src="/img/logo-white.svg" alt="" class="img-fluid">
                         <p class="text-light fw-semibold lead">Selamat Datang di FOUND-U</p>
@@ -67,6 +67,7 @@
                     </form>
                     <small class="text-muted d-block text-center mt-3">*Gunakan akun SSO (Single Sign-On) untuk login.
                     </small>
+                    <a href="/" class="text-muted small d-block text-center mt-3 text-primary text-decoration-underline">Kembali</a>
                 </div>
             </div>
         </div>

@@ -64,7 +64,56 @@
     {{-- FILTER --}}
     @if ($postingans_ditemukan->count() || $postingans_kehilangan->count())
         <div class="container mt-4 mt-md-5">
-            <div class="filter d-flex gap-4">
+            <div class="d-flex d-lg-none gap-3 align-items-center">
+                <form class="searchBar w-100 position-relative" method="GET" action="{{ route('beranda') }}">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" class="form-control rounded-pill py-1 px-5 border-text" name="search"
+                        placeholder="Cari">
+                    <button hidden type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <div class="filter gap-4">
+                    @if (isset($_GET['filter']))
+                        @if ($_GET['filter'] == 'postingan_saya')
+                            <a href="/" class="btn btn-sm d-flex align-items-center btn-primary rounded-pill px-3">
+                                Postingan Saya
+                                {{-- <i class="ms-2 fa-solid fa-chevron-down"></i> --}}
+                                <i class="ms-2 fa-solid fa-xmark"></i>
+                            </a>
+                        @else
+                            <div class="dropdown">
+                                <button
+                                    class="btn btn-sm d-flex align-items-center btn-outline-secondary rounded-pill px-3 dropdown-toggle"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ $filter }}
+                                    <i class="ms-2 fa-solid fa-chevron-down"></i>
+                                </button>
+                                <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
+                                    <li class="rounded-pill">
+                                        <a class="rounded-pill dropdown-item small"
+                                            href="{{ $filter == 'Terbaru' ? '/?filter=terlama' : '/' }}">{{ $filter_list }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
+                    @else
+                        <div class="dropdown">
+                            <button
+                                class="btn btn-sm d-flex align-items-center btn-outline-secondary rounded-pill px-3 dropdown-toggle"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ $filter }}
+                                <i class="ms-2 fa-solid fa-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu rounded-4 py-0 rounded-pill">
+                                <li class="rounded-pill">
+                                    <a class="rounded-pill dropdown-item small"
+                                        href="{{ $filter == 'Terbaru' ? '/?filter=terlama' : '/' }}">{{ $filter_list }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="filter d-none d-lg-flex gap-4">
                 @if (isset($_GET['filter']))
                     @if ($_GET['filter'] == 'postingan_saya')
                         <a href="/" class="btn btn-sm d-flex align-items-center btn-primary rounded-pill px-3">

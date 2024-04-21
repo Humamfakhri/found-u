@@ -30,6 +30,10 @@ i {
   border-color: var(--primary) !important;
 }
 
+.border-text {
+  border-color: var(--text) !important;
+}
+
 .toast {
   background-color: #fff;
   /* background-color: #ff484e; */
@@ -246,7 +250,7 @@ button[disabled] {
   background-color: #fff;
 }
 
-.navbar-nav form i {
+.searchBar i {
   /* color: #818181; */
   position: absolute;
   top: 50%;
@@ -383,7 +387,7 @@ button[disabled] {
   cursor: pointer;
   position: fixed;
   bottom: 1.5rem;
-  right: 2rem;
+  right: 0;
 }
 
 .modal-open .floating-icon {
@@ -429,12 +433,12 @@ button[disabled] {
 
 .modal.lihatPost .col-img img {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   object-fit: cover;
 }
 
 .modal.lihatPost .lihat-post-content {
-  max-height: 100%;
+  max-width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -595,7 +599,7 @@ footer .hr-line {
 }
 
 .buat-post-modal.modal-dialog {
-  max-width: 90%;
+  max-width: 80%;
 }
 
 /* MOBILE SIDEBAR */
@@ -642,5 +646,9 @@ footer .hr-line {
 
   .buat-post-modal.modal-dialog {
     max-width: 70%;
+  }
+
+  .floating-icon {
+    right: 2rem;
   }
 }
